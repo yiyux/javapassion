@@ -1,0 +1,1177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1001: Getting to know your Java programming environment</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico"
+ type="image/x-icon">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Getting to know your Java programming
+environment<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="http://www.javapassion.com/">www.javapassion.com/</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+The goal of this hands-on lab is to get you exposed to the Java
+programming environment for the first time in which you will build your
+first HelloWorld Java program both using command line tools (javac
+compiler and java command) and using NetBeans.&nbsp; <br>
+<br>
+<p></p>
+<p align="center"><b>Expected duration: 60 minutes<br>
+<br>
+</b></p>
+<div class="indent">
+<h3 class="tutorial">Prerequisites</h3>
+<p>This hands-on lab assumes you have no or minimum programming
+experience.<br>
+<br>
+</p>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<p>Before you begin, you need to install the following software on your
+computer.&nbsp; <br>
+</p>
+<ul>
+  <li>Java Standard Development Kit (JDK™) version
+6.0 update x (<a href="http://java.sun.com/javase/downloads/index.jsp">download</a>)<br>
+  </li>
+  <ul>
+    <li>If you already have installed JDK 5.0 or JDK 6.0, you
+can skip this.</li>
+  </ul>
+  <li>NetBeans 6.5, 6.5.1, 6.7, or 6.8 (<a
+ href="http://www.netbeans.org/downloads/">download</a>) </li>
+  <ul>
+    <li>When you install NetBeans IDE, it will ask you which JDK
+you want to use. </li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Jan. 19th, 2007: Created</li>
+  <li>Jan. 21st, 2007: JDK 6 installation is explained in more detail</li>
+  <li>June 8th, 2008: NetBeans 6.1 information is added</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used <br>
+  </li>
+  <li>Aug. 1st, 2009: Exercise 1 and 2 are switched. NetBeans exercise
+is now exercise 1.<br>
+  </li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_0">Exercise 0: Install JDK 6 and NetBeans
+IDE</a><br>
+  </li>
+  <li><a href="#Exercise_1">Exercise 1: Write, compile, and run Hello
+Java program using NetBeans (30 minutes)</a></li>
+  <li><a href="index.html#Exercise_2">Exercise 2: Write, compile, and
+run Hello
+Java program using command line tool (30 minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_0"></a>Exercise 0:&nbsp; Install Java SE
+and NetBeans IDE <br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In this exercise, you are going to
+install Java SE and NetBeans on your computer.&nbsp; If you already
+have done the
+installation, please proceed to Exercise 1.&nbsp;&nbsp; The
+installation procedure is based on Windows platform.&nbsp; Installation
+over other platforms such as Linux and Solaris should work in a similar
+fashion.<br>
+<ol>
+  <li><a href="#0.1">Download and install JDK 6 on your computer</a></li>
+  <li><a href="#0.2">Download and install NetBeans IDE on your computer</a><br>
+  </li>
+</ol>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="0.1"></a>(0.1)
+Download and
+install JDK 6
+on you computer<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+If you have installed any JDK 6 Update x on your computer, you can
+skip this step.<br>
+<br>
+</div>
+<!-- ===================================================================================== -->
+<div style="margin-left: 40px;">1.&nbsp; Download JDK 6.<br>
+<ul>
+  <li>From your browser, go to <a
+ href="http://java.sun.com/javase/downloads/index.jsp">download
+page</a> of the Java SE. </li>
+  <li>Observe that there are multiple choices.&nbsp; </li>
+  <li>You can choose any of these but for the sake of this exercise<span
+ style="font-weight: bold;">, </span>choose <span
+ style="font-weight: bold;">JDK 6 Update x</span> as show in in
+Figure-0.10 below.&nbsp; (The latest version as of August 1st, 2009 is
+version 14.)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/0_java1.png"
+ style="width: 830px; height: 752px;"><br>
+Figure-0.10: Choose JDK 6 Update x<br>
+<ul>
+  <li>Select the Platform of your choice from the drop-down menu.</li>
+  <li>Check the checkbox of&nbsp; "I agree to the Java SE Development
+Kit 6 License Agreement".</li>
+  <li>Click Continue.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/0_java1.1.png"
+ style="width: 830px; height: 752px;"><br>
+<br>
+<ul>
+  <li>Choose OS platform specific off-line installation, <span
+ style="font-weight: bold;">Windows Offline Installation</span> for the
+Windows platform, for example.</li>
+  <li>Click the link of <span style="font-weight: bold;">jdk-6u6-windows-i586-p.exe</span>
+(or click Download Selected with Sun Download Manager.)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/0_java3.png"
+ style="width: 830px; height: 752px;"><br>
+Figure-0.11: Choose the file<br>
+<br>
+2. Install JDK 6 <br>
+<ul>
+  <li>Double-click <span style="font-weight: bold;">jdk-6u6-windows-i586-p.exe</span>&nbsp;
+(for Windows) to run the installation. (Other platforms, of course, has
+different names.)<br>
+  </li>
+  <li>Observe that the installation gets started.</li>
+  <li>When <span style="font-weight: bold;">License agreement</span>
+dialog box is displayed, click <span style="font-weight: bold;">I
+accept the terms in the license agreement</span>. (Figure-0.12 below)<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<img alt="" src="index_files/0_java4.png"
+ style="width: 629px; height: 473px;"><br>
+Figure-0.12: License Agreement<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">J2SE Development
+Kit 5.0 Update x - Custom Setup</span> dialog box appears.</li>
+  <li>If you want to install it in a different location, click <span
+ style="font-weight: bold;">Change </span>and specify the directory of
+your choice.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. (Figure-0.13
+below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/0_java5.png"
+ style="width: 629px; height: 473px;"><br>
+Figure-0.13: Specify the installation location<br>
+<ul>
+  <li>Observe that the installation process of the J2SE Development Kit
+gets underway for a minute or two.</li>
+  <li>Observe that<span style="font-weight: bold;"> J2SE Runtime
+Environment 5.0 Update x - Custom Setup</span> dialog box appears.
+(Figure-0.14 below) <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Next</span>. (Figure-0.14
+below)</li>
+</ul>
+<img alt="" src="index_files/0_java6.png"
+ style="width: 629px; height: 473px;"><br>
+Figure-0.14: Custom Setup of the J2SE Runtime Environment<br>
+<ul>
+  <li>Observe that Browser Registration dialog box appears.</li>
+  <li>Click <span style="font-weight: bold;">Next</span>.&nbsp;
+(Figure-0.15 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/0_java7.png"
+ style="width: 629px; height: 473px;"><br>
+Figure-0.15: Browser registration<br>
+<ul>
+  <li>Observe that the installation process of the J2SE Runtime
+Environment gets underway. <br>
+  </li>
+  <li>Observe that Installation Completed screen appears.<br>
+  </li>
+</ul>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="0.2"></a>(0.2)
+Download and
+install NetBeans IDE on your computer<br>
+</h3>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"><br>
+</div>
+1. From your browser, go to <a
+ href="http://www.netbeans.org/downloads/">download
+page</a> of the NetBeans IDE.&nbsp; <br>
+<br>
+2. Select OS specific version of the NetBeans IDE from the drop-down
+menu.<br>
+3. Download and install any bundle that contains Java SE.&nbsp; There
+are 4 possible choices.&nbsp; You can choose to download any one of the
+4
+choices.&nbsp; The current version of NetBeans is 6.8.&nbsp; <br>
+<br>
+<img alt="" src="index_files/0_java2.png"
+ style="width: 927px; height: 792px;"><br>
+Figure-1.11: Download NetBeans IDE 6.5<br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Write, compile, and run Hello
+Java program using NetBeans IDE<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">In this exercise, you are going to build
+a simple Hello application using NetBeans
+IDE.<br>
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+  <li><a href="#1.1">Start NetBeand IDE</a><br>
+  </li>
+  <li><a href="#1.2">Create a NetBeans project</a></li>
+  <li><a href="#1.3">Build and run the program</a><br>
+  </li>
+</ol>
+<ul style="margin-left: 40px;">
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Start NetBeans IDE<br>
+</h3>
+<p style="margin-left: 40px;">1. Double-click NetBeans IDE Icon on the
+desktop to start the NetBeans IDE.
+Observe the NetBeans IDE gets started.&nbsp; (Figure-2.10 below)<br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb1.png"
+ style="width: 846px; height: 677px;"><br>
+Figure-2.10: NetBeans IDE<br>
+</p>
+<div style="margin-left: 40px;">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
+ href="#Exercise_1">return to top of exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Create a NetBeans
+project<br>
+</h3>
+<p style="margin-left: 40px;">1. Select <span
+ style="font-weight: bold;">File </span>from top-level menu and
+select <span style="font-weight: bold;">New Project</span> or press <span
+ style="font-weight: bold;">Ctrl+Shift+N</span>.&nbsp;
+(Figure-2.20 below)&nbsp; <br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb2.png"
+ style="width: 846px; height: 677px;"><br>
+Figure-2.20: Create New Project<br>
+</p>
+<p style="margin-left: 40px;">2. Observe that the <span
+ style="font-weight: bold;">New Project</span> dialog box appears.<br>
+3. Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. (Figure-2.21
+below)<br>
+4. Click <span style="font-weight: bold;">Next</span>. <br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb3.png"
+ style="width: 737px; height: 505px;"><br>
+Figure-2.21: Create Java Application project
+<br>
+</p>
+<p style="margin-left: 40px;">5. Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">MyHelloProject</span>.<br>
+6. For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">Hello</span>.&nbsp;
+(Figure-2.22 below)&nbsp; For <span style="font-weight: bold;">Project
+Location</span> field, which indicates the directory in which you are
+creating a NetBeans project, you can leave it as it is. <br>
+</p>
+<p style="margin-left: 40px;">7. Click <span style="font-weight: bold;">Finish</span>.&nbsp;
+<br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb4.png"
+ style="width: 737px; height: 505px;"><br>
+Figure-2.22: Give a project name<br>
+</p>
+<p style="margin-left: 40px;">8. Observe that the <span
+ style="font-weight: bold;">MyHelloProject </span>node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb4.1.png"
+ style="width: 846px; height: 677px;"></p>
+<p style="margin-left: 40px;">9. Modify the IDE generated <span
+ style="font-weight: bold;">Hello.java</span> as
+shown in Figure-2.23 below.&nbsp; The code fragment that you want to
+add is highlighted in <span
+ style="font-weight: bold; color: rgb(255, 0, 0);">bold and red-colored
+font</span>.<br>
+</p>
+<a href="index.html#Exercise_2"></a>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Hello {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // TODO code application
+logic here<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> <span style="color: rgb(255, 0, 0);">System.out.println("This
+is my first Java program!");</span></span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<img alt="" src="index_files/2_nb5.png"
+ style="width: 846px; height: 677px;"><br>
+Figure-2.23: Modified Hello.java<br>
+</div>
+<p style="margin-left: 40px;">10. Introduce a syntax error in the
+program and observe that NetBeans IDE immediately highlights the
+problem as shown in Figure-2.24 below.&nbsp; It detects that the
+keyword <span style="font-weight: bold;">void </span>is misspelled as
+<span style="font-weight: bold;">voidx</span>.<br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb8.png"
+ style="width: 846px; height: 677px;"><br>
+Figure-2.24: NetBeans IDE detects a syntax error (compile error)<br>
+</p>
+<p style="margin-left: 40px;">11. Remove the syntax error.<br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb9.png"
+ style="width: 846px; height: 677px;"><br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return to top of exercise</a><br>
+<br>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Build and run the program<br>
+</h3>
+<p style="margin-left: 40px;">1. Right click <span
+ style="font-weight: bold;">MyHelloProject </span>and select <span
+ style="font-weight: bold;">Run</span>. (Figure-2.30 below)<br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb6.png"
+ style="width: 850px; height: 668px;"><br>
+Figure-2.30: Build and run the project<br>
+</p>
+<p style="margin-left: 40px;">2. Observe that the <span
+ style="font-weight: bold;">Hello.java</span> is
+compiled and then run.&nbsp; (Figure-2.31 below)<br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_nb7.png"
+ style="width: 850px; height: 668px;"><br>
+Figure-2.31: Result of running the MyHelloProject <br>
+</p>
+<p style="margin-left: 40px;">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
+ href="index.html#Exercise_1">return to top of exercise</a>
+</p>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have built
+and run Hello Java application using NetBeans IDE.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a
+ href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Write, compile, and run Hello
+Java program using command line tool<br>
+</h2>
+<p style="margin-left: 40px;">
+The goal of this exercise is to let you experience a complete
+development cycle&nbsp; - writing, compiling, and running a
+simplest possible Java program - using command line tools.&nbsp; If you
+have
+done any programming in the past using different programming languages
+such as C or C++, this is not that much different from it. (There is a
+slight difference, however.&nbsp; In Java, the compiler which is called
+<span style="font-weight: bold;">javac </span>compiles
+the Java source code into what is called bytecode which can be run on
+any Java compliant platform, thus provides the portability of the Java
+programs. The bytecode is the same thing as Java class file, which is
+represented by *.class file notation.)<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="index.html#2.1">Build and run Hello Java program using
+"javac"
+and "java" command</a><br>
+    </li>
+    <li><a href="index.html#2.2">Experiment with "javac" compiler<br>
+      </a></li>
+    <li><a href="index.html#2.3">Experiment with "java" command</a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run Hello Java program using "javac" compiler and "java"<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a directory where you are going
+to
+write Java programs<span style="font-weight: bold;"></span></p>
+<div style="margin-left: 80px;">C:\&gt;<span style="font-weight: bold;">mkdir
+c:\myjavaprograms<br>
+</span>C:\&gt;<span style="font-weight: bold;">cd \myjavaprograms<br>
+</span></div>
+<p style="margin-left: 40px;">2. Write <span style="font-weight: bold;">Hello.java</span>
+using
+your editor of choice such as <span style="font-weight: bold;">notepad
+</span>on Windows platform, <span style="font-weight: bold;">gedit </span>on
+Solaris platform or cross-platform Java editor called <a
+ href="http://www.jedit.org/index.php?page=download"><span
+ style="font-weight: bold;">jedit</span></a> (in this example, I am
+using <span style="font-weight: bold;">notepad</span>) as shown in
+Code-1.10
+below.&nbsp; You can cut and paste
+the code from the Code-1.10 but I encourage you to write the
+code
+line by line yourself manually just to experience some compile errors.</p>
+<p style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">noteepad
+Hello.java</span><br>
+<span style="font-weight: bold;"></span></p>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Hello {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * My first Java program<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print the string "Hello
+world" on screen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Hello
+world");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-1.10: Hello.java<br>
+<br>
+3. Compile <span style="font-weight: bold;">Hello.java</span> using <span
+ style="font-weight: bold;">javac</span>
+compiler.&nbsp; The <span style="font-weight: bold;">javac </span>compiler
+comes with J2SE SDK you've download.&nbsp; It resides in <span
+ style="font-weight: bold;">%JAVA_HOME%\bin</span> (Windows) or <span
+ style="font-weight: bold;">$JAVA_HOME/bin</span> (Solaris/Linux)
+directory. The result of compilation will be the creation of <span
+ style="font-weight: bold;">Hello.class</span> file.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac
+Hello.java</span><br>
+</div>
+<br>
+<hr style="width: 100%; height: 2px;"><span
+ style="color: rgb(255, 0, 0);"><img alt="" src="index_files/0stop.jpg"
+ style="width: 11px; height: 12px;"> Trouble-shooting #1</span>: If you
+experience the following error condition, it means the %JAVA_HOME%\bin
+for Windows platform or $JAVA_HOME/bin for Solaris/Linux platform is
+not set in your path.&nbsp; You can try C:\Program
+Files\Java\jdk1.6.0_06\bin\javac Hello.java (for Windows) if you want
+to proceed without setting the path.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac Hello.java</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'javac' is not recognized as an internal
+or external command, operable program or batch file<br>
+</div>
+<br>
+<span style="color: rgb(51, 51, 255);">Solution #a</span>: Add
+C:\"Program
+Files"\Java\jdk1.6.0_14\bin (for Windows platform) or
+/usr/opt/jdk1.6.0_14/bin (for
+Solaris/Linux platform) to the path environment variable.<br>
+<br>
+<span style="color: rgb(51, 51, 255);">Solution #b</span>: You can
+specify the full path as following: <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">C:\"Program
+Files"\Java\jdk1.6.0_14\bin\javac Hello.java</span><br>
+</div>
+<hr style="width: 100%; height: 2px;"><br>
+4. Make sure <span style="font-weight: bold;">Hello.class</span> file
+has been created.&nbsp; The <span style="font-weight: bold;">Hello.class</span>
+file contains bytecode representation of the Hello class.<br>
+<div style="margin-left: 40px;"><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">dir Hello.class<br>
+&nbsp;</span>Volume in drive C is ACER<br>
+&nbsp;Volume Serial Number is 58CE-B0DC<br>
+<br>
+&nbsp;Directory of C:\myjavaprograms<br>
+<br>
+01/19/2007&nbsp; 12:16
+AM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+415 Hello.class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1
+File(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+415 bytes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 Dir(s)&nbsp; 21,578,907,648 bytes free<br>
+</div>
+<br>
+6. Run the <span style="font-weight: bold;">Hello </span>program
+using <span style="font-weight: bold;">java </span>command.
+The <span style="font-weight: bold;">java </span>command starts the
+Java Virtual Machine and runs the <span style="font-weight: bold;">Hello</span>
+program in this example.&nbsp; A Java program can be made of multiple
+Java classes and and a set of libraries.&nbsp; In this example, the
+Hello program just contains a single class called <span
+ style="font-weight: bold;">Hello.class</span>. You can
+regard the <span style="font-weight: bold;">java </span>command as
+Java interpreter. <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java
+Hello</span><span style="font-weight: bold;"></span><br
+ style="font-weight: bold;">
+Hello world<br>
+</div>
+<br>
+<hr style="width: 100%; height: 2px;"><span
+ style="color: rgb(255, 0, 0);"><img alt="" src="index_files/0stop.jpg"
+ style="width: 11px; height: 12px;"> Trouble-shooting #2</span>: If you
+experience the following error condition, it is highly likely you
+compiled the program with JDK 1.4 and then run it with JDK 6.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java Hello</span><br>
+Exception in thread "main" java.lang.UnsupportedClassVersionError:
+Hello (Unsupported major.minor version 49.0)<br>
+</div>
+<br>
+<span style="color: rgb(51, 51, 255);">Solution</span>: Add
+C:\"Program
+Files"\Java\jdk1.6.0_14\bin (for Windows platform) or
+/usr/opt/jdk1.6.0_14/bin (for
+Solaris/Linux platform) to the front of the path environment variable.<br>
+<br>
+<span style="color: rgb(255, 0, 0);"><img alt=""
+ src="index_files/0stop.jpg" style="width: 11px; height: 12px;">
+Trouble-shooting #3</span>: If you
+experience the following error condition, it is highly likely because
+your have set CLASSPATH enviroment variable set without the current
+directory.<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java Hello</span><br>
+Exception in thread "main" java.lang.NoClassDefFoundError: Hello<br>
+</div>
+<br>
+<span style="color: rgb(51, 51, 255);">Solution</span>: Try "java
+-classpath . Hello" (There is a dot . after -classpath) as following.
+We will learn about classpath later on.<br>
+<div style="margin-left: 40px;"><br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java -classpath .
+Hello</span><br>
+This is my first Java program!<br>
+</div>
+<hr style="width: 100%; height: 2px;"><br>
+7. Modify <span style="font-weight: bold;">Hello.java</span> as shown
+in Code-1.11 below.&nbsp; The code
+fragment
+that needs to be changed are highlighted in bold and blue-colored font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Hello {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * My first Java program<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print the string "Hello
+world" on screen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">This is my first
+Java program!</span>");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.11: Modified Hello.java<br>
+<br>
+8. Compile and run the program. Observe that new message is displayed.<br>
+<br>
+<div style="margin-left: 40px; font-weight: bold;"><span
+ style="font-weight: normal;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac Hello.java</span></span><br
+ style="font-weight: normal;">
+<br style="font-weight: normal;">
+<span style="font-weight: normal;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java Hello</span></span><br
+ style="font-weight: normal;">
+<span style="font-weight: normal;">This is my first Java program!</span><br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Experiment with "javac" compiler<br>
+</h3>
+<p style="margin-left: 40px;">In this step, you are going to learn how
+to use various command line options of the javac compiler.<br>
+</p>
+<p style="margin-left: 40px;">1. Display the usage information of the <span
+ style="font-weight: bold;">javac </span>compiler by using <span
+ style="font-weight: bold;">-help</span> option<br>
+</p>
+<div style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac -help</span><br>
+Usage: javac &lt;options&gt; &lt;source files&gt;<br>
+where possible options include:<br>
+&nbsp;
+-g&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Generate all debugging info<br>
+&nbsp;
+-g:none&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Generate no debugging info<br>
+&nbsp; -g:{lines,vars,source}&nbsp;&nbsp;&nbsp;&nbsp; Generate only
+some debugging info<br>
+&nbsp;
+-nowarn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Generate no warnings<br>
+&nbsp;
+-verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Output messages about what the compiler is doing<br>
+&nbsp;
+-deprecation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Output source locations where deprecated APIs are used<br>
+&nbsp; -classpath
+&lt;path&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Specify where to find user class files<br>
+&nbsp; -cp
+&lt;path&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Specify where to find user class files<br>
+&nbsp; -sourcepath
+&lt;path&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Specify
+where to find input source files<br>
+&nbsp; -bootclasspath &lt;path&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Override location of bootstrap class files<br>
+&nbsp; -extdirs
+&lt;dirs&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Override location of installed extensions<br>
+&nbsp; -endorseddirs &lt;dirs&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Override location of endorsed standards path<br>
+&nbsp; -d
+&lt;directory&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Specify where to place generated class files<br>
+&nbsp; -encoding &lt;encoding&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Specify character encoding used by source files<br>
+&nbsp; -source
+&lt;release&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Provide source compatibility with specified release<br>
+<br>
+&nbsp; -target
+&lt;release&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Generate class files for specific VM version<br>
+&nbsp;
+-version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Version information<br>
+&nbsp;
+-help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Print a synopsis of standard options<br>
+&nbsp;
+-X&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Print a synopsis of nonstandard options<br>
+&nbsp;
+-J&lt;flag&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Pass &lt;flag&gt; directly to the runtime system<br>
+</div>
+<p style="margin-left: 40px;">2. Run the <span
+ style="font-weight: bold;">javac </span>compiler with <span
+ style="font-weight: bold;">-verbose</span> option<br>
+</p>
+<p style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac -verbose Hello.java</span><br>
+[parsing started Hello.java]<br>
+[parsing completed 516ms]<br>
+[search path for source files: [.]]<br>
+[search path for class files: [C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\rt.jar,C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\jsse.jar, C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\jce.jar, C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\charsets.jar,C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\ext\dnsns.jar, C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\ext\localedata.jar, C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\ext\sunjce_provider.jar, C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\ext\sunpkcs11.jar, .]]<br>
+[loading C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\rt.jar(java/lang/Object.class)]<br>
+[loading C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\rt.jar(java/lang/String.class)]<br>
+[checking Hello]<br>
+[loading C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\rt.jar(java/lang/System.class)]<br>
+[loading C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\rt.jar(java/io/PrintStream.class)]<br>
+[loading C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\rt.jar(java/io/FilterOutputStream.class)]<br>
+[loading C:\Program
+Files\Java\jdk1.6.0_06\jre\lib\rt.jar(java/io/OutputStream.class)]<br>
+[wrote Hello.class]<br>
+[total 1141ms]<br>
+<br>
+</p>
+<div style="margin-left: 40px;">3. Experience the compile error.<br>
+<ul>
+  <li>Modify Hello.java as shown in Code 1-20 below. The code fragment
+that needs to be changed is highlighted in bold and blue-colored font.
+The change introduced a syntax error - the keyword <span
+ style="font-weight: bold;">static </span>is mistyped with <span
+ style="font-weight: bold;">statict</span>.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Hello {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * My first Java program<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">statict </span>void
+main( String[] args ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print the string "Hello
+world" on screen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("<span
+ style="color: rgb(0, 0, 0);">This is my first
+Java program!");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-1.20: Code that contains syntax error<br>
+<ul>
+  <li>Compile Hello.java with javac.</li>
+  <li>Observe the errors<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac Hello.java</span><br>
+Hello.java:6: &lt;identifier&gt; expected<br>
+&nbsp;&nbsp;&nbsp; public statict void main( String[] args ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+^<br>
+Hello.java:12: ';' expected<br>
+}<br>
+^<br>
+2 errors<br>
+</div>
+<ul>
+  <li>Remove the syntax error you introduced to the code and recomile
+it.<br>
+  </li>
+</ul>
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return
+to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Experiment with "java" command<br>
+</h3>
+<p style="margin-left: 40px;">In this step, hyou are going to learn how
+to use various command line options of the java command.&nbsp; You can
+think of java command as Java Virtual machine.<br>
+</p>
+<p style="margin-left: 40px;">1. Display the usage information of the <span
+ style="font-weight: bold;">java </span>command with<span
+ style="font-weight: bold;"> -help </span>option or<span
+ style="font-weight: bold;"> -?</span> option.<br>
+</p>
+<p style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -help</span><br>
+Usage: java [-options] class [args...]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (to
+execute a class)<br>
+&nbsp;&nbsp; or&nbsp; java [-options] -jar jarfile [args...]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (to
+execute a jar file)<br>
+<br>
+where options include:<br>
+&nbsp;&nbsp;&nbsp; -client&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to
+select the "client" VM<br>
+&nbsp;&nbsp;&nbsp; -server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to
+select the "server" VM<br>
+&nbsp;&nbsp;&nbsp; -hotspot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; is a synonym
+for the "client" VM&nbsp; [deprecated]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The default VM is client.<br>
+<br>
+&nbsp;&nbsp;&nbsp; -cp &lt;class search path of directories and zip/jar
+files&gt;<br>
+&nbsp;&nbsp;&nbsp; -classpath &lt;class search path of directories and
+zip/jar files&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A ; separated list of directories, JAR archives,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+and ZIP archives to search for class files.<br>
+&nbsp;&nbsp;&nbsp; -D&lt;name&gt;=&lt;value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+set a system property<br>
+&nbsp;&nbsp;&nbsp; -verbose[:class|gc|jni]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable verbose output<br>
+&nbsp;&nbsp;&nbsp; -version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print product
+version and exit<br>
+&nbsp;&nbsp;&nbsp; -version:&lt;value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+require the specified version to run<br>
+&nbsp;&nbsp;&nbsp; -showversion&nbsp; print product version and continue<br>
+&nbsp;&nbsp;&nbsp; -jre-restrict-search | -jre-no-restrict-search<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+include/exclude user private JREs in the version search<br>
+&nbsp;&nbsp;&nbsp; -? -help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print this
+help message<br>
+&nbsp;&nbsp;&nbsp;
+-X&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+print help on non-standard options<br>
+&nbsp;&nbsp;&nbsp; -ea[:&lt;packagename&gt;...|:&lt;classname&gt;]<br>
+&nbsp;&nbsp;&nbsp;
+-enableassertions[:&lt;packagename&gt;...|:&lt;classname&gt;]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable assertions<br>
+&nbsp;&nbsp;&nbsp; -da[:&lt;packagename&gt;...|:&lt;classname&gt;]<br>
+&nbsp;&nbsp;&nbsp;
+-disableassertions[:&lt;packagename&gt;...|:&lt;classname&gt;]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+disable assertions<br>
+&nbsp;&nbsp;&nbsp; -esa | -enablesystemassertions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable system assertions<br>
+&nbsp;&nbsp;&nbsp; -dsa | -disablesystemassertions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+disable system assertions<br>
+&nbsp;&nbsp;&nbsp; -agentlib:&lt;libname&gt;[=&lt;options&gt;]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+load native agent library &lt;libname&gt;, e.g. -agentlib:hprof<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+see also, -agentlib:jdwp=help and -agentlib:hprof=help<br>
+&nbsp;&nbsp;&nbsp; -agentpath:&lt;pathname&gt;[=&lt;options&gt;]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+load native agent library by full pathname<br>
+&nbsp;&nbsp;&nbsp; -javaagent:&lt;jarpath&gt;[=&lt;options&gt;]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+load Java programming language agent, see java.lang.instrument<br>
+&nbsp;&nbsp;&nbsp; -splash:&lt;imagepath&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+show splash screen with specified image<br>
+</p>
+<p style="margin-left: 40px;">2. Run the <span
+ style="font-weight: bold;">java </span>command with <span
+ style="font-weight: bold;">-verbose</span> option</p>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -verbose Hello</span><br>
+[Opened C:\Program Files\Java\jre1.5.0_06\lib\rt.jar]<br>
+[Opened C:\Program Files\Java\jre1.5.0_06\lib\jsse.jar]<br>
+[Opened C:\Program Files\Java\jre1.5.0_06\lib\jce.jar]<br>
+[Opened C:\Program Files\Java\jre1.5.0_06\lib\charsets.jar]<br>
+[Loaded java.lang.Object from shared objects file]<br>
+[Loaded java.io.Serializable from shared objects file]<br>
+[Loaded java.lang.Comparable from shared objects file]<br>
+[Loaded java.lang.CharSequence from shared objects file]<br>
+[Loaded java.lang.String from shared objects file]<br>
+[Loaded java.lang.reflect.GenericDeclaration from shared objects file]<br>
+[Loaded java.lang.reflect.Type from shared objects file]<br>
+[Loaded java.lang.reflect.AnnotatedElement from shared objects file]<br>
+[Loaded java.lang.Class from shared objects file]<br>
+[Loaded java.lang.Cloneable from shared objects file]<br>
+[Loaded java.lang.ClassLoader from shared objects file]<br>
+[Loaded java.lang.System from shared objects file]<br>
+[Loaded java.lang.Throwable from shared objects file]<br>
+[Loaded java.lang.Error from shared objects file]<br>
+[Loaded java.lang.ThreadDeath from shared objects file]<br>
+[Loaded java.lang.Exception from shared objects file]<br>
+[Loaded java.lang.RuntimeException from shared objects file]<br>
+[Loaded java.security.ProtectionDomain from shared objects file]<br>
+[Loaded java.security.AccessControlContext from shared objects file]<br>
+[Loaded java.lang.ClassNotFoundException from shared objects file]<br>
+[Loaded java.lang.LinkageError from shared objects file]<br>
+[Loaded java.lang.NoClassDefFoundError from shared objects file]<br>
+[Loaded java.lang.ClassCastException from shared objects file]<br>
+[Loaded java.lang.ArrayStoreException from shared objects file]<br>
+[Loaded java.lang.VirtualMachineError from shared objects file]<br>
+....<br>
+[Loaded sun.net.www.URLConnection from shared objects file]<br>
+[Loaded sun.net.www.protocol.file.FileURLConnection from shared objects
+file]<br>
+[Loaded java.net.ContentHandler from shared objects file]<br>
+[Loaded java.net.UnknownContentHandler from shared objects file]<br>
+[Loaded sun.net.www.MessageHeader from shared objects file]<br>
+[Loaded java.io.FilePermission from shared objects file]<br>
+[Loaded java.io.FilePermission$1 from shared objects file]<br>
+[Loaded java.io.FilePermissionCollection from shared objects file]<br>
+[Loaded java.security.AllPermission from shared objects file]<br>
+[Loaded java.security.UnresolvedPermission from shared objects file]<br>
+[Loaded java.security.BasicPermissionCollection from shared objects
+file]<br>
+[Loaded java.security.Principal from shared objects file]<br>
+[Loaded java.security.cert.Certificate from shared objects file]<br>
+[Loaded Hello from file:/C:/myjavaprograms/]<br>
+This is my first Java program!<br>
+[Loaded java.lang.Shutdown from shared objects file]<br>
+[Loaded java.lang.Shutdown$Lock from shared objects file]<br>
+<br>
+</div>
+3. Run the <span style="font-weight: bold;">java </span>command with <span
+ style="font-weight: bold;">-version</span> option. Observe that the
+version number of the java is displayed.&nbsp; <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java -version</span><br>
+java version "1.6.0_11"<br>
+Java(TM) SE Runtime Environment (build 1.6.0_11-b03)<br>
+Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)<br>
+</div>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have built and run
+a simple Hello Java program using javac compiler and java
+command.&nbsp; You have learned some of the options of the javac
+compiler and java command.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a><br>
+</p>
+<p style="margin-left: 40px;"><br>
+</p>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to create a new
+NetBeans project called "MyHelloProject2" which functions the same as
+"MyHelloProject" above except that it prints out the following two
+lines:<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Hello,
+this is the first line from MyHelloProject2.</li>
+  <li>This is the second line from the same project.</li>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javaprogenv.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the the<span style="font-weight: bold;">
+MyHelloProject2</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyHelloProject2</span> directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyHelloProject2</span>)<br>
+    </li>
+    <li>jar cvf MyHelloProject2.zip MyHelloProject2 (<span
+ style="font-weight: bold;">MyHelloProject2 </span>should contain <span
+ style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+</ul>
+<div style="margin-left: 80px;">Or you can install Project Packager
+NetBeans plug-in (from <a
+ href="http://plugins.netbeans.org/PluginPortal/faces/PluginDetailPage.jsp?pluginid=3742">http://plugins.netbeans.org/PluginPortal/faces/PluginDetailPage.jsp?pluginid=3742</a>).&nbsp;
+You can then export your project as a zip file - the build and dist
+directories are removed automatically to make the smaller zip file. If
+you set up SMTP, you can even e-mail your zipped project to someone.</div>
+<ul style="margin-left: 40px;">
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javaprogenv.gif</span>
+or<span style="font-weight: bold;">JavaIntro-javaprogenv</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javaprogenv.&lt;whatver
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+    <li>Under Windows, you can do the screen capture by taking steps
+below</li>
+    <ul>
+      <li>Press Alt+PrtSc key combination to copy the current window
+image to the clipboard</li>
+      <li>Select Start / All Programs / Accessories / Paint</li>
+      <li>Ctrl+V to paste into Paint</li>
+      <li>File / New, then Ctrl+V</li>
+      <li>File / Save As - pull down "Save As Type" to be GIF or JPG,
+then save</li>
+    </ul>
+    <li>Under Solaris/Linux, you can take one of the following two
+approaches</li>
+    <ul>
+      <li>Option 1: Type "import HWExercise3.2.jpg" in a terminal
+window
+and then you can select the area of the screen that you want with the
+mouse.</li>
+      <li>Option 2: Use gimp program.&nbsp; It has screen capture
+functionality.</li>
+    </ul>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project - war file with necessary source files is OK.</li>
+</ul>
+<br>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>
