@@ -1,0 +1,990 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1034: Controls</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="Free Java Programming Online Training Course"
+ name="description">
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Java Controls<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;
+<a href="http://www.javapassion.com/">www.javapassion.com</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<div style="margin-left: 40px;">In this lab, you are going to build and
+run sample applications that
+uses control structure of the Java programming language such as while
+loop or if/else.<br>
+</div>
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 60 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/"><img
+ alt="" src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/"><img
+ alt="" src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/"><img
+ alt="" src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Jan. 24th, 2007: Created</li>
+  <li>Jan. 28th, 2007: Missing sample codes are added, Homework subject
+line is fixed.</li>
+  <li>Feb. 25th, 2008: Minor change is made</li>
+  <li>April 17th, 2008: JDK 6 is recommened.</li>
+  <li>July 13th, 2010: Updated with NetBeans 6.9, Lab zip file name is
+changed (Sang Shin)<br>
+  </li>
+</ul>
+<br>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: if/else control structure (20
+minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: for loop (20
+minutes)</a></li>
+  <li><a href="#Exercise_3">Exercise 3: While loop (20 minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: if/else control structure <br>
+</h2>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you will learn
+how to write a Java program that uses if/else control structure.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#1.1">Build and run a Java program that uses if/else
+control structure<br>
+      </a></li>
+    <li><a href="#1.2">Build and run 2nd Java program that uses if/else
+control structure</a></li>
+  </ol>
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run a Java program that uses if/else control structure<br>
+</h3>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyGradesProject</span> NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Clock Open Project button or select <span
+ style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_control9.png"
+ style="width: 843px; height: 769px;"><br>
+<ul>
+  <li>Observe <span style="font-weight: bold;">Open Project</span>
+dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_control/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>Windows: If you unzipped the hands-on lab zip file, <span
+ style="font-weight: bold;">1034_javase_control.zip</span>, under C:\
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\javase_control\samples.</span></li>
+    <li>Solaris/Linux: If you unzipped the <span
+ style="font-weight: bold;">1034_javase_control</span><span
+ style="font-weight: bold;">.zip</span>
+file under <span style="font-weight: bold;">$HOME</span>
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/javase_control/samples.</span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(255, 0, 0);">MyGradesProject</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.
+(Figure-1.10 below)&nbsp;&nbsp;</li>
+</ul>
+<img alt="" src="index_files/1_control2.png"
+ style="width: 779px; height: 403px;"><br>
+Figure-1.10: Open MyGradesProject<br>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"></div>
+<span style="color: rgb(0, 0, 0);"></span>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyGradesProject
+    </span>project node is displayed
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Study the <span
+ style="font-weight: bold;">Grades.java</span> which uses
+if/else control structure,<br>
+<ul>
+  <li>Expand <span style="font-weight: bold;">MyGradesProject-&gt;Source
+Packages</span>.</li>
+  <li>Double click <span style="font-weight: bold;">Grades.java</span>
+to open it in the editor window.</li>
+  <li>Study how if/else control structure is used, whose code fragment
+is highlighted in bold font in Code-1.11 below.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import javax.swing.JOptionPane;<br>
+      <br>
+public class Grades {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int mathGrade = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int historyGrade = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int scienceGrade = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double average = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mathGrade =
+Integer.parseInt(JOptionPane.showInputDialog("Enter math grade between
+0 and 100!"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; historyGrade =
+Integer.parseInt(JOptionPane.showInputDialog("Enter history grade
+between 0 and 100!"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scienceGrade =
+Integer.parseInt(JOptionPane.showInputDialog("Enter science grade
+between 0 and 100!"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Compute average<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; average =
+(mathGrade+historyGrade+scienceGrade)/3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Perform if &amp; else control</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (average &gt;= 60){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, "Good job! Your average is " +
+average);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} else{</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, "You need to do better! Your
+average is " + average);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.11: Grades.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyGradesProject </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Enter math, history, and science grades and see the result.
+(Figure-1.12, Figure-1.13, Figure-1.14, Figure-1.15 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_control3.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-1.12: Enter math grade dialog box<br>
+<br>
+<img alt="" src="index_files/1_control4.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-1.13: Enter history grade dialog box<br>
+<br>
+<img alt="" src="index_files/1_control5.png"
+ style="width: 300px; height: 126px;"><br>
+Figure-1.14: Enter science grade dialog box<br>
+<br>
+<img alt="" src="index_files/1_control6.png"
+ style="width: 268px; height: 120px;"><br>
+Figure-1.15: Computing average and display different message using
+if/else<br>
+<br>
+<br>
+4. (For your own exercise - this is not a homework) Modify the <span
+ style="font-weight: bold;">Grades.java </span>as following:<br>
+<ul>
+  <li>If the average is greater than 90 (average &gt; 90), display "You
+worked too hard! Your average is xx.0."</li>
+  <li>If the average is greater than 50 (average &gt; 50) and less than
+or equal&nbsp; to 90 (average &lt;= 90), display "You did OK! Your
+average is xx.0."</li>
+  <li>If the average is less than or equal to 50 (average &lt;= 50),
+display "You need to do some work! Your average is xx.0."</li>
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Build and run another Java program that uses if/else control structure<br>
+</h3>
+<br>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyNumWordsProject</span> NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_control/samples</span>
+directory.&nbsp; <br>
+  </li>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">MyNumWordsProject</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>. <br>
+  </li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyNumWordsProject
+    </span>project node is displayed
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.<br>
+  </li>
+</ul>
+2. Study the <span style="font-weight: bold;">NumWords.java</span>
+which uses
+if/else control structure,<br>
+<ul>
+  <li>Expand <span style="font-weight: bold;">MyNumWordsProject-&gt;Source
+Packages</span>.</li>
+  <li>Double click <span style="font-weight: bold;">NumWords.java</span>
+to open it in the editor window.</li>
+  <li>Study how if/else control structure is used, whose code fragment
+is highlighted in bold font in Code-1.21 below.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import javax.swing.JOptionPane;<br>
+      <br>
+public class NumWords {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of NumWords */<br>
+&nbsp;&nbsp;&nbsp; public NumWords() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String msg = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int input = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get the input string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; input =
+Integer.parseInt(JOptionPane.showInputDialog<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+("Enter number between 1 to 10"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Set msg variable to the string
+equivalent of input</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(input == 1)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; msg = "one";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 2)&nbsp;&nbsp;&nbsp; msg = "two";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 3)&nbsp;&nbsp;&nbsp; msg = "three";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 4)&nbsp;&nbsp;&nbsp; msg = "four";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 5)&nbsp;&nbsp;&nbsp; msg = "five";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 6)&nbsp;&nbsp;&nbsp; msg = "six";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 7)&nbsp;&nbsp;&nbsp; msg = "seven";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 8)&nbsp;&nbsp;&nbsp; msg = "eight";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 9)&nbsp;&nbsp;&nbsp; msg = "nine";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if(input == 10)&nbsp;&nbsp;&nbsp; msg = "ten";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; msg =
+"Invalid number";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the number in
+words if with in range<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null,msg);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.21: NumWords.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyNumWordsProject </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Enter a number and click OK. (Figure-1.22 below)<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;"><img alt=""
+ src="index_files/1_control7.png" style="width: 297px; height: 126px;"><br>
+Figure-1.22: Enter a number<br>
+</div>
+<div style="margin-left: 40px;"><br>
+<img alt="" src="index_files/1_control8.png"
+ style="width: 268px; height: 120px;"><br>
+Figure-1.23: Display string equivalent of the number entered<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you learned how to
+if/else control structure of the Java programming language.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: for loop<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;"> In this exercise, you will learn how to
+write a Java program that uses for loop.
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+  <li><a href="#2.1">Build and run a Java program that uses for loop</a><br>
+  </li>
+</ol>
+<ul style="margin-left: 40px;">
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run a Java program that uses a for loop<br>
+</h3>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyForLoopProject</span> NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_control/samples</span>
+directory.&nbsp; </li>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">MyForLoopProject</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">MyForLoopProject
+    </span>project node is displayed
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.</li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;">2. Study the <span
+ style="font-weight: bold;">ForLoop.java</span> which uses
+if/else control structure,<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Expand <span style="font-weight: bold;">MyForLoopProject-&gt;Source
+Packages</span>.</li>
+  <li>Double click <span style="font-weight: bold;">ForLoop.java</span>
+to open it in the editor window.</li>
+  <li>Study how for loop control structure is used, whose code fragment
+is highlighted in bold font in Code-2.21 below.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import javax.swing.JOptionPane;<br>
+      <br>
+public class ForLoop {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of ForLoop */<br>
+&nbsp;&nbsp;&nbsp; public ForLoop() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Declare and initialize
+String array variable called names.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String names
+[]={"Beah","Bianca","Lance","Belle","Nico","Yza","Gem","Ethan"};<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This is the search string
+we are going to use to search the array.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String searchName =
+JOptionPane.showInputDialog("Enter either \"Yza\" or \"noname\"!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Declare and initialize
+boolean primitive type variable called foundName.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean foundName =false;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Search the String array using for loop.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp; * The "names.length" is the size of the array.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp; * This for loop compares the value of each entry of the array
+with</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp;&nbsp;&nbsp; the value of searchString String type
+variable.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp; * The equals(..) is a method of String class. Think about why
+you</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp;&nbsp;&nbsp; cannot use "names[i] == searchName" as
+comparison logic here.<br>
+      <br style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for (int i=0; i&lt;names.length; i++){</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (names [i ].equals(searchName)){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+foundName =true;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+break;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the result<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (foundName)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, searchName + " is found!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, searchName + " is not found!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: ForLoop.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyForLoopProject </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Enter <span style="font-weight: bold;">Yza</span> which is one
+of the strings that are stored in the array. (Figure-2.22 below)</li>
+  <li>Observe that the <span style="font-weight: bold;">Yza </span>is
+found through the for loop based search. (Figure-2.23 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_loop1.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-2.22: Enter search string<br>
+<br>
+<img alt="" src="index_files/2_loop2.png"
+ style="width: 268px; height: 120px;"><br>
+Figure-2.23: Yza is found<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyForLoopProject </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Enter <span style="font-weight: bold;">noname</span> which is
+not one of the strings that are stored in the array. (Figure-2.24 below)</li>
+  <li>Observe that the <span style="font-weight: bold;">noname </span>is
+not found through the for loop based search. (Figure-2.25 below)</li>
+</ul>
+<img alt="" src="index_files/2_loop3.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-2.24: Enter search string<br>
+<br>
+<img alt="" src="index_files/2_loop4.png"
+ style="width: 268px; height: 120px;"><br>
+Figure-2.25: noname is not found<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you learned how to use
+a for loop.
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: while loop<br>
+</h2>
+<p style="margin-left: 40px;"> In this exercise, you will learn how to
+write Java programs that use while and do-while loop.
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="index.html#2.1">Build and run a Java program that uses
+while loop</a></li>
+  <li><a href="#3.2">Build and run a Java program that uses do-while
+loop</a></li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Build and run a Java program that uses a while loop<br>
+</h3>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyFiveNamesUsingwhileProject</span>
+NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_control/samples</span>
+directory.&nbsp; </li>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">MyFiveNamesUsingwhileProject</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">MyFiveNamesUsingwhileProject
+    </span>project node is displayed
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Study the <span
+ style="font-weight: bold;">FiveNamesUsingwhile.java</span> which uses
+if/else control structure,<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Expand <span style="font-weight: bold;">My</span><span
+ style="font-weight: bold;">FiveNamesUsingwhile</span><span
+ style="font-weight: bold;">Project-&gt;Source Packages</span>-&gt;<span
+ style="font-weight: bold;">&lt;default package&gt;</span>.</li>
+  <li>Double click <span style="font-weight: bold;">FiveNamesUsingwhile.java</span>
+to open it in the editor window.</li>
+  <li>Study how for loop control structure is used, whose code fragment
+is highlighted in bold font in Code-3.11 below.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.BufferedReader;<br>
+import java.io.InputStreamReader;<br>
+      <br>
+public class FiveNamesUsingwhile {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Creates a new instance of FiveNamesUsingwhile<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public FiveNamesUsingwhile() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BufferedReader reader <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+= new BufferedReader(new InputStreamReader(System.in));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int counter = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //gets the users' name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Enter name: ");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name
+= reader.readLine();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch(Exception e){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Invalid input");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.exit(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// while loop that prints the name five times</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+while (counter &lt; 5){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(name);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+counter++;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.11: FiveNamesUsingwhile.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">My</span><span
+ style="font-weight: bold;">FiveNamesUsingwhile</span><span
+ style="font-weight: bold;">Project </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that the program prompts you to enter your name.</li>
+  <li>Type in your name , <span style="font-weight: bold;">Sang Shin</span>
+in this example, under the line of <span style="font-weight: bold;">
+Enter name:</span>
+and press <span style="font-weight: bold;">Enter </span>key.&nbsp;
+(Figure-3.12 below) <br>
+  </li>
+</ul>
+<img alt="" src="index_files/3_while2.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-3.12: Enter your name<br>
+<ul>
+  <li>Observe that the name is repeatedly displayed 5 times.
+(Figure-3.13 below) You will see 6 names, the first of which is input
+that is redisplayed.)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/3_while3.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-3.13: Name is repeated 5 times using while loop<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_3">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Build and run a Java program that uses a do-while loop<br>
+</h3>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyFiveNamesUsingdowhileProject</span>
+NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_control/samples</span>
+directory.&nbsp; </li>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">MyFiveNamesUsingdowhileProject</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">MyFiveNamesUsingdowhileProject
+    </span>project node is displayed
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Study the <span
+ style="font-weight: bold;">FiveNamesUsingdowhile.java</span> which
+uses
+if/else control structure,<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Expand <span style="font-weight: bold;">My</span><span
+ style="font-weight: bold;">FiveNamesUsingdowhile</span><span
+ style="font-weight: bold;">Project-&gt;Source Packages</span>.</li>
+  <li>Double click <span style="font-weight: bold;">FiveNamesUsingdowhile.java</span>
+to open it in the editor window.</li>
+  <li>Study how for loop control structure is used, whose code fragment
+is highlighted in bold font in Code-3.21 below.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.BufferedReader;<br>
+import java.io.InputStreamReader;<br>
+      <br>
+public class FiveNamesUsingdowhile {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BufferedReader reader<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+= new BufferedReader(new InputStreamReader(System.in));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int counter = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //gets the users' name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Enter name: ");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name
+= reader.readLine();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch(Exception e){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Invalid input");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.exit(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Use do-while loop that prints the name
+five times</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+do{</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println(name);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+counter++;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}while(counter &lt; 5);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.21: FiveNamesUsingdowhile.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">My</span><span
+ style="font-weight: bold;">FiveNamesUsingdowhile</span><span
+ style="font-weight: bold;">Project </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that the program prompts you to enter your name.</li>
+  <li>Enter your name in the <span style="font-weight: bold;">Input </span>field
+and press <span style="font-weight: bold;">Enter </span>key.&nbsp;
+(Do not press Close Input.)</li>
+  <li>Observe that the name is repeatedly displayed 6 times.</li>
+</ul>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_3">return to top of
+the exercise</a></div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you learned how to use
+while and do-while loop.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a>
+<br>
+<br>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify the <span
+ style="font-weight: bold; color: rgb(0, 0, 0);">MyForLoopProject</span>
+project (Exercise 2 above) described below.&nbsp;&nbsp;
+(You might want to create a
+new project by copying
+the <span style="font-weight: bold;">MyForLoopProject</span>
+project.)&nbsp;
+You can name the new project in any way you want but here I am going to
+call to call it as <span style="font-weight: bold;">MyOwnWhileProject</span>.&nbsp;
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Instead
+of using for loop, use while loop.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">javase_control.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the<span style="font-weight: bold;">
+MyOwnWhileProject</span><span style="font-weight: bold;"></span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyOwnWhileProject</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyOwnWhileProject</span>)<br>
+    </li>
+    <li>jar cvf MyOwnWhileProject.zip MyOwnWhileProject (<span
+ style="font-weight: bold;">MyOwnWhileProject </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">javase_control.gif</span>
+or <span style="font-weight: bold;">javase_control</span><span
+ style="font-weight: bold;">.jpg</span> (or javase_control.&lt;whatever
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project - war file with necessary source files is OK.</li>
+</ul>
+<br>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>
