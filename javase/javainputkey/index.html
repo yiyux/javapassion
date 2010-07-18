@@ -1,0 +1,1072 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1004: Getting input from keyboard</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="LAB-1004: Getting input from keyboard"
+ name="description">
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Getting input from keyboard<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="http://www.javapassion.com/">www.javapassion.com</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<div style="margin-left: 40px;">In this lab, you are going to build
+a simple interactive Java application, which gets user entered input
+data from keyboard.&nbsp; You are going to read date from both command
+line and through a dialog box.<br>
+</div>
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 60 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/"><img
+ alt="" src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/"><img
+ alt="" src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/"><img
+ alt="" src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<h3 class="tutorial"><a name="Software_Needed"></a><a name="software"></a>Software
+Needed</h3>
+<br>
+Before you begin, you need to install required software (JDK and
+NetBeans IDE) on your
+computer as <a
+ href="http://www.javapassion.com/handsonlabs/javaprogenv/index.html#Exercise_0">described
+here</a>.&nbsp; Also download and unzip the hands-on lab file mentioned
+below.<br>
+<ul>
+  <li>Java Standard Development Kit (JDK™) version 6.0 Documentation
+zip file (<a href="http://java.sun.com/javase/downloads/index.jsp">download</a>)</li>
+  <ul>
+    <li>Scroll down the page until you see <span
+ style="font-weight: bold;">Java SE 6 Documentation</span>. Download
+the zip file.<br>
+    </li>
+    <li>You can store the zip file in any location of your file system</li>
+    <li>You do *not* need to unzip the file.</li>
+    <li>You will add it to the NetBeans as described below.</li>
+  </ul>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Jan. 26th, 2007: Created</li>
+  <li>Jan. 29th, 2007: Javadoc zip file URL location is updated.</li>
+  <li>April 17th, 2008: JDK 6 and NetBeans 6.1 are used</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used <br>
+  </li>
+  <li>July 13th, 2010: Updated with NetBeans 6.9, Instruction of
+downloading JDK 6 doc zip file is added&nbsp; (Sang Shin)<br>
+  </li>
+</ul>
+<br>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_0">Exercise 0: Download JDK 6 Documentation
+zip file</a></li>
+  <li><a href="#Exercise_1">Exercise 1: Getting input from keyboard via
+BufferdReader (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Getting input from keyboard via
+JOptionPane (30
+minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_0"></a>Exercise 0: Download JDK <br>
+</h2>
+<div style="margin-left: 40px;"><br>
+1. Using your browser, go to <a
+ href="http://java.sun.com/javase/downloads/index.jsp">http://java.sun.com/javase/downloads/index.jsp</a><br>
+2. Scroll down the page and select Download button of the Java SE 6
+Documentation.<br>
+<br>
+<img alt="" src="index_files/1_key12.png"
+ style="width: 871px; height: 824px;"><br>
+<br>
+<img alt="" src="index_files/1_key13.png"
+ style="width: 871px; height: 824px;"><br>
+<br>
+<img alt="" src="index_files/1_key14.png"
+ style="width: 871px; height: 824px;"><br>
+<br>
+3. Save the file in a directory of your choice.&nbsp; The file name is
+something like <span style="font-weight: bold;">jdk-6u18-docs.zip</span>.<br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Getting input from keyboard
+via BufferedReader class<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to build
+a simple interactive Java application, which gets user entered input
+data from keyboard. The program will use BufferedReader and
+InputStreamReader classes to receive the intput data. (You don't really
+need to understand in detail how these classes work, however.)&nbsp;
+You will also learn how to use Javadoc to get more information on Java
+classes.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#1.1">Build and run GetInputFromKeyboard Java program</a></li>
+    <li><a href="#1.2">Convert user entered String type value to int
+type value</a></li>
+    <li><a href="#1.3">Display Javadoc in a context-senstive manner
+within NetBeans IDE</a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run GetInputFromKeyboard Java program<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<img alt="" src="index_files/111_choosejavaproject.png"
+ style="width: 729px; height: 505px;"><br>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyGetInputFromKeyboardProject</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">GetInputFromKeyboard</span>.&nbsp;
+(Figure-1.10 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_key1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-1.10: Create <span style="color: rgb(0, 0, 0);">MyGetInputFromKeyboardProject</span>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyGetInputFromKeyboardProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">GetInputFromKeyboard.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">GetInputFromKeyboard.java</span>&nbsp; as
+shown in Code-1.11 below. Study the code by paying special attention to
+the bold-fonted comments.&nbsp; For now, don't worry about the details
+of the BufferedReader and InputStreamReader classes for now.</div>
+<ul style="margin-left: 40px;">
+</ul>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">/*<br>
+&nbsp;* To change this template, choose Tools | Templates<br>
+&nbsp;* and open the template in the editor.<br>
+&nbsp;*/<br>
+      <br>
+      <span style="font-weight: bold;">import java.io.BufferedReader;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">import java.io.IOException;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">import java.io.InputStreamReader;</span><br>
+      <br>
+/**<br>
+&nbsp;*<br>
+&nbsp;* @author sang<br>
+&nbsp;*/<br>
+public class GetInputFromKeyboard {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Create BufferedReader object from
+Standard input device.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Standard input device is typically a keyborad.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BufferedReader dataIn = new
+BufferedReader(new<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+InputStreamReader( System.in) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Prompt a user to enter his/her name</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Please
+Enter Your Name:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Read data into name variable</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name
+= dataIn.readLine();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch( IOException e ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Error!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Display the name </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Hello "
++ name +"!");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.11: GetInputFromKeyboard.java<br>
+<br>
+3. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyGetInputFromKeyboardProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that the program is expecting a user input.</li>
+  <li>Type in your name, <span style="font-weight: bold;">Sang Shin</span>,
+in this example uner the line of "<span style="font-weight: bold;">Please
+Enter Your Name:</span>" in the <span style="font-weight: bold;">Output
+    </span>window and press <span style="font-weight: bold;">Enter </span>key.&nbsp;
+Make sure you do not click Close Input. (Figure-1.12 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_key2.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.12: Enter value<br>
+<ul>
+  <li>Observe that <span style="font-weight: bold;">Hello &lt;whatever
+name you entered&gt;</span>, in this example<span
+ style="font-weight: bold;"> Hello Sang Shin</span> is displayed in the
+Output window of the IDE.&nbsp; (Figure-1.13 and Figure-1.14 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Please Enter Your Name:<br>
+Sang Shin<br>
+Hello Sang Shin!</td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.13: Result<br>
+<br>
+<img alt="" src="index_files/1_key3.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.14: Display the data that was entered<br>
+<br>
+4. Modify the <span style="font-weight: bold;">GetInputFromKeyboard.java
+</span>to read your age as shown in Code-1.15 below. The code fragment
+that needs to be added is highlighted in <span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">bold
+and blue-colored</span> </span>font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">/*<br>
+&nbsp;* To change this template, choose Tools | Templates<br>
+&nbsp;* and open the template in the editor.<br>
+&nbsp;*/<br>
+      <br>
+import java.io.BufferedReader;<br>
+import java.io.IOException;<br>
+import java.io.InputStreamReader;<br>
+      <br>
+/**<br>
+&nbsp;*<br>
+&nbsp;* @author sang<br>
+&nbsp;*/<br>
+      <br>
+public class GetInputFromKeyboard {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create BufferedReader
+object from Standard input device.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Standard input device is
+typically a keyboard.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BufferedReader dataIn = new
+BufferedReader(new<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+InputStreamReader( System.in) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Prompt a user to enter
+his/her name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Please
+Enter Your Name:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Read entered data into
+name variable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name
+= dataIn.readLine();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch( IOException e ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Error!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Hello "
++ name +"!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Prompt a user to enter his/her age</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String age= "";</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Please Enter Your Age:");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Read entered data into age variable</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+try{</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+age = dataIn.readLine();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}catch( IOException e ){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Error!");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Display the name and age</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Hello " + name +"!" + " " + "Your age is " + age);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.15: Add code to prompt a user to enter age<br>
+<br>
+5. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyGetInputFromKeyboardProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that the program is expecting a user input.</li>
+  <li>Type in your name, <span style="font-weight: bold;">Sang Shin</span>,
+in this example and press <span style="font-weight: bold;">Enter </span>key.&nbsp;
+Make sure you do not click Close Input. <br>
+  </li>
+  <li>Type in your age, 100, in this example and press Enter key.&nbsp;
+Make sure you do not lock Close Input.</li>
+  <li>Observe that <span style="font-weight: bold;">Hello &lt;whatever
+name you entered&gt;</span>, in this example<span
+ style="font-weight: bold;"> Hello Sang Shin</span> is displayed in the
+Output window of the IDE.&nbsp; (Figure-1.16 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Please Enter Your Name:<br>
+Sang Shin<br>
+Hello Sang Shin!<br>
+Please Enter Your Age:<br>
+100<br>
+Hello Sang Shin! Your age is 100<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.16: Display of name and age<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Convert user entered "String" type value to "int" type value<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">Now suppose you want to add the
+following logic to the
+program.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">If the entered age is over 100,
+display<br>
+&nbsp;&nbsp;&nbsp; Hello &lt;name&gt;, you are old!<br>
+Otherwise<br>
+&nbsp;&nbsp;&nbsp; Hello &lt;name&gt;, you are young!<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Notice in the previous code, your program received the age in the form
+of <span style="font-weight: bold;">String </span>type.&nbsp;
+And you cannot compare String type "99" with <span
+ style="font-weight: bold;">int </span>primitive type of 100.&nbsp; In
+other
+words, you have to convert the <span style="font-weight: bold;">String
+</span>type of "99" to <span style="font-weight: bold;">int </span>type
+of 99
+before you compare it against another <span style="font-weight: bold;">int
+</span>type 100.<br>
+<br>
+Fortunately, there is a method called <span style="font-weight: bold;">parseInt()</span>
+in the <span style="font-weight: bold;">Integer </span>class for
+converting <span style="font-weight: bold;">String </span>type into <span
+ style="font-weight: bold;">int </span>type.&nbsp; <br>
+<br>
+1. See the
+JavaDoc of <span style="font-weight: bold;">Integer </span>class.<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>From your browser, go to&nbsp; <a
+ href="http://java.sun.com/j2se/1.5.0/docs/api/">http://java.sun.com/j2se/1.6.0/docs/api/</a></li>
+  <li>Observe that Javadoc root page gets dispayed.</li>
+  <li>Scroll down in
+order to see
+the <span style="font-weight: bold;">Integer </span>class in the
+lower left box. <br>
+  </li>
+  <li>Click Integer.<br>
+  </li>
+  <li>Observe that Javadoc of the Integer class gets displayed in the
+right pane of the browser. (Figure-1.20 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_integer1.png"
+ style="width: 854px; height: 729px;"><br>
+Figure-1.20: Javadoc of Integer class<br>
+<ul>
+  <li>Scroll down to see the <span style="font-weight: bold;">parseInt(String
+s)</span> method.&nbsp; <br>
+  </li>
+  <li>Observe that it is a <span style="font-weight: bold;">static </span>method.&nbsp;
+(Figure-1.21 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_integer2.png"
+ style="width: 854px; height: 729px;"><br>
+Figure-1.21: Javadoc of the parseInt(String s) method<br>
+<ul>
+  <li>Click the hyperlink of the <span style="font-weight: bold;">parseInt(String
+s)</span> method.</li>
+  <li>Observe that the detail information of the method gets displayed.
+(Figure-1.22 below)</li>
+  <li>Note that the method throws <span style="font-weight: bold;">NumberFormatException</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_integer3.png"
+ style="width: 854px; height: 729px;"><br>
+Figure-1.22: Detail information on parseInt(String s) method<br>
+</div>
+<div style="margin-left: 40px;"><br>
+2. Modify the <span style="font-weight: bold;">GetInputFromKeyboard.java
+</span>to read your age as shown in Code-1.23 below. The code fragment
+that needs to be added is highlighted in <span
+ style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">bold
+and blue-colored</span> </span>font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">/*<br>
+&nbsp;* To change this template, choose Tools | Templates<br>
+&nbsp;* and open the template in the editor.<br>
+&nbsp;*/<br>
+      <br>
+import java.io.BufferedReader;<br>
+import java.io.IOException;<br>
+import java.io.InputStreamReader;<br>
+      <br>
+/**<br>
+&nbsp;*<br>
+&nbsp;* @author sang<br>
+&nbsp;*/<br>
+public class GetInputFromKeyboard {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create BufferedReader
+object from Standard input device.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Standard input device is
+typically a keyboard.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BufferedReader dataIn = new
+BufferedReader(new<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+InputStreamReader( System.in) );<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Prompt a user to enter
+his/her name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Please
+Enter Your Name:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Read entered data into
+name variable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name
+= dataIn.readLine();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch( IOException e ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Error!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Hello "
++ name +"!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Prompt a user to enter
+his/her age<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String age= "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Please
+Enter Your Age:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Read entered data into
+age variable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; age
+= dataIn.readLine();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch( IOException e ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Error!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the name and age<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Hello "
++ name +"!" + " " + "Your age is " + age);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Convert the String type of age variable into int primitive type
+variable ageint.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int ageint = Integer.parseInt(age);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Now you can compare the int primitive type against int type value 100</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (ageint &gt; 100){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Hello " + name +"!" + " " + "You are old.");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} else{</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Hello " + name +"!" + " " + "You are young.");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.23: Modified GetInputFromKeyboard.java<br>
+<br>
+5. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyGetInputFromKeyboardProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that the program is expecting a user input.</li>
+  <li>Type in your name, <span style="font-weight: bold;">Sang Shin</span>,
+in this example and press <span style="font-weight: bold;">Enter </span>key.&nbsp;
+Make sure you do not click Close Input. <br>
+  </li>
+  <li>Type in your age, <span style="font-weight: bold;">23</span>, in
+this example and press Enter key.&nbsp; Make sure you do not lock Close
+Input.</li>
+  <li>Observe that <span style="font-weight: bold;">Hello &lt;whatever
+name you entered&gt;</span>, in this example<span
+ style="font-weight: bold;"> Hello Sang Shin</span> is displayed in the
+Output window of the IDE. <br>
+  </li>
+  <li>Observe that <span style="font-weight: bold;">Hello Sang Shin!
+You are young.</span> is displayed.&nbsp; (Figure-1.24 below)<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Please Enter Your Name:<br>
+Sang Shin<br>
+Hello Sang Shin!<br>
+Please Enter Your Age:<br>
+23<br>
+Hello Sang Shin! Your age is 23<br>
+Hello Sang Shin! You are young.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.24: Result of running the application<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)&nbsp;
+Display Javadoc in a context-senstive manner within NetBeans IDE<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this exercise, you are going to see the Javadoc of the Integer class
+in a context senstive fashion.&nbsp; Before taking this step, please
+make sure you've download the Java Standard Development Kit (JDK™)
+version 6.0 Documentation zip file (<a
+ href="http://java.sun.com/javase/downloads/index.jsp">download</a>)
+into a directory of your choice.<br>
+<br>
+1. Add J2SE Development Kit Documentation 6.0 zip file to the NetBeans.<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">Tools </span>from
+top-level menu and select <span style="font-weight: bold;">Java
+Platform</span>. (Figure-1.31 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_key4.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.31: Open Java Platform Manager<br>
+<ul>
+  <li>Observe that the Java Platform Manager dialog box appears.</li>
+  <li>Click Javadoc tab.</li>
+  <li>Click <span style="font-weight: bold;">Add ZIP/Folder</span>.
+(Figure-1.32 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_key5.png"
+ style="width: 758px; height: 533px;"><br>
+Figure-1.32: Add Javadoc file<br>
+<ul>
+  <li>Observe that the Add ZIP/Folder dialog box appears.</li>
+  <li>Browse down to the directory into which you have downloaded <span
+ style="font-weight: bold;">jdk-6-doc.zip.</span><br>
+  </li>
+  <li>Select <span style="font-weight: bold;">jdk-6-doc.zip</span>
+file and click <span style="font-weight: bold;">Add ZIP/Folder</span>.
+(Figure-1.33 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_key6.png"
+ style="width: 667px; height: 280px;"><br>
+Figure-1.33:&nbsp; Select jdk-6-doc.zip file<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">jdk-6-doc.zip</span>
+file is now shown under Platform Javadoc section. (Figure-1.34 below)</li>
+  <li>Click Close.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_key7.png"
+ style="width: 758px; height: 533px;"><br>
+Figure-1.34: <span style="font-weight: bold;">jdk-1_5_0-doc.zip</span>
+file is added<br>
+<br>
+2. Perform context-sensitive Javadoc.<br>
+<ul>
+  <li>Move the cursor over <span style="font-weight: bold;">Integer </span>string
+in the source editor of the NetBeans IDE.</li>
+  <li>Select <span style="font-weight: bold;">Show Javadoc</span>.
+(Figure-1.35 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_key8.png"
+ style="width: 892px; height: 747px;"><br>
+Figure-1.35: Show Javadoc on Integer<br>
+<ul>
+  <li>Observe that the Javadoc of the Integer class gets displayed in
+the browser (Figure-1.36 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_key9.png"
+ style="width: 854px; height: 729px;"><br>
+Figure-1.36: Javadoc of Integer class<br>
+<ul>
+  <li>Display context-sensitive Javadoc on <span
+ style="font-weight: bold;">String </span>class.<br>
+  </li>
+</ul>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you learned how to read
+data entered through a standard input device, keyboard.&nbsp; You also
+learned how to use online version of Java documentation and how to
+display Javadoc of a class through context-senstive manner.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Getting input from keyboard
+via JOptionPane<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;"> In this exercise, you are going to build
+the same application you built
+in Exercise 1 but this time using <span style="font-weight: bold;">JOptionPane
+</span>class.&nbsp;
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+  <li><a href="#2.1">Build and run a Java program that uses conditional
+operators</a><br>
+  </li>
+</ol>
+<ul style="margin-left: 40px;">
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run a Java program that uses conditional operators<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyInputFromKeyboardJOptionPaneProject</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">InputFromKeyboardJOptionPane</span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">MyInputFromKeyboardJOptionPaneProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">InputFromKeyboardJOptionPane.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Modify the IDE generated <span
+ style="font-weight: bold;">InputFromKeyboardJOptionPane.java</span>.<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Modify the <span style="font-weight: bold;">InputFromKeyboardJOptionPane.java</span>
+as
+shown in Code-2.21 below. The code fragments that need
+to be added are highlighted in bold and blue-colored font.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import javax.swing.JOptionPane;<br>
+/*<br>
+&nbsp;* InputFromKeyboardJOptionPane.java<br>
+&nbsp;*<br>
+&nbsp;* Created on January 24, 2007, 10:46 AM<br>
+&nbsp;*<br>
+&nbsp;* To change this template, choose Tools | Template Manager<br>
+&nbsp;* and open the template in the editor.<br>
+&nbsp;*/<br>
+      <br>
+/**<br>
+&nbsp;*<br>
+&nbsp;* @author sang<br>
+&nbsp;*/<br>
+public class InputFromKeyboardJOptionPane {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /** Creates a new instance of
+InputFromKeyboardJOptionPane */<br>
+&nbsp;&nbsp;&nbsp; public InputFromKeyboardJOptionPane() {<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * @param args the command line arguments<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String name = "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+name=JOptionPane.showInputDialog("Please enter your name");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String msg = "Hello " + name
++ "!";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JOptionPane.showMessageDialog(null, msg);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: Modified InputFromKeyboardJOptionPane.java<br>
+</div>
+<p style="margin-left: 40px;"></p>
+<p style="margin-left: 40px;">
+3. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyInputFromKeyboardJOptionPaneProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that Input dialog box appears.</li>
+  <li>Enter your name, Sang Shin, in this example. (Figure-2.22 below)</li>
+  <li>Click OK.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_key10.png"
+ style="width: 297px; height: 126px;"><br>
+Figure-2.22: Enter name</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Observe that the message dialog box appears.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_key11.png"
+ style="width: 268px; height: 120px;"><br>
+Figure-2.23: Message is displayed<br>
+</p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you are going to build
+the same application you built
+in Exercise 1 but this time using <span style="font-weight: bold;">JOptionPane
+</span>class.&nbsp;
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to modify the <span
+ style="font-weight: bold; color: rgb(0, 0, 0);">MyInputFromKeyboardJOptionPaneProject</span>
+project
+above.&nbsp;&nbsp;
+(You might want to create a
+new project by copying
+the <span style="font-weight: bold;">MyGetInputFromKeyboardJOptionPaneProject</span>
+project.)&nbsp;
+You can name the new project in any way you want but here I am going to
+call to call it as <span style="font-weight: bold;">MyGetInputFromKeyboardJOptionPaneProject2</span>.&nbsp;
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Make
+the program to ask the following question </li>
+  <ul>
+    <li>Please enter your age</li>
+  </ul>
+  <li>Display the entered age as following</li>
+  <ul>
+    <li>If the age is over 100, display</li>
+    <ul>
+      <li>Hello &lt;name&gt;, you are old!</li>
+    </ul>
+    <li>Otherwise</li>
+    <ul>
+      <li>Hello &lt;name&gt;, you are young!<br>
+      </li>
+    </ul>
+  </ul>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">javainputkey.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the<span style="font-weight: bold;"> My</span><span
+ style="font-weight: bold;">GetInputFromKeyboardJOptionPaneProject</span><span
+ style="font-weight: bold;">2</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyGetInputFromKeyboardJOptionPaneProject2</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyGetInputFromKeyboardJOptionPaneProject2</span>)<br>
+    </li>
+    <li>jar cvf MyGetInputFromKeyboardJOptionPaneProject2.zip
+MyGetInputFromKeyboardJOptionPaneProject2 (<span
+ style="font-weight: bold;">MyGetInputFromKeyboardJOptionPaneProject2 </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">javainputkey.gif</span>
+or <span style="font-weight: bold;">javainputkey</span><span
+ style="font-weight: bold;">.jpg</span> (or
+javainputkey.&lt;whatever
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<br>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>
