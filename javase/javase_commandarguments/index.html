@@ -1,0 +1,622 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1038: Command line arguments</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Command-line Arguments<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;
+<a href="http://www.javapassion.com/">www.javapassion.com</a><span
+ style="color: rgb(0, 0, 0);"></span><a href="mailto:sang.shin@sun.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<div style="margin-left: 40px;">In this hands-on lab, you will learn
+how to pass command line arguments
+to a Java program both at the command line <br>
+</div>
+<br>
+<p></p>
+<p align="center"><b>Expected duration: 30 minutes</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/"><img
+ alt="" src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/"><img
+ alt="" src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/"><img
+ alt="" src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><b>
+</b></p>
+<div class="indent">
+<p><br>
+<br>
+</p>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Jan. 31st, 2007: Created</li>
+  <li>July 14th, 2010: Updated with NetBeans 6.9, Lab zip file name is
+changed (Sang Shin)<br>
+  </li>
+</ul>
+<br>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Read command-line arguments (20
+minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Read command-line arguments
+using NetBeans (10 minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise (for people who
+are taking Sang Shin's "Java Programming online course")</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Read command-line arguments<br>
+</h2>
+<ul>
+  <ol>
+    <li><a href="#1.1">Build and run Hello Java program that receives
+command-line arguments</a><br>
+    </li>
+    <li><a href="#1.2">Read numbers as command-line arguments</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run Hello Java program that receives command-line arguments<br>
+</h3>
+<p style="margin-left: 40px;">1. Go to a directory where you want to
+create Java program<span style="font-weight: bold;"></span><br>
+</p>
+<div style="margin-left: 80px;"><span style="font-weight: bold;">
+</span>C:\&gt;<span style="font-weight: bold;">cd \myjavaprograms<br>
+</span></div>
+<p style="margin-left: 40px;">2. Write <span style="font-weight: bold;">HelloCommandLineArguments.java</span>
+using
+your editor of choice such as <span style="font-weight: bold;">notepad
+</span>on Windows platform or <span style="font-weight: bold;">gedit </span>on
+Solaris platform (in this example, I am using <a
+ href="http://www.jedit.org/index.php?page=download"><span
+ style="font-weight: bold;">jedit</span></a>) as shown in Code-1.10
+below.&nbsp; <br>
+</p>
+<p style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">jedit HelloCommandLineArguments.java</span><br>
+<span style="font-weight: bold;"></span></p>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class
+HelloCommandLineArguments {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main( String[] args ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print the string "Hello,
+" on screen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("I am
+saying Hello to the people below.. ");<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Check if a command line
+argument exists<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if(args.length == 0)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.exit(0);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Display the arguments from the
+command line<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; for(int counter = 0; counter &lt;
+args.length; counter++){<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println("argument
+index " + counter + ": " + args[counter]); &nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.10: HelloCommandLineArguments.java<br>
+<br>
+3. Compile <span style="font-weight: bold;">HelloCommandLineArguments.java</span>
+using <span style="font-weight: bold;">javac</span>
+compiler.&nbsp; <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac
+Hello</span><span style="font-weight: bold;">CommandLineArguments</span><span
+ style="font-weight: bold;">.java</span><br>
+</div>
+<br>
+4. Run the <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">Hello</span><span style="font-weight: bold;">CommandLineArguments</span><span
+ style="font-weight: bold;"> </span>program
+using <span style="font-weight: bold;">java </span>command passing
+arguments.
+<br>
+<br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java HelloCommandLineArguments David
+Charles Young</span><br>
+I am saying Hello to the people below..<br>
+argument index 0: David<br>
+argument index 1: Charles<br>
+argument index 2: Young<br>
+</div>
+<div style="margin-left: 40px;"><span style="font-weight: bold;"></span><span
+ style="font-weight: bold;"></span><span style="font-weight: bold;"></span><br
+ style="font-weight: bold;">
+</div>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Read numbers as arguments<br>
+</h3>
+<p style="margin-left: 40px;">1. Go to a directory where you want to
+write Java source files.<span style="font-weight: bold;"></span><br>
+</p>
+<div style="margin-left: 80px;"><span style="font-weight: bold;">
+</span>C:\&gt;<span style="font-weight: bold;">cd \myjavaprograms<br>
+</span></div>
+<p style="margin-left: 40px;">2. Write <span style="font-weight: bold;">MyCompute.java</span>
+using
+your editor of choice such as notepad on Windows platform or gedit on
+Solaris platform (in this example, I am using <a
+ href="http://www.jedit.org/index.php?page=download"><span
+ style="font-weight: bold;">jedit</span></a>) as shown in Code-1.20
+below.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">jedit MyCompute.java</span><br>
+</div>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class MyCompute {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("I am
+reading numbers as command line arguments.. ");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Check if a command line
+argument exists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(args.length != 2){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Please enter two numbers!");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.exit(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the addition of
+the two numbers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int int1 =
+Integer.parseInt(args[0]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int int2 =
+Integer.parseInt(args[1]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int additionResult = int1 +
+int2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Result
+of addition = " + additionResult);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display the
+multiplication of the two numbers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int1 =
+Integer.parseInt(args[0]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int2 =
+Integer.parseInt(args[1]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int multiResult = int1 *
+int2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Result
+of multiplication = " + multiResult);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.20: MyCompute.java<br>
+<br>
+</div>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<div style="margin-left: 40px;">3. Compile <span
+ style="font-weight: bold;">MyCompute.java</span> using <span
+ style="font-weight: bold;">javac</span>
+compiler.&nbsp; <br>
+<br>
+<div style="margin-left: 40px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">javac MyCompute</span><span
+ style="font-weight: bold;">.java</span><br>
+</div>
+<br>
+4. Run the <span style="font-weight: bold;">MyCompute</span><span
+ style="font-weight: bold;"></span><span style="font-weight: bold;"> </span>program
+using <span style="font-weight: bold;">java </span>command passing
+two number arguments.
+</div>
+<p style="margin-left: 80px;">C:\myjavaprograms&gt;<span
+ style="font-weight: bold;">java MyCompute</span><br>
+I am reading numbers as command line arguments..<br>
+Please enter two numbers!<br>
+<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java MyCompute 4</span><br>
+I am reading numbers as command line arguments..<br>
+Please enter two numbers!<br>
+<br>
+C:\myjavaprograms&gt;<span style="font-weight: bold;">java MyCompute 4 6</span><br>
+I am reading numbers as command line arguments..<br>
+Result of addition = 10<br>
+Result of multiplication = 24<span style="font-weight: bold;"><br>
+</span></p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercise_1">Return
+to top of the exercise</a><br>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you learned how to read
+input arguments in your Java application.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="file:///C:/handson2/development/ajaxjmakiintro/index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Pass command-line arguments
+using NetBeans<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">In this exercise, you are going to learn
+how to pass arguments when you are using NetBeans.&nbsp; The programs
+you built above are already provided as NetBeans projects.<br>
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<ol style="margin-left: 40px;">
+  <li><a href="#2.1">Open, build and run HelloCommandLineArguments
+NetBeans project</a><br>
+  </li>
+  <li><a href="#2.2">Open, build and run MyCompute NetBeans project</a></li>
+</ol>
+<br>
+<ul style="margin-left: 40px;">
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Open, build and run <span style="font-weight: bold;">HelloCommandLineArguments</span>
+NetBeans
+project<br>
+</h3>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">HelloCommandLineArugments</span> NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_commandarguments/samples</span>
+directory. <br>
+  </li>
+  <ul>
+    <li>Windows: If you unzipped the hands-on lab zip file, <span
+ style="font-weight: bold;">1038_javase_commandarguments.zip</span>,
+under C:\
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\javase_commandarguments\samples.</span></li>
+    <li>Solaris/Linux: If you unzipped the <span
+ style="font-weight: bold;">1038_javase_commandarguments</span><span
+ style="font-weight: bold;">.zip</span>
+file under <span style="font-weight: bold;">$HOME</span>
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/javase_commandarguments/samples.</span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">HelloCommandLineArugments</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project Folder</span>.&nbsp;
+(Figure-2.10 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_netbeans1.png"
+ style="width: 779px; height: 403px;"><br>
+Figure-2.10: pen HelloCommandLineArguments project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">HelloCommandLineArugments
+    </span>project node is displayed
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE.</li>
+</ul>
+2. Pass command-line arguments
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">HelloCommandLineArugments
+    </span>project node and select <span style="font-weight: bold;">Properties</span>.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt=""
+ src="index_files/2_netbeans2.png" style="width: 785px; height: 757px;"><br>
+Figure-2.11: Open Properties of the project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Project
+Properties</span> dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Run </span>under <span
+ style="font-weight: bold;">Categories </span>section on the left.</li>
+  <li>Observe that the <span style="font-weight: bold;">Arguments</span>
+field
+on the right is set with <span style="font-weight: bold;">David
+Charles Monica</span>.&nbsp; (Figure-2.12 below)&nbsp; <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">OK</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_netbeans3.png"
+ style="width: 817px; height: 656px;"><br>
+Figure-2.12: Provide command line arguments<br>
+<br>
+3. Build and run the project.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">HelloCommandLinekArguments
+    </span>project node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE. (Figure-2.13
+below)</li>
+</ul>
+<img alt="" src="index_files/2_netbeans4.png"
+ style="width: 785px; height: 757px;"><br>
+Figure-2.13: Result <br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<a href="index.html#Exercise_2"> </a><a
+ href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Open, build and run "MyCompute" NetBeans
+project<br>
+</h3>
+<p style="margin-left: 40px;">1.&nbsp; Open <span
+ style="font-weight: bold;">MyCompute</span> NetBeans
+project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span
+ style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span
+ style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_commandarguments/samples</span>
+directory. <br>
+  </li>
+  <ul>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">MyCompute</span>.</li>
+  <li>Click <span style="font-weight: bold;">Open Project Folder</span>.&nbsp;
+    <br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Pass command-line arguments<br>
+<ul>
+  <li>Right click MyCompute project node and select <span
+ style="font-weight: bold;">Properties</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Project
+Properties</span> dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Run</span> under <span
+ style="font-weight: bold;">Categories </span>section on the left.</li>
+  <li>Observe that the <span style="font-weight: bold;">Arguments</span>
+field
+on the right is set with <span style="font-weight: bold;">10 20</span>.
+(Figure-2.21 below)</li>
+  <li>Click <span style="font-weight: bold;">OK</span>.</li>
+</ul>
+<img alt="" src="index_files/2_netbeans5.png"
+ style="width: 760px; height: 607px;"><br>
+Figure-2.21: Pass command line arguments<br>
+<br>
+3. Build and run the project.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyCompute </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the Output window of the IDE. (Figure-2.13
+below)</li>
+</ul>
+<img alt="" src="index_files/2_netbeans6.png"
+ style="width: 785px; height: 757px;"><br>
+Figure-2.13: Result<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned how
+to pass command-line arguments when you are using NetBeans.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<div class="indent"></div>
+<p></p>
+<div style="margin-left: 40px;"><br>
+<br>
+</div>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to create a new
+NetBeans project called "<span style="font-weight: bold;">MyOwnCommandLineArguments</span>"
+as following:<br>
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Receive
+the ages of the all your family members (between 3 to 6 members) as
+command line arguments in the format as following (name then age)<br>
+  </li>
+  <ul>
+    <li>Monica 12 Daniel 34 Shelley 23&nbsp; <br>
+    </li>
+  </ul>
+  <li>Compute and display the average of the ages that were entered.<br>
+  </li>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">JavaIntro-javase_commandarguments.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the<span style="font-weight: bold;">
+MyOwnCommandLineArguments</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyOwnCommandLineArguments</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyOwnCommandLineArguments</span>)<br>
+    </li>
+    <li>jar cvf MyOwnCommandLineArguments.zip MyOwnCommandLineArguments
+(<span style="font-weight: bold;">MyOwnCommandLineArguments </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">JavaIntro-javase_commandarguments.gif</span>
+or <span style="font-weight: bold;">JavaIntro-javase_commandarguments</span><span
+ style="font-weight: bold;">.jpg</span> (or
+JavaIntro-javase_commandarguments.&lt;whatever
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project - war file with necessary source files is OK.</li>
+</ul>
+<br>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>
