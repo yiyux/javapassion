@@ -1,0 +1,2925 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-1014: Create your own Java classes</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <meta name="keywords"
+ content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+  <meta content="Free Java Programming Online Training Course"
+ name="description">
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">Create Your Own Java Classes<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a
+ href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="mailto:sangshinpassion@gmail.com"></a><a
+ href="http://www.javapassion.com/">www.javapassion.com/</a><span
+ style="color: rgb(0, 0, 0);"></span><a
+ href="mailto:sangshinpassion@gmail.com"><i>
+</i></a></div>
+<p style="text-align: center;"><img alt=""
+ src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</p>
+<div style="margin-left: 40px;">The goal of this hands-on lab is to get
+you exposed to the basics of
+creating and using your own classes.<br>
+</div>
+<p><br>
+</p>
+<p></p>
+<p align="center"><b>Expected duration: 140 minutes<br>
+</b></p>
+<center><a
+ href="http://buzz.yahoo.com/article/http://www.javapassion.com/"><img
+ alt="" src="index_files/yahoo_buzz_icon.png"
+ style="border: 0px solid ; width: 20px; height: 19px;"></a><a
+ href="http://www.facebook.com/share.php?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/facebook_icon.png"
+ style="border: 0px solid ; width: 20px; height: 17px;"></a><a
+ href="http://www.myspace.com/index.cfm?u=http://www.javapassion.com/"><img
+ alt="" src="index_files/myspace_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://digg.com/submit?phase=3&amp;url=http://www.javapassion.com/"><img
+ alt="" src="index_files/digg_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.reddit.com/submit?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/reddit_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://del.icio.us/post?url=http://www.javapassion.com/"><img
+ alt="" src="index_files/delicious_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a><a
+ href="http://www.newsvine.com/_tools/seed?popoff=0&amp;u=http://www.javapassion.com/"><img
+ alt="" src="index_files/newsvine_icon.png"
+ style="border: 0px solid ; width: 20px; height: 18px;"></a></center>
+<p align="center"><br>
+</p>
+<div class="indent"><br>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Jan. 28th, 2007: Created</li>
+  <li>Feb. 15th, 2007: Homework is added</li>
+  <li>Jan. 10th, 2009: NetBeans 6.5 is used</li>
+  <li>July 13th, 2010: Updated and tested with NetBeans 6.9, Lab zip
+file name is changed (Sang Shin)<br>
+  </li>
+</ul>
+<br>
+<h3 class="tutorial">Things to be done (by authors of this lab)<br>
+</h3>
+<ul>
+  <li>None<br>
+  </li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Create an object instance of a
+class using "new" keyword (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Static variables and static
+methods
+(30 minutes)</a></li>
+  <li><a href="#Exercise_3">Exercise 3: Overloading (20
+minutes)</a></li>
+  <li><a href="#Exercise_4">Exercise 4: Constructors (20 minutes)</a></li>
+  <li><a href="#Exercise_5">Exercise 5: "this" reference (20 minutes)</a></li>
+  <li><a href="#Exercise_6">Exercise 6: Access modifiers (20
+minutes)</a></li>
+  <li><a href="#Homework">Homework Exercise</a></li>
+</ul>
+</div>
+<br>
+<h2><a name="Exercise_1"></a>Exercise 1: Create your own class <br>
+</h2>
+<p style="margin-left: 40px;">So far, you have dealt with a single
+class that contains <span style="font-weight: bold;">main(..)</span>
+method.&nbsp; In this exercise, you are going to create multiple
+classes among which one class invokes another class - more precisely, a
+method in a class invokes a method of another class.
+</p>
+<ul>
+  <ol>
+    <li><a href="#1.1">Build and run an application that uses newly
+created StudentRecord class</a></li>
+  </ol>
+</ul>
+<div style="margin-left: 40px;"><span
+ style="color: rgb(51, 51, 255); font-weight: bold;"></span><br>
+</div>
+<ul>
+  <ol>
+  </ol>
+</ul>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Build and run an
+application that uses newly created StudentRecord class<br>
+</h3>
+<p style="margin-left: 40px;">0. Start the NetBeans IDE if you have
+not done so.<br>
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyStudentRecordExampleProject</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">StudentRecordExample</span>.&nbsp;
+(Figure-1.10 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_student1.png"
+ style="width: 737px; height: 507px;"><br>
+Figure-1.10: Create a new project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyStudentRecordExampleProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">StudentRecordExample.java</span>
+is displayed in the
+editor window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Write <span
+ style="font-weight: bold;">StudentRecord.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyStudentRecordExampleProject
+    </span>and select <span style="font-weight: bold;">New-&gt;Java
+Class</span>.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_student1.1.png"
+ style="width: 843px; height: 769px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the New Java Class dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">StudentRecord</span>.&nbsp;
+(Figure-1.11 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.&nbsp; (For
+the sake of simplicity, we are not setting Package.)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_student2.png"
+ style="width: 737px; height: 507px;"><br>
+Figure-1.11: Create StudentRecord.java<br>
+<ul>
+  <li>Observe that the IDE generated <span style="font-weight: bold;">StudentRecord.java</span>
+is displayed in the editor window.</li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">StudentRecord.java</span>
+as shown in Code-1.12 below.&nbsp;&nbsp; Study the code by paying
+special attention to the bold-fonted comments and code fragments.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class StudentRecord {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Declare instance
+variables.</span><br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private double mathGrade;<br>
+&nbsp;&nbsp;&nbsp; private double englishGrade;<br>
+&nbsp;&nbsp;&nbsp; private double scienceGrade;<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Declare static
+variables.</span><br>
+&nbsp;&nbsp;&nbsp; private static int studentCount = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Returns the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Changes the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void setName(String temp ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name =temp;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Computes the average of the english, math
+and
+science<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * grades<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public double getAverage(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double result =0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result
+=(getMathGrade()+getEnglishGrade()+getScienceGrade() )/3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return result;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> /**</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; *
+Returns the number of instances of
+StudentRecords</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; */</span><br>
+&nbsp;&nbsp;&nbsp; public static int getStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return studentCount;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> /**</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; *
+Increases the number of instances of
+StudentRecords.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; * This
+is a static method.</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; */</span><br>
+&nbsp;&nbsp;&nbsp; public static void increaseStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; studentCount++;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Instance methods
+      </span><br>
+&nbsp;&nbsp;&nbsp; public double getMathGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setMathGrade(double mathGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.mathGrade = mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public double getEnglishGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setEnglishGrade(double englishGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.englishGrade =
+englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public double getScienceGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void setScienceGrade(double scienceGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.scienceGrade =
+scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.12: StudentRecord.java<br>
+<br>
+<img alt="" src="index_files/1_student5.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+3. Modify the IDE generated <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">StudentRecordExample</span><span
+ style="font-weight: bold;">.java</span> as
+shown in Code-1.13. <br>
+<ul>
+  <li>Study the code while paying special attention to
+the bold-fonted comments and code fragments.</li>
+  <li>Observe that <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">StudentRecordExample</span><span
+ style="font-weight: bold;"> </span>class uses <span
+ style="font-weight: bold;">StudentRecord </span>class.&nbsp; <span
+ style="font-weight: bold;"><br>
+    </span></li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class
+StudentRecordExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create an object instance of
+StudentRecord class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord annaRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Increament the studentCount by invoking
+a static method.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create another object instance of
+StudentRecord class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord beahRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Increament the studentCount by invoking
+a static method.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create the 3rd object instance of
+StudentRecord class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord crisRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Increament the studentCount by invoking a static method.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Set the names of the students.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; annaRecord.setName("Anna");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beahRecord.setName("Beah");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; crisRecord.setName("Cris");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Print anna's name.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Name = "
++ annaRecord.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Print number of students.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Student
+Count = "+StudentRecord.getStudentCount());<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.13: StudentRecordExample.java<br>
+<br>
+<img alt="" src="index_files/1_student6.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+4. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyStudentRecordExampleProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-1.12 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Name = Anna<br>
+Student Count = 3<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-1.12: Result of running the application<br>
+<br>
+<img alt="" src="index_files/1_student7.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solution to
+this exercise is provided as a ready-to-open-and-run
+NetBeans project as part of hands-on lab zip file. You can find it as <span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_createclass/samples/MyStudentRecordExampleProject</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open and run it. <br>
+<br>
+5. (For your own exercise) Do make changes as
+following and build and run the application.<br>
+<ul>
+  <li>Modify <span style="font-weight: bold;">StudentRecordExample.java
+    </span>as following:</li>
+  <ul>
+    <li>Create another StudentRecord object using new keyword, call it
+myOwnRecord</li>
+    <li>Call setName() method of the myOwnRecord object passing "myOwn"
+as the value to set</li>
+    <li>Display the name of the myOwnRecord object</li>
+    <li>Set Math grade of myOwnRecord object</li>
+    <li>Set English grade of&nbsp; myOwnRecord object</li>
+    <li>Set Science grade of myOwnRecord object</li>
+    <li>Display the average grade of myOwnRecord object<br>
+    </li>
+  </ul>
+</ul>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Exercise_1">return to top of the exercise</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have learned how to
+create and use your own class called StudentRecord class using new
+keyword.<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="index.html#Tutorial_Exercises">Return
+to the top</a> </p>
+<br>
+<h2><a name="Exercise_2"></a>Exercise 2: Build and run Java
+applications
+that use static (class) variables and static methods<br>
+</h2>
+<div style="margin-left: 40px;"><br>
+When a number of objects are created from the same class blueprint,
+they each have their own distinct copies of <i>instance variables</i>.&nbsp;
+Class variables are referenced by the class name itself,
+&lt;Class-name&gt;.&lt;static-variable&gt;.&nbsp; For more information,
+please read <a
+ href="http://java.sun.com/docs/books/tutorial/java/javaOO/classvars.html">Understanding
+Instance and Class Members</a> section of the Java tutorial.<br>
+</div>
+<ol style="margin-left: 40px;">
+  <li><a href="#2.1">Build and run an application that uses static
+variables (and instance variables)</a></li>
+  <li><a href="#2.2">Build and run an application that uses static
+methods (and non-static methods)</a><br>
+  </li>
+</ol>
+<div style="margin-left: 40px;"><span
+ style="color: rgb(51, 51, 255); font-weight: bold;"><br>
+</span> </div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run an application that uses static variables and instance
+variables<br>
+</h3>
+<p style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyStaticVariablesExampleProject</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">StaticVariablesExample</span>.&nbsp;
+(Figure-2.11 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;"></p>
+<div style="margin-left: 40px;">
+<img alt="" src="index_files/2_static1.png"
+ style="width: 729px; height: 505px;"><br>
+Figure-2.11:Create <span style="color: rgb(0, 0, 0);">MyStaticVariablesProject</span>
+project<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyStaticVariablesExampleProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">StaticVariablesExample.java</span>
+is displayed in the
+editor window of the IDE.<br>
+  </li>
+</ul>
+2. Write <span style="font-weight: bold;">Variables.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyStaticVariablesExampleProject
+    </span>and select <span style="font-weight: bold;">New-&gt;Java
+Class</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the <span style="font-weight: bold;">New Java
+Class</span> dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Variables</span>.&nbsp;
+(Figure-2.12 below)</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/2_static2.png"
+ style="width: 737px; height: 507px;"><br>
+Figure-2.12: Create Variables.java<br>
+<ul>
+  <li>Observe that the IDE generated <span style="font-weight: bold;">Variables.java</span>
+is displayed in the editor window.</li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Variables.java</span>
+as shown in Code-2.13 below.&nbsp; The modification is to create a
+couple of static variables and a couple of instance variables.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Variables {<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // Static
+variables</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; static int
+staticintA = 10;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; static String
+staticStringB ="I am static string";</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // Instance
+variables</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; int
+instanceintA = 20;</span><br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">String
+instanceStringB = "I am instance string";<br>
+      <br>
+      </span>}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.13: Variables.java<br>
+<br>
+3. Modify <span style="font-weight: bold;">StaticVariablesExamples.java</span>
+to access static and instance variables of <span
+ style="font-weight: bold;">Variables </span>class as shown in
+Code-2.14 below.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class
+StaticVariablesExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Access static variables of Variables class.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Note that you don't have to create an object instance</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// of Variables class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Variables.staticintA = " + Variables.staticintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Variables.staticStringB = " +
+Variables.staticStringB);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Variables.staticStringB =
+"Life is good!";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Variables.staticStringB = " +
+Variables.staticStringB);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Access instance variables of Variables class.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Note that you have to create an object instance</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// of Variables class before you access them.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Variables objectInstance1 =
+new Variables();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Variables objectInstance2 =
+new Variables();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objectInstance1.instanceintA
+= 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("objectInstance1.instanceintA = " +
+objectInstance1.instanceintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objectInstance2.instanceintA
+= 3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("objectInstance2.instanceintA = " +
+objectInstance2.instanceintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// The static variable can be accessed from an object instance.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("objectInstance1.staticintA = " +
+objectInstance1.staticintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objectInstance1.staticintA =
+220;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("objectInstance1.staticintA = " +
+objectInstance1.staticintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Variables.staticintA = " + Variables.staticintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;
+// The static variable can be accessed from multiple object instances.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; objectInstance2.staticintA =
+550;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("objectInstance1.staticintA = " +
+objectInstance1.staticintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("objectInstance2.staticintA = " +
+objectInstance2.staticintA);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Variables.staticintA = " + Variables.staticintA);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.14: StaticVariablesExample.java<br>
+<br>
+4. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyStaticVariablesExampleProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-2.15 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Variables.staticintA = 10<br>
+Variables.staticStringB = I am static string<br>
+Variables.staticStringB = Life is good!<br>
+objectInstance1.instanceintA = 1<br>
+objectInstance2.instanceintA = 3<br>
+objectInstance1.staticintA = 10<br>
+objectInstance1.staticintA = 220<br>
+Variables.staticintA = 220<br>
+objectInstance1.staticintA = 550<br>
+objectInstance2.staticintA = 550<br>
+Variables.staticintA = 550<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.15: Result<br>
+<br>
+<img alt="" src="index_files/1_student8.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+5. Observe compile error when you try to access instance variable as if
+it is a static variable.<br>
+<ul>
+  <li>Add the code fragment of Code-2.16 below to the <span
+ style="font-weight: bold;">StaticVariablesExample.java</span>.</li>
+  <li>Observe the compile error.&nbsp; (Figure-2.17 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Variables.instanceintA = 3;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.16: Compile error<br>
+<br>
+<img alt="" src="index_files/2_static3.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-2.17: Compile error<br>
+<ul>
+  <li>Remove the code fragment you just added to remove the compile
+errors.</li>
+</ul>
+<br>
+<span style="color: rgb(51, 51, 255); font-weight: bold;">Solution</span>:
+The solutions to
+this exercise are provided as ready-to-open-and-run
+NetBeans projects as part of hands-on lab zip file. You can find them
+as <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_createclass/samples/MyStaticVariablesExampleProject
+</span>and<span style="font-weight: bold;"> </span><span
+ style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/javase_createclass/samples/My</span><span
+ style="font-weight: bold;">StaticMethodsExample</span><span
+ style="font-weight: bold;">Project</span><span
+ style="font-weight: bold;">.&nbsp;
+</span>You can just open and run them. <br>
+<br>
+6. (For your own exercise)&nbsp; Modify <span
+ style="font-weight: bold;">StaticVariablesExample.java</span> to
+display the addition of <span style="font-weight: bold;">staticintA</span>
+static variable and <span style="font-weight: bold;">instanceintA </span>instance
+variable.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+<br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Build and run an application that uses static methods and non-static
+methods<br>
+</h3>
+<p style="margin-left: 40px;">0. Start the NetBeans IDE if you have
+not done so.<br>
+1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyStaticMethodsExampleProject</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">StaticMethodsExample</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_student9.png"
+ style="width: 737px; height: 507px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyStaticMethodsExampleProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">StaticMethodsExample.java</span>
+is displayed in the
+editor window of the IDE.<br>
+  </li>
+</ul>
+2. Write <span style="font-weight: bold;">Methods.java</span>.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyStaticMethodsExampleProject
+    </span>and select <span style="font-weight: bold;">New-&gt;Java
+Class</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the <span style="font-weight: bold;">New Java
+Class</span> dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">Methods</span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_student10.png"
+ style="width: 737px; height: 507px;"><br>
+<ul>
+  <li>Observe that the IDE generated <span style="font-weight: bold;">Methods.java</span>
+is displayed in the editor window.</li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">Methods.java</span>
+as shown in Code-2.21 below.&nbsp; The modification is to create a
+couple of static and non-static methods.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class Methods {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Static variable<br>
+&nbsp;&nbsp;&nbsp; static int a = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Static method</span><br>
+&nbsp;&nbsp;&nbsp; static void staticMethod(int i) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("staticMethod("+ i +") entered");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Anonymous
+static method.&nbsp; The things inside
+the anonymous</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // static
+method get executed when the class is
+loaded.&nbsp; </span><br>
+&nbsp;&nbsp;&nbsp; static {&nbsp;&nbsp;&nbsp; //static block<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Anonymous static method entered, a = " + a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a += 1;&nbsp; // same thing
+as a = a + 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Anonymous static method exiting, a = " + a);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Non-static
+method</span><br>
+&nbsp;&nbsp;&nbsp; void myNonStaticMethods(int i){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("myNonStaticMethod("+ i +") entered");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.21: Methods.java<br>
+<br>
+3. Modify <span style="font-weight: bold;">StaticMethodsExamples.java</span>
+to invoke static and non-static methods as shown in Code-2.22 below.<br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;"></div>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class
+StaticMethodsExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Access a static variable
+of Methods class.&nbsp; Note that you don't have to</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// create an object instance
+of Methods class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Methods.a = " + Methods.a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Invoke a static method of
+Methods class. Note that you don't have to</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// create an object instance
+of Methods class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Methods.staticMethod(5);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// The static variable can
+be accessed from an object instance.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Methods d = new Methods();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("d.a = "
++ d.a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// The static method can be
+invoked from an object instance.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d.staticMethod(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// The same static variable
+can be accessed from multiple instances.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Methods e = new Methods();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("e.a = "
++ e.a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d.a += 3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Methods.a = " + Methods.a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("d.a = "
++ d.a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("e.a = "
++ e.a);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.22: StaticMethodsExamples.java<br>
+<br>
+4. Build and run the program<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyStaticMethodsExampleProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-2.23 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Anonymous static method
+entered, a = 0<br>
+Anonymous static method exiting, a = 1<br>
+Methods.a = 1<br>
+staticMethod(5) entered<br>
+d.a = 1<br>
+staticMethod(0) entered<br>
+e.a = 1<br>
+Methods.a = 4<br>
+d.a = 4<br>
+e.a = 4<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-2.23: Result<br>
+<br>
+5. Observe compile error when you try to invoke non-static method as if
+it is a static method.<br>
+<ul>
+  <li>Add the code fragment of Code-2.24 below to the
+StaticMethodsExample.java.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Methods.myNonStaticMethod(3);<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.24: Compile error expected<br>
+<ul>
+  <li>Observe the compile error.&nbsp; (Figure-2.25 below)</li>
+</ul>
+<img alt="" src="index_files/2_static4.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-2.25: Compile error<br>
+<ul>
+  <li>Remove the code fragment you just added to remove the compile
+errors.</li>
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of
+the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have built
+and run Java applications that use static variables and static methods.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Overloading<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to
+exercise the concept of
+overloading.&nbsp; Please note that overloading and overriding are two
+different concepts.<br>
+</p>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#3.1">Add two overloaded methods to the StudentRecord
+class</a></li>
+</ol>
+<br>
+<ol>
+</ol>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Use two overloaded methods to the StudentRecord class<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Add two overloaded <span style="font-weight: bold;">myprint()</span>
+methods to the<span style="font-weight: bold;"> StudentRecored.java</span>
+of the <span style="font-weight: bold;">MyStudentRecordExampleProject </span>project
+you created in Exercise 1 above as
+shown in Code-3.11 below.&nbsp; The code fragments that need to be
+added are highlighted in bold and blue-colored font.<span
+ style="font-weight: bold;"></span><br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class StudentRecord {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare instance variables.<br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private double mathGrade;<br>
+&nbsp;&nbsp;&nbsp; private double englishGrade;<br>
+&nbsp;&nbsp;&nbsp; private double scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; private double average;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare static variables.<br>
+&nbsp;&nbsp;&nbsp; private static int studentCount = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Returns the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Changes the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void setName(String temp ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name =temp;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Computes the average of the english,math and
+science<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * grades<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public double getAverage(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double result =0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result
+=(getMathGrade()+getEnglishGrade()+getScienceGrade() )/3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return result;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Returns the number of instances of
+StudentRecords<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static int getStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return studentCount;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Increases the number of instances of
+StudentRecords<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void increaseStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; studentCount++;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getMathGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setMathGrade(double mathGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.mathGrade = mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getEnglishGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setEnglishGrade(double englishGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.englishGrade =
+englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getScienceGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setScienceGrade(double scienceGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.scienceGrade =
+scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp; // Overloaded
+myprint(..) methods</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+myprint(){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("First overloaded method: Nothing is passed on");</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+myprint(String name ){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Second overloaded method: Name:"+name);</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public void
+myprint(String name, double averageGrade){</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.print("Third overloaded method: Name:"+name+" ");</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Average Grade:"+averageGrade);</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.11: StaticAndInstanceMethods.java<br>
+<br>
+<img alt="" src="index_files/1_student11.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+3. Modify <span style="font-weight: bold;">StudentRecoredExample.java</span>
+as
+shown in Code-3.12 below.&nbsp; The code fragments that need to be
+added are highlighted in bold and blue-colored font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class
+StaticVariblesMethods {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create an object instance
+of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord annaRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create another object
+instance of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord beahRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Create the 3rd object
+instance of StudentRecord class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord crisRecord
+=new StudentRecord();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Increament the
+studentCount by invoking a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set the names of the
+students.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; annaRecord.setName("Anna");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beahRecord.setName("Beah");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; crisRecord.setName("Cris");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print anna's name.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Name = "
++ annaRecord.getName());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Print number of students.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Student
+Count = "+StudentRecord.getStudentCount());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Set Anna's grades</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+annaRecord.setName("Anna");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+annaRecord.setEnglishGrade(95.5);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+annaRecord.setScienceGrade(100);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Invoke overloaded methods</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+annaRecord.myprint();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+annaRecord.myprint(annaRecord.getName());</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+annaRecord.myprint(annaRecord.getName(), annaRecord.getAverage());</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-3.12: Call overloaded methods<br>
+<br>
+<img alt="" src="index_files/1_student12.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+4. Build and run the program<br>
+<ul>
+  <li>Right click&nbsp;<span
+ style="font-weight: bold; color: rgb(0, 0, 0);">MyStudentRecordExampleProject</span><span
+ style="font-weight: bold;"> </span>and select <span
+ style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-3.13 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Name = Anna<br>
+Student Count = 3<br>
+First overloaded method: Nothing is passed on<br>
+Second overloaded method: Name:Anna<br>
+Third overloaded method: Name:Anna Average Grade:65.16666666666667<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-3.13: Result<br>
+<br>
+<img alt="" src="index_files/1_student13.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+5. (For your own exercise) Do make changes as
+following and build and run the applicaiton.<br>
+<ul>
+  <li>Modify <span style="font-weight: bold;">StudentRecord.java </span>as
+following</li>
+  <ul>
+    <li>Add another overloaded myprint() method which takes the
+following
+three
+parameters</li>
+    <ul>
+      <li>name, grade average, student count</li>
+    </ul>
+  </ul>
+  <li>Modify <span style="font-weight: bold;">StudentRecordExmaple.java</span>
+as following</li>
+  <ul>
+    <li>Invoke the newly added myprint() method <br>
+    </li>
+  </ul>
+</ul>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have
+exercises how to use overloaded methods.<br>
+</p>
+<p style="margin-left: 40px;"><br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return to
+the top</a>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Constructors<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will exercise the
+concept of constructors.&nbsp;&nbsp;<br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#4.1">Exercise multiple constructors</a></li>
+  <li><a href="#4.2">Chaining of constructors via this() method<br>
+    </a></li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)&nbsp;
+Exercise multiple construcors<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyConstructorExampleProject</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">ConstructorExample</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyConstructorExampleProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">ConstructorExample.java</span>
+is displayed in the editor window of the IDE.<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+2. Write <span style="font-weight: bold;">StudentRecord.java</span>.<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyConstructorExampleProject
+    </span>and select <span style="font-weight: bold;">New-&gt;Java
+Class</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the <span style="font-weight: bold;">New Java
+Class</span> dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">StudentRecord</span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+  <li>Observe that the IDE generated <span style="font-weight: bold;">StudentRecord.java</span>
+is displayed in the editor window.</li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">StudentRecord.java</span>
+as shown in Code-4.11 below.&nbsp; Note that change is to add multiple
+construcors to the StudentRecord class.<br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class StudentRecord {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare instance variables.<br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private double mathGrade;<br>
+&nbsp;&nbsp;&nbsp; private double englishGrade;<br>
+&nbsp;&nbsp;&nbsp; private double scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; private double average;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare static variables.<br>
+&nbsp;&nbsp;&nbsp; private static int studentCount = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp; // Default
+constructor</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord() {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets single parameter</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.name = name;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets two parameters</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name, double mGrade){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br
+ style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mathGrade = mGrade;</span><span style="font-weight: bold;"></span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets three parameters</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name, double mGrade, double eGrade){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br
+ style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mathGrade = mGrade;<br>
+      </span><span style="font-weight: bold;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">englishGrade = eGrade;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }<br>
+      <br style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets four parameters</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name, double mGrade, double eGrade,</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+double sGrade){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.name = name;<br
+ style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mathGrade = mGrade;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+englishGrade = eGrade;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+scienceGrade = sGrade;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Returns the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Changes the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void setName(String temp ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name =temp;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Computes the average of the english,math and
+science<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * grades<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public double getAverage(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double result =0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result
+=(getMathGrade()+getEnglishGrade()+getScienceGrade() )/3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return result;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Returns the number of instances of
+StudentRecords<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static int getStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return studentCount;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Increases the number of instances of
+StudentRecords.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * This is a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void increaseStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; studentCount++;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Instance methods<br>
+&nbsp;&nbsp;&nbsp; public double getMathGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setMathGrade(double mathGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.mathGrade = mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getEnglishGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setEnglishGrade(double englishGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.englishGrade =
+englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getScienceGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setScienceGrade(double scienceGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.scienceGrade =
+scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-4.11: StudentRecord.java that has multiple constructors<br>
+</div>
+<p style="margin-left: 40px;">
+3. Modify the IDE generated <span style="font-weight: bold;"></span><span
+ style="font-weight: bold;">ConstructorExample</span><span
+ style="font-weight: bold;">.java</span> as
+shown in Code-4.12. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Study the code while paying special attention to
+the bold-fonted comments and code fragments.</li>
+  <li>Observe that <span style="font-weight: bold;">ConstructorExample</span>
+class uses <span style="font-weight: bold;">StudentRecord </span>class.&nbsp;
+    <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class ConstructorExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create an object instance of
+StudentRecord class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord annaRecord
+= new StudentRecord("Anna");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Increament the studentCount by invoking
+a static method.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create another object instance of
+StudentRecord class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord beahRecord
+=new StudentRecord("Beah", 45);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Increament the studentCount by invoking
+a static method.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Create the 3rd object instance of
+StudentRecord class.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StudentRecord crisRecord
+=new StudentRecord("Cris", 23.3, 67.45, 56);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Increament the studentCount by invoking a static method.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StudentRecord.increaseStudentCount();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Print Cris' name and average</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Name = "
++ crisRecord.getName() + " Average = " + crisRecord.getAverage());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Print number of students.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Student
+Count = "+StudentRecord.getStudentCount());<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-4.12: ConstructorExample.java<br>
+</div>
+<p style="margin-left: 40px;">4. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyConstructorExampleProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-4.13 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Name = Cris Average =
+48.916666666666664<br>
+Student Count = 3<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.13: Result<br>
+<br>
+5. (For your own exercise) Modify StudentRecord.java and
+ConstructorExample.java as following. Build and run the project.<br>
+<ul>
+  <li>Create another Constructor in the StudentRecord.java in which
+average is also passed as a parameter.</li>
+  <li>Modify the ConstructorExample.java so that StudentRecord
+annaRecord object is created with the newly added Constructor.<br>
+  </li>
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.2"></a>(4.2)
+Chaining of contructors via this() method<br>
+</h3>
+<p style="margin-left: 40px;">1. Modify StuentRecord.java as shown in
+Code-4.20 below.<br>
+</p>
+<div style="margin-left: 40px;">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class StudentRecord {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare instance variables.<br>
+&nbsp;&nbsp;&nbsp; private String name;<br>
+&nbsp;&nbsp;&nbsp; private double mathGrade;<br>
+&nbsp;&nbsp;&nbsp; private double englishGrade;<br>
+&nbsp;&nbsp;&nbsp; private double scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; private double average;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Declare static variables.<br>
+&nbsp;&nbsp;&nbsp; private static int studentCount = 0;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp; // Default
+constructor</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord() {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets single parameter</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this.name = name;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets two parameters</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name, double mGrade){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this(name);<br
+ style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mathGrade = mGrade;</span><span style="font-weight: bold;"></span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets three parameters</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name, double mGrade, double eGrade){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this(name, mGrade);</span><span
+ style="font-weight: bold;"><br>
+      </span><span style="font-weight: bold;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">englishGrade = eGrade;</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }<br>
+      <br style="font-weight: bold;">
+      </span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; //
+Constructor that gets four parameters</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+StudentRecord(String name, double mGrade, double eGrade,</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+double sGrade){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this(name, mGrade, eGrade);</span><span
+ style="font-weight: bold;"></span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+scienceGrade = sGrade;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Returns the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public String getName(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Changes the name of the student<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void setName(String temp ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name =temp;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Computes the average of the english,math and
+science<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * grades<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public double getAverage(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double result =0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result
+=(getMathGrade()+getEnglishGrade()+getScienceGrade() )/3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return result;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Returns the number of instances of
+StudentRecords<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static int getStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return studentCount;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; /**<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Increases the number of instances of
+StudentRecords.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * This is a static method.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public static void increaseStudentCount(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; studentCount++;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; // Instance methods<br>
+&nbsp;&nbsp;&nbsp; public double getMathGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setMathGrade(double mathGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.mathGrade = mathGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getEnglishGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setEnglishGrade(double englishGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.englishGrade =
+englishGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public double getScienceGrade() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void setScienceGrade(double scienceGrade) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.scienceGrade =
+scienceGrade;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}</td>
+    </tr>
+  </tbody>
+</table>
+Code-4.20: Modified StudentRecord.java<br>
+</div>
+<p style="margin-left: 40px;">2. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyConstructorExampleProject
+    </span>and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-4.21 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Name = Cris Average =
+48.916666666666664<br>
+Student Count = 3<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-4.21: Result<br>
+<br>
+3. (For your own exercise) Modify StudentRecord.java and
+ConstructorExample.java as following:<br>
+<ul>
+  <li>Create another Constructor in the StudentRecord.java in which
+average is also passed as a parameter.</li>
+  <li>Modify the ConstructorExample.java so that StudentRecord
+annaRecord object is created with the newly added Constructor.<br>
+  </li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_4">return to top of
+the exercise</a><br>
+</div>
+<p style="margin-left: 40px;"></p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned you
+can have overloaded methods in a class. You also learned how to invoke
+a particular overloaded method by passing different set of parameters.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a><br>
+<br>
+<h2><a name="Exercise_5"></a>Exercise 5: "this" reference<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you will exercise the
+concept of "this" reference.&nbsp;&nbsp;<br>
+</p>
+<ol style="margin-left: 40px;">
+  <li><a href="#5.1">"this" reference in method call</a></li>
+  <li><a href="#5.2">"this" reference as a parameter</a><br>
+  </li>
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.1"></a>(5.1)&nbsp;
+"this" reference in method call<br>
+</h3>
+<p style="margin-left: 40px;">1. Create a NetBeans project<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyThisReferenceExampleProject</span>.</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">ThisReferenceExample</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_student14.png"
+ style="width: 737px; height: 507px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">MyThisReferenceExampleProject
+    </span>project node is created
+under <span style="font-weight: bold;">Projects </span>pane of the
+NetBeans IDE and IDE generated <span style="font-weight: bold;">ThisReferenceExample.java</span>
+is displayed in the editor window of the IDE.</li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;">2. Write <span
+ style="font-weight: bold;">DummyClass.java</span>.<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">MyThisReferenceExampleProject
+    </span>and select <span style="font-weight: bold;">New-&gt;Java
+Class</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the <span style="font-weight: bold;">New Java
+Class</span> dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">DummyClass</span>.&nbsp;
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/1_student15.png"
+ style="width: 737px; height: 507px;"><br>
+<ul>
+  <li>Observe that the IDE generated <span style="font-weight: bold;">DummyClass.java</span>
+is displayed in the editor window.</li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">DummyClass.java</span>
+as shown in Code-5.10 below.&nbsp; <br>
+  </li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class DummyClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; void
+mymethod1(){</span><br style="font-weight: bold;">
+      <br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Note that mymethod2() and
+this.mymethod2() are the same thing.</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s1 = mymethod2("Sang
+Shin");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s2 =
+this.mymethod2("Sang Shin");</span><br style="font-weight: bold;">
+      <br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s1 = " +
+s1 + " s2 = " + s2);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; String
+mymethod2(String name){</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return "Hello " + name;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.10: DummyClass.java<br>
+<br>
+3. Modify ThisReferenceExample.java as shown Code-5.11 below.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class
+ThisReferenceExample {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+DummyClass d1 = new DummyClass();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+d1.mymethod1();</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+&nbsp;Code-5.11: ThisReferenceExample.java<br>
+</div>
+<p style="margin-left: 40px;">4. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;"> </span><span
+ style="font-weight: bold;">MyThisReferenceExampleProject </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-5.12 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">s1 = Hello Sang Shin s2 = Hello
+Sang Shin<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.12: Result<br>
+<br>
+<img alt="" src="index_files/1_student16.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+5. Modify <span style="font-weight: bold;">DummyClass.java</span>
+as shown in Code-5.13 below.&nbsp; <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class DummyClass {<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; void mymethod1(){<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Note that mymethod2() and
+this.mymethod2() are the same thing.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s1 = mymethod2("Sang
+Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s2 =
+this.mymethod2("Sang Shin");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s1 = " +
+s1 + " s2 = " + s2);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; String mymethod2(String name){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Hello " + name;<br>
+&nbsp;&nbsp;&nbsp; }&nbsp;<br>
+      <br>
+&nbsp;<span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;
+// Compile error - you cannot invoke instance method<br>
+&nbsp;&nbsp;&nbsp; // from a static method.</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+static void mymethod3(){</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s1 = mymethod2("Sang Shin");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s2 = this.mymethod2("Sang Shin");</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s1 = " + s1 + " s2 = " + s2);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}<br>
+      <br>
+      </span>}</td>
+    </tr>
+  </tbody>
+</table>
+Code-5.13: Compile error when a static method invokes instance method<br>
+<br>
+6. Observe the compile error. (Figure-5.14 below)<br>
+<br>
+<img alt="" src="index_files/6_access9.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-5.14: Compile error<br>
+<br>
+7. Remove the code fragment that caused the compile error.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of
+the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.2"></a>(5.2)&nbsp;
+"this" reference as a parameter<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Modify <span
+ style="font-weight: bold;">DummyClass.java </span>as shown<span
+ style="font-weight: bold;"> </span>in
+Code-5.15 below.&nbsp; The code fragments that need to be added are
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class DummyClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; void mymethod1(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Note that mymethod2() and
+this.mymethod2() are the same thing.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s1 = mymethod2("Sang
+Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s2 =
+this.mymethod2("Sang Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s1 = " +
+s1 + " s2 = " + s2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br
+ style="color: rgb(51, 51, 255);">
+      <span style="color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;</span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;
+// Pass the current object instance as a parameter</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s3 = this.mymethod3(this);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s3 = " + s3);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; String mymethod2(String name){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Hello " + name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp; <span
+ style="color: rgb(51, 51, 255);">String mymethod3(Object o1){</span></span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return o1.getClass().getName();</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.15: Modified DummyClass.java<br>
+<br>
+<img alt="" src="index_files/1_student17.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+</div>
+<p style="margin-left: 40px;">2. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;"> </span><span
+ style="font-weight: bold;">MyThisReferenceExampleProject </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-5.17 below)</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">s1 = Hello Sang Shin s2 = Hello
+Sang Shin<br>
+s3 = DummyClass<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.17: Result<br>
+<br>
+<img alt="" src="index_files/1_student18.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+3. Modify <span style="font-weight: bold;">DummyClass.java </span>as
+shown<span style="font-weight: bold;"> </span>in
+Code-5.18 below.&nbsp; The code fragments that need to be added are
+highlighted in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue-colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class DummyClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">String hello
+="Hello";</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+String bye = "Bye";</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; void mymethod1(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Note that mymethod2() and
+this.mymethod2() are the same thing.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s1 = mymethod2("Sang
+Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s2 =
+this.mymethod2("Sang Shin");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s1 = " +
+s1 + " s2 = " + s2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Pass the current object
+instance as a parameter<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s3 =
+this.mymethod3(this<span
+ style="font-weight: bold; color: rgb(51, 51, 255);">, this.hello</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s3 = " +
+s3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">s3 =
+this.mymethod3(this, this.bye);</span><br
+ style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s3 = " + s3);</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; String mymethod2(String name){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Hello " + name;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;<span style="color: rgb(51, 51, 255); font-weight: bold;">&nbsp;&nbsp;
+String mymethod3(Object o1, String s){</span><br
+ style="color: rgb(51, 51, 255); font-weight: bold;">
+      <span style="color: rgb(51, 51, 255); font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return s + " " + o1.getClass().getName();</span><br
+ style="color: rgb(51, 51, 255); font-weight: bold;">
+      <span style="color: rgb(51, 51, 255); font-weight: bold;">&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-5.18: Modifed DummyClass.java<br>
+</div>
+<p style="margin-left: 40px;">4. Build and run the program<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click&nbsp;<span style="font-weight: bold;"> </span><span
+ style="font-weight: bold;">MyThisReferenceExampleProject </span>and
+select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe the result in the <span style="font-weight: bold;">Output
+    </span>window of the NetBeans IDE.
+(Figure-5.19 below)</li>
+</ul>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">s1 = Hello Sang Shin s2 = Hello
+Sang Shin<br>
+s3 = Hello DummyClass<br>
+s3 = Bye DummyClass<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Figure-5.19: Result<br>
+<br>
+<img alt="" src="index_files/1_student19.png"
+ style="width: 843px; height: 769px;"><br>
+<span style="font-weight: bold;"></span></div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_5">return to top of
+the exercise</a><br>
+<span style="font-weight: bold;"></span></div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned how
+to use "this" reference.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a><br>
+<br>
+<br>
+<h2><a name="Exercise_6"></a>Exercise 6: Access modifiers -
+private, protected, and public<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">In this exercise, you will exercise
+access modifiers for the variables and methods.&nbsp; <br>
+</div>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#6.1">Exercise access modifiers within a same package</a></li>
+  <li><a href="#6.2">Exercise access modifiers from a different package</a></li>
+</ol>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="6.1"></a>(6.1)
+Exercise access modifiers within a same package<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Create a NetBeans project<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File </span>from
+top-level menu and
+select <span style="font-weight: bold;">New Project</span>. </li>
+  <li>Observe that the <span style="font-weight: bold;">New Project</span>
+dialog box appears.</li>
+  <li>Select <span style="font-weight: bold;">Java </span>under <span
+ style="font-weight: bold;">Categories </span>section and <span
+ style="font-weight: bold;">Java Application</span> under <span
+ style="font-weight: bold;">Projects </span>section. </li>
+  <li>Click <span style="font-weight: bold;">Next</span>.</li>
+</ul>
+<ul>
+  <li>Under <span style="font-weight: bold;">Name
+and Location</span> pane, for the <span style="font-weight: bold;">Project
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">MyAccessModifierExampleProject</span>.
+(Figure-6.10 below)</li>
+  <li>For the <span style="font-weight: bold;">Create Main Class</span>
+field,&nbsp;<span style="font-weight: bold;"></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"></span>leave it to
+the IDE generated value <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">myaccessmodifierexampleProject.Main</span><span
+ style="color: rgb(51, 51, 255);"><span style="color: rgb(0, 0, 0);">.&nbsp;
+This is going to generate <span style="font-weight: bold;">Main </span>class
+under <span style="font-weight: bold;">myaccessmodifieexampleproject</span>
+package.</span></span><span
+ style="font-weight: bold; color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);"></span></span><span
+ style="font-weight: bold; color: rgb(0, 0, 0);">&nbsp;&nbsp; </span><br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/6_access1.png"
+ style="width: 737px; height: 507px;"><br>
+Figure-6.10: Create a new project<br>
+<br>
+2. Write <span style="font-weight: bold;">DummyClass.java</span> under
+<span style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(0, 0, 0);"> <span style="font-weight: bold;">myaccessmodifieexampleproject</span>
+package.</span></span>
+<ul>
+  <li>Right click <span style="font-weight: bold;">My</span><span
+ style="font-weight: bold; color: rgb(0, 0, 0);">AccessModifier</span><span
+ style="font-weight: bold;">ExampleProject </span>and select <span
+ style="font-weight: bold;">New-&gt;Java
+Class</span>.</li>
+  <li>Observe that the <span style="font-weight: bold;">Name and
+Location</span> pane of the New Java Class dialog box appears.</li>
+  <li>For the <span style="font-weight: bold;">Class Name</span>
+field, enter <span style="font-weight: bold; color: rgb(51, 51, 255);">DummyClass</span>.&nbsp;
+(Figure-6.11 below)</li>
+  <li>For the Package field, type in or choose <span
+ style="font-weight: bold;">myaccessmodifierexampleproject </span>from
+the drop-down menu.<br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/6_access2.png"
+ style="width: 737px; height: 507px;"><br>
+Figure-6.11: Create DummyClass<br>
+<ul>
+  <li>Observe that the IDE generated <span style="font-weight: bold;">DummyClass.java</span>
+is displayed in the editor window.</li>
+  <li>Modify the IDE generated <span style="font-weight: bold;">DummyClass.java</span>
+as shown in Code-6.12 below.&nbsp;&nbsp; Study the code by paying
+special attention to the bold-fonted comments and code fragments.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myaccessmodifierexampleproject;<br>
+      <br>
+public class DummyClass {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Private field.
+Can be accessed only within the</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // same class.</span><br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">private </span>String
+s1 = "private string";<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Protected
+field. Can be accessed only within</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // the same
+package.</span><br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">protected</span>
+String s2 = "protected string";<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Public field.
+Can be accessed from anybody.</span><br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public </span>String
+s3 = "public string";<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Default is
+protected</span><br>
+&nbsp;&nbsp;&nbsp; String s4 = "string without access modifier";<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Private method.
+Can be accessed only within the</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // same class.</span><br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">private </span>void
+method1(){<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Protected
+method. Can be accessed only within</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; // the same
+package.</span><br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">protected </span>void
+method2(){<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Public method.
+Can be accessed from anybody.</span><br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public </span>void
+method3(){<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// Default is
+protected.</span><br>
+&nbsp;&nbsp;&nbsp; void method4(){<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.12: DummyClass.java<br>
+<br>
+<img alt="" src="index_files/1_student20.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+3. Modify <span style="font-weight: bold;">Main.java</span> as shown
+in Code-6.13 below.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package
+myaccessmodifierexampleproject;<br>
+      <br>
+public class Main {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DummyClass t = new
+DummyClass();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// Compiler error expected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s1 = " +
+t.s1);&nbsp; // accessing private variable of DummayClass class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+ style="font-weight: bold;">// No compile error expected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s2 = " +
+t.s2);&nbsp; // accessing protected variable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s3 = " +
+t.s3);&nbsp; // accessing public variable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("s4 = " +
+t.s4);&nbsp; // accessing default access modifier variable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // Compiler error expected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.method1();&nbsp; //
+calling private method of DummyClass class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+ style="font-weight: bold;"> // No compile error expected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.method2();&nbsp; //
+calling protected method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.method3();&nbsp; //
+calling public method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.method4();&nbsp; //
+calling default access modifier method<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.13: Modified Main.java<br>
+<ul>
+  <li>Observe the compile errors. (Figure-6.14 and Figure-6.15 below)</li>
+</ul>
+<img alt="" src="index_files/6_access3.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-6.14: Observe the compile errors.<br>
+<br>
+<img alt="" src="index_files/6_access10.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-6.15: Observe the compile errors.<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_6">return to top of
+the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="6.2"></a>(6.2)
+Exercise access modifiers from a different package<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Create a new package.<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right click <span style="font-weight: bold;">Source Packages</span>
+under <span style="font-weight: bold;">My</span><span
+ style="font-weight: bold; color: rgb(0, 0, 0);">AccessModifier</span><span
+ style="font-weight: bold;">ExampleProject</span> project node
+and select <span style="font-weight: bold;">New-&gt;Java Package</span>.
+(Figure-6.20 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/6_access4.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-6.20: Create a new Java package<br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">New Java
+Package</span>
+dialog box appears.&nbsp; <br>
+  </li>
+  <li>For the <span style="font-weight: bold;">Package
+Name</span> field, enter <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">mynewpackage</span>.</li>
+  <li>Click Finish.</li>
+</ul>
+<img alt="" src="index_files/6_access5.png"
+ style="width: 737px; height: 507px;"><br>
+Figure-6.21: Give a package name<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">mynewpackage </span>package
+node appears.&nbsp; <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_student21.png"
+ style="width: 843px; height: 769px;"><br>
+<br>
+2. Create a new class under a new package.&nbsp; You are going to
+access
+fields and methods of <span style="font-weight: bold;">DummyClass </span>from
+this new class.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">mynewpackage </span>package
+node, and select <span style="font-weight: bold;">New-&gt;Java
+Class</span>. (Figure-6.22 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/6_access6.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-6.22: Create a new Java class under mynewpackage package<br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">New Java Class</span>
+dialog
+box appears.&nbsp; <br>
+  </li>
+  <li>For <span style="font-weight: bold;">Class Name</span>
+field, type in <span
+ style="font-weight: bold; color: rgb(51, 51, 255);">DummyClass2</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.</li>
+</ul>
+<img alt="" src="index_files/6_access7.png"
+ style="width: 737px; height: 507px;"><br>
+Figure-6.23: Create DummyClass2<br>
+<ul>
+  <li>Observe that IDE generated <span style="font-weight: bold;">DummyClass2.java
+    </span>appears in the source editor window of NetBeans IDE.</li>
+  <li>Modify <span style="font-weight: bold;">DummyClass2.java</span>
+as
+shown in Code-6.24 below.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package mynewpackage;<br>
+      <br>
+      <span style="font-weight: bold;">//Import DummyClass</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">import
+myaccessmodifierexampleproject.DummyClass;</span><br>
+      <br>
+public class DummyClass2 {<br>
+&nbsp;&nbsp;&nbsp; <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; public
+DummyClass2() {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DummyClass t = new
+DummyClass();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Compiler error expected</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s1 = " +
+t.s1);&nbsp; // accessing private variable of DummayClass class</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s2 = " +
+t.s2);&nbsp; // accessing protected variable</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s4 = " +
+t.s4);&nbsp; // accessing default access modifier variable</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+t.method1();&nbsp; //
+calling private method of DummyClass class</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+t.method2();&nbsp; //
+calling protected method</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+t.method4();&nbsp; //
+calling default access modifier method</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// No compile error expected</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("s3 = " +
+t.s3);&nbsp; // accessing public variable</span><br
+ style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+t.method3();&nbsp; //
+calling public method</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; }</span><br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-6.24: DummyClass2.java<br>
+<br>
+3. Observe the compile errors. (Figure-6.25 below)<br>
+<br>
+<img alt="" src="index_files/6_access8.png"
+ style="width: 843px; height: 769px;"><br>
+Figure-6.25: Compile errors<br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="index.html#Exercise_6">return to top of
+the exercise</a><br>
+</div>
+<br>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you learned how
+to use access modifiers to constrain the access privilege between
+classes.<br>
+</p>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a><br>
+<br>
+<br>
+<br>
+<h2><a name="Homework_exercise"></a><a name="Homework"></a>Homework
+exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">1. The homework is to either modify <span
+ style="font-weight: bold;">MyStudentRecordExampleProject</span>
+NetBeans project you've done in Exercise 1 above or create a new
+project
+as following.&nbsp; (You might want to create a new project by copying
+the <span style="font-weight: bold;">MyStudentRecordExampleProject</span>
+project.&nbsp; You can name the homework project in any way you want
+but here I am going to call it <span style="font-weight: bold;">MyOwnProject</span>.)
+</div>
+<ul style="margin-left: 40px;">
+  <li><span style="font-weight: bold;"></span> <span
+ style="color: rgb(0, 0, 0);"><span style="font-weight: bold;"></span></span>Create
+a Student class as following:</li>
+  <ul>
+    <li>The <span style="font-weight: bold;">Student </span>class has
+      <span style="font-weight: bold;">StudentRecord </span>class as
+an instance variable.&nbsp; Name it as <span style="font-weight: bold;">studentRecord</span>.</li>
+    <ul>
+      <li>You can use the StudentRecord class from the
+MyStudentRecordExampleProject above or you can create a new one - the
+only requirement is that it has to have at least one instance variable
+of its own.<br>
+      </li>
+    </ul>
+    <li>The <span style="font-weight: bold;">Student </span>class has
+      <span style="font-weight: bold;">studentId </span>instance
+variable whose type is <span style="font-weight: bold;">Integer </span>type.</li>
+    <li>Move the <span style="font-weight: bold;">studentCount </span>static
+variable from the <span style="font-weight: bold;">StudentRecord </span>class
+to <span style="font-weight: bold;">Student </span>class.<br>
+    </li>
+  </ul>
+  <li>Rewrite main.java as following</li>
+  <ul>
+    <li>Create 3 instances of Student class and initialize them
+accordingly - use whatever initialization values that&nbsp; are
+appropriate. <br>
+    </li>
+    <li>Display the information of each student including the student
+id, name.</li>
+    <li>Display the studentCount.<br>
+    </li>
+  </ul>
+</ul>
+<div style="margin-left: 40px;">2. Send the following files to <a
+ href="mailto:javaprogramminghomework@javapassion.com">javaprogramminghomework@javapassion.com</a>
+with <span style="font-weight: bold;">Subject </span>as <span
+ style="font-weight: bold;"></span><span style="font-weight: bold;">javase_createclass.</span><br>
+<span style="font-weight: bold;"></span></div>
+<ul style="margin-left: 40px;">
+  <li>Zip file of the<span style="font-weight: bold;"> MyOwnProject</span>
+NetBeans project.&nbsp; (Someone else
+should be able to open and run it as a NetBeans project.)&nbsp; You can
+use your favorite zip utility or you can use "jar" utility that comes
+with JDK as following.<br>
+  </li>
+  <ul>
+    <li>cd &lt;parent directory that contains <span
+ style="font-weight: bold;">MyOwnProject</span>
+directory&gt;
+(assuming you named your project as <span style="font-weight: bold;">MyOwnProject</span>)<br>
+    </li>
+    <li>jar cvf MyOwnProject.zip MyOwnProject
+(<span style="font-weight: bold;">MyOwnProject </span>should
+contain <span style="font-weight: bold;">nbproject </span>directory)</li>
+  </ul>
+  <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">javase_createclass.gif</span>
+or <span style="font-weight: bold;">javase_createclass</span><span
+ style="font-weight: bold;">.jpg</span> (or
+javase_createclass.&lt;whatever
+graphics format&gt;)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; No cosmetic polishment is required.</li>
+  </ul>
+  <li>If you decide to use
+different IDE other than NetBeans, the zip
+file should contain all the files that are needed for rebuilding the
+project.</li>
+</ul>
+<div style="margin-left: 40px;"></div>
+<br>
+<div class="indent"><br>
+</div>
+<p> </p>
+<!-- ======================================================================================== -->
+</body>
+</html>
