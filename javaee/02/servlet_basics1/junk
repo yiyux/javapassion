@@ -1,0 +1,17 @@
+var myPerson =
+{
+        firstname: "John",
+        lastname: "Doe",
+        age: 50,
+        tellYourage: function () {         // Anonymous function without argument
+              alert("The age is " + this.age );
+        },
+        tellSomething: function(something) {  // Anonymous function with an argument
+              alert(something);
+        },
+        tellWhatever: functionDefinedSomewhere  // Named function
+ }
+
+myPerson.tellYourage();
+myPerson.tellSomething("Life is good!");
+myPerson.tellWhatever("Hello");

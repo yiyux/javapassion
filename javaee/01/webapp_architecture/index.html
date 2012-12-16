@@ -1,14 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
   <script src="index_files/tigris.txt" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
   <title>LAB-4001: Web Application Structure</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
   <meta name="SourceCastVersion" content="2.6.2.4.10">
-  <meta name="keywords"
- content="NetBeans, IDE, Platform, free, open source, developer">
+  <meta name="keywords" content="NetBeans, IDE, Platform, free, open source, developer">
   <link rel="stylesheet" href="index_files/netbeans_002.css">
   <meta name="author" content="Sang Shin">
   <style type="text/css">
@@ -28,18 +26,23 @@ var username=get_sc_login();
 <body onload="loginfocus()" class="composite">
 <!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
 <br>
+<div style="text-align: center;">@Copyright notice: This content is
+meant to be used only for paying
+subscriber's personal
+consumption. Sharing with others in any shape or form is
+strictly
+prohibited&nbsp;
+unless a special licensing arrangement has been made with <a href="mailto:support@javapassion.com">JPassion.com</a>.<br>
+</div>
 <br>
 <h1 style="text-align: center;">Web Application Structure<br>
 </h1>
-<div class="articledate" style="margin-left: 0px; text-align: center;"><a
- href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,&nbsp;
-<a href="http://www.javapassion.com">www.javapassion.com</a><a
- href="mailto:sang.shin@sun.com"><i>
-</i></a></div>
-<div class="indent"><br>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="http://www.javapassion.com/">www.javapassion.com,</a> <a href="http://groups.google.com/group/jpassion_web">class forum</a><br>
 <br>
-<div style="text-align: center;"><img alt=""
- src="index_files/sangshin2009.jpg" style="width: 75px; height: 87px;"><br>
+<a href="http://www.javapassion.com"></a><a href="mailto:sang.shin@sun.com"><i></i></a></div>
+<div class="indent"><br>
+<div style="text-align: center;"><img alt="" src="index_files/sangshin2009.jpg" style="width: 75px; height: 87px;"><br>
 </div>
 <br>
 This hands-on lab takes you build a simplest possible Web application
@@ -64,28 +67,17 @@ NetBeans can be found in <a href="#Exercise_0">Exercise 0 below</a>.<br>
     <li>If you already have installed JDK 5.0 or JDK 6.0, you
 can skip this.</li>
   </ul>
-  <li>NetBeans 6.7 or later version (<a
- href="http://www.netbeans.org/downloads/">download</a>)&nbsp; The
+  <li>NetBeans 6.7 or later version (<a href="http://www.netbeans.org/downloads/">download</a>)&nbsp; The
 latest version as of Jan. 31st 2010 is NetBeans 6.8.<br>
   </li>
   <ul>
     <li>When you install NetBeans IDE, it will ask you which JDK
 you want to use. <br>
     </li>
-    <li>You have to choose NetBeans version that has <span
- style="font-weight: bold;">Java Web and EE</span> technology (or
+    <li>You have to choose NetBeans version that has <span style="font-weight: bold;">Java Web and EE</span> technology (or
 install the Java Web and EE plug-in's if you already have installed a
 NetBeans)</li>
   </ul>
-</ul>
-<br>
-<h3 class="tutorial">OS platforms you can use<br>
-</h3>
-<ul>
-  <li>Windows</li>
-  <li>Solaris x86, Solaris Sparc</li>
-  <li>Linux</li>
-  <li>Mac OS X</li>
 </ul>
 <br>
 <h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
@@ -99,8 +91,10 @@ and NetBeans are added as Exercise 0</li>
   <li>Aug. 6th, 2009: Updated with NetBeans 6.7.1</li>
   <li>March 10th, 2010: Clarified web.xml issue with NetBeans 6.8 (Sang
 Shin)</li>
-  <li>Nov. 30th, 2010: Name of the zip file has been changed (Sang Shin)<br>
-  </li>
+  <li>Nov. 30th, 2010: Name of the zip file has been changed (Sang Shin)</li>
+<li>July 25th, 2012: Sample app is added as Maven project<br>
+</li>
+
 </ul>
 <br>
 <h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
@@ -127,6 +121,7 @@ You can install JDK and NetBeans using various types of bundles - they
 all should work.&nbsp; Here, you are going to install JDK first and
 then NetBeans IDE.&nbsp; <br>
 <br>
+<br>
 </div>
 <h3 style="margin-left: 40px;" class="tutorial">(0.1) Install JDK 6<br>
 </h3>
@@ -137,30 +132,25 @@ with NetBeans by choosing "JDK 6 Update 13 with NetBeans &lt;version
 number&gt;".)<br>
 <br>
 1. Download JDK Update x (as of Jan. 31st, 2010, the Update 18 is the
-latest) from the <a
- href="http://java.sun.com/javase/downloads/index.jsp">download</a>
+latest) from the <a href="http://java.sun.com/javase/downloads/index.jsp">download</a>
 page.<br>
 <br>
-<img alt="" src="index_files/0_install1.png"
- style="width: 902px; height: 820px;"><br>
+<img alt="" src="index_files/0_install1.png" style="width: 902px; height: 820px;"><br>
 <br>
 2. Select the Platform and check the "I agree to the Java SE
 Development Kit 6 Licence Agreement".&nbsp; <br>
 <br>
-<img alt="" src="index_files/0_install2.png"
- style="width: 926px; height: 820px;"><br>
+<img alt="" src="index_files/0_install2.png" style="width: 926px; height: 820px;"><br>
 <br>
 3. Download the JDK 6 package either directly or using Sun Download
 Manager.&nbsp; (Use Sun Download Manager if your network is not
 reliable.)<br>
 <br>
-<img alt="" src="index_files/0_install3.png"
- style="width: 926px; height: 820px;"><br>
+<img alt="" src="index_files/0_install3.png" style="width: 926px; height: 820px;"><br>
 <br>
 4. Save the file in the local file system.<br>
 <br>
-<img alt="" src="index_files/0_install4.png"
- style="width: 507px; height: 311px;"><br>
+<img alt="" src="index_files/0_install4.png" style="width: 507px; height: 311px;"><br>
 <br>
 5. Install JDK.<br>
 <br>
@@ -168,8 +158,7 @@ reliable.)<br>
 <h3 style="margin-left: 40px;" class="tutorial">(0.2) Download and
 Install NetBeans</h3>
 <div style="margin-left: 40px;"><br>
-1. Download NetBeans IDE from the <a
- href="http://www.netbeans.org/downloads/">download</a>
+1. Download NetBeans IDE from the <a href="http://www.netbeans.org/downloads/">download</a>
 page.&nbsp; Choose Platform and select NetBeans IDE bundle as shown
 below.&nbsp; You can choose either <span style="font-weight: bold;">Java
 bundle</span> or <span style="font-weight: bold;">All </span>bundle -
@@ -177,8 +166,9 @@ Any bundle that has <span style="font-weight: bold;">Java Web and EE </span>and
 <span style="font-weight: bold;">GlassFish V2.1</span> technologies
 will do it.<br>
 <br>
-<img alt="" src="index_files/0_install6.png"
- style="width: 902px; height: 775px;"><br>
+<img alt="" src="index_files/0_install6.png" style="width: 902px; height: 775px;"><br>
+<br>
+<br>
 <br>
 </div>
 <!-- ===================================================================================== -->
@@ -186,8 +176,7 @@ will do it.<br>
 </h2>
 <i></i>
 <p style="margin-left: 40px;">In this exercise, you are going to create
-a simplest possible Web application that contains a single <span
- style="font-weight: bold;">index.jsp</span>
+a simplest possible Web application that contains a single <span style="font-weight: bold;">index.jsp</span>
 initially.&nbsp; You will then add a new Servlet and a new JSP file to
 the application.<br>
 </p>
@@ -212,66 +201,50 @@ Create a new NetBeans project<br>
 </h3>
 <p style="margin-left: 40px;">0. Start NetBeans IDE if you have not
 done so yet.&nbsp; <br>
-1. Select <span style="font-weight: bold;">File</span>-&gt;<span
- style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>.&nbsp;&nbsp;
+1. Select <span style="font-weight: bold;">File</span>-&gt;<span style="font-weight: bold;">New Project (Ctrl+Shift+N)</span>.&nbsp;&nbsp;
 (Figure-1.10 below) The <span style="font-weight: bold;">New Project</span>
 dialog box appears.</p>
-<p style="margin-left: 40px;"><img alt=""
- src="index_files/1_createaproject.png"
- style="width: 808px; height: 738px;"><br>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_createaproject.png" style="width: 808px; height: 738px;"><br>
 Figure-1.10: Create a new NetBeans project<br>
 </p>
 <p style="margin-left: 40px;">2. Under <span style="font-weight: bold;">Choose
 Project</span> pane,
-select <span style="font-weight: bold;"><span
- style="color: rgb(255, 0, 0);">Java Web</span> </span>under <span
- style="font-weight: bold;">Categories </span>and <span
- style="font-weight: bold; color: rgb(255, 0, 0);">Web Application</span>
-under <span style="font-weight: bold;">Projects</span>. Click <span
- style="font-weight: bold;">Next</span>. (Figure-1.11 below)<br>
+select <span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">Java Web</span> </span>under <span style="font-weight: bold;">Categories </span>and <span style="font-weight: bold; color: rgb(255, 0, 0);">Web Application</span>
+under <span style="font-weight: bold;">Projects</span>. Click <span style="font-weight: bold;">Next</span>. (Figure-1.11 below)<br>
 </p>
-<p style="margin-left: 40px;"><img alt="" src="index_files/1_webapp.png"
- style="width: 737px; height: 505px;"><br>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_webapp.png" style="width: 737px; height: 505px;"><br>
 Figure-1.11: Create a new Web application project<br>
 </p>
 <div style="margin-left: 40px;">
 3. Under <span style="font-weight: bold;">Name and Location</span>
 pane, for the <span style="font-weight: bold;">Project Name</span>
-field, type in <span style="font-weight: bold;"><span
- style="color: rgb(255, 0, 0);">MyFirstWebApp</span> </span>as
+field, type in <span style="font-weight: bold;"><span style="color: rgb(255, 0, 0);">MyFirstWebApp</span> </span>as
 project name. Click <span style="font-weight: bold;">Next</span>.
 (Figure-1.12 below)<br>
 <br>
-<img alt="" src="index_files/1_webapp2.png"
- style="width: 809px; height: 505px;"><br>
+<img alt="" src="index_files/1_webapp2.png" style="width: 809px; height: 505px;"><br>
 Figure-1.12: Create MyFirstWebApp project<br>
 <br>
 4. Finish creating a NetBeans project.<br>
 <ul>
-  <li>Observe that the Server is set to <span
- style="font-weight: bold;">GlassFish V2</span> (for NetBeans 6.5.x) or
+  <li>Observe that the Server is set to <span style="font-weight: bold;">GlassFish V2</span> (for NetBeans 6.5.x) or
     <span style="font-weight: bold;">GlassFish V3</span> (for NetBeans
 6.7.x and 6.8).&nbsp; You can use either.<br>
   </li>
   <li>For the <span style="font-weight: bold;">Java EE Version</span>
-field, for the sake of this exercise, choose <span
- style="font-weight: bold;">Java EE 5</span>.&nbsp; This is to create <span
- style="font-weight: bold;">web.xml</span>. (In GlassFish v3, which
+field, for the sake of this exercise, choose <span style="font-weight: bold;">Java EE 5</span>.&nbsp; This is to create <span style="font-weight: bold;">web.xml</span>. (In GlassFish v3, which
 creates Java EE 6 application does not create web.xml file as a
 default.)<br>
   </li>
   <li>Click Finish.<br>
   </li>
 </ul>
-<img alt="" src="index_files/1_webapp3.png"
- style="width: 737px; height: 505px;"><br>
+<img alt="" src="index_files/1_webapp3.png" style="width: 737px; height: 505px;"><br>
 </div>
-<p style="margin-left: 40px;">5.&nbsp; Observe that <span
- style="font-weight: bold;">MyFirstWebApp </span>project node appears
+<p style="margin-left: 40px;">5.&nbsp; Observe that <span style="font-weight: bold;">MyFirstWebApp </span>project node appears
 with the IDE generated <span style="font-weight: bold;">index.jsp</span>
 file displayed in the source editor. (Figure-1.13 below)</p>
-<p style="margin-left: 40px;"><img alt=""
- src="index_files/1_webapp3.1.png" style="width: 808px; height: 738px;"><br>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_webapp3.1.png" style="width: 808px; height: 738px;"><br>
 Figure-1.13: MyFirstWebApp project is created</p>
 <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -281,25 +254,22 @@ Figure-1.13: MyFirstWebApp project is created</p>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="#Exercise_1">return to top of exercise</a>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="#Exercise_1">return to top of exercise</a><br>
+<br>
 </p>
 <p style="margin-left: 40px;"></p>
 <h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
 Build and run the project<br>
 </h3>
 <p style="margin-left: 40px;">At this point, you have a useless but
-fully complete Web application which contains a single JSP file, <span
- style="font-weight: bold;">index.jsp</span>.&nbsp; You are going to
+fully complete Web application which contains a single JSP file, <span style="font-weight: bold;">index.jsp</span>.&nbsp; You are going to
 build and run the application.<br>
 </p>
-<p style="margin-left: 40px;">1. Right click <span
- style="font-weight: bold;">MyFirstWebApp</span> project node and
+<p style="margin-left: 40px;">1. Right click <span style="font-weight: bold;">MyFirstWebApp</span> project node and
 select <span style="font-weight: bold;">Run</span>.&nbsp;
 (Figure-1.20 below)<br>
 </p>
-<p style="margin-left: 40px;"><img alt=""
- src="index_files/1_runproject.png" style="width: 824px; height: 651px;"><br>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_runproject.png" style="width: 824px; height: 651px;"><br>
 Figure-1.20: Run<br>
 </p>
 <p style="margin-left: 40px;">2. The IDE then compiles any Java source
@@ -307,18 +277,14 @@ files, and
 then deploys over the deployment platform - GlassFish V2 in this
 example.&nbsp; It also displays the browser.<br>
 </p>
-<div style="margin-left: 40px;"><img alt=""
- src="index_files/1_runproject2.png"
- style="width: 824px; height: 651px;"><br>
+<div style="margin-left: 40px;"><img alt="" src="index_files/1_runproject2.png" style="width: 824px; height: 651px;"><br>
 Figure-1.21: Result of running the project<br>
 </div>
 <p style="margin-left: 40px;">
 3. Observe that a browser is displayed accessing the application.
 (Figure-1.22 below)<br>
 </p>
-<p style="margin-left: 40px;"><img alt=""
- src="index_files/1_runproject3.png"
- style="width: 753px; height: 668px;"><br>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_runproject3.png" style="width: 753px; height: 668px;"><br>
 Figure-1.22: Accessing the application from a browser</p>
 <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -328,8 +294,7 @@ Figure-1.22: Accessing the application from a browser</p>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_1">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of exercise</a><br>
 <span style="font-weight: bold;"></span></p>
 <br>
 <h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
@@ -341,13 +306,11 @@ the index.jsp of the application.<br>
 <br>
 1. Double click <span style="font-weight: bold; color: rgb(0, 0, 0);">index.jsp</span>
 file
-under<span style="font-weight: bold;"> <span
- style="color: rgb(0, 0, 0);">MyFirstWebApp</span>-&gt;Web Pages</span>
+under<span style="font-weight: bold;"> <span style="color: rgb(0, 0, 0);">MyFirstWebApp</span>-&gt;Web Pages</span>
 as shown in Code-1.30 below.&nbsp; The code fragments that need to be
 modified are highlighted in bold and red-colored font.<br>
 <br>
-<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
- cellspacing="2">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
       <td style="vertical-align: top;">&lt;%-- <br>
@@ -364,13 +327,11 @@ modified are highlighted in bold and red-colored font.<br>
 &nbsp;&nbsp;&nbsp; &lt;head&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta
 http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;<span
- style="font-weight: bold; color: rgb(255, 0, 0);">This is my first Web
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;<span style="font-weight: bold; color: rgb(255, 0, 0);">This is my first Web
 application</span>&lt;/title&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;body&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;<span
- style="font-weight: bold; color: rgb(255, 0, 0);">Peace to the world!</span>&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;<span style="font-weight: bold; color: rgb(255, 0, 0);">Peace to the world!</span>&lt;/h1&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
 &lt;/html&gt;<br>
       </td>
@@ -379,20 +340,17 @@ application</span>&lt;/title&gt;<br>
 </table>
 Code-1.30: Modified index.jsp<br>
 <br>
-2. Right click <span
- style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>
+2. Right click <span style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>
 project node and select <span style="font-weight: bold;">Run</span>.&nbsp;
 (Figure-1.31 below)<br>
 <br>
-<img alt="" src="index_files/1_runproject3.1.png"
- style="width: 826px; height: 704px;"><br>
+<img alt="" src="index_files/1_runproject3.1.png" style="width: 826px; height: 704px;"><br>
 Figure-1.31: Run the project<br>
 <br>
 3. Observe that a browser is displayed with your change. (Figure-1.32
 below)<br>
 <br>
-<img alt="" src="index_files/1_myfirst.png"
- style="width: 753px; height: 668px;"><br>
+<img alt="" src="index_files/1_myfirst.png" style="width: 753px; height: 668px;"><br>
 Figure-1.32: Result of the running the application<br>
 <br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -402,8 +360,7 @@ Figure-1.32: Result of the running the application<br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_1">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of exercise</a><br>
 </div>
 <br>
 <h3 style="margin-left: 40px;" class="tutorial"><a name="1.4"></a>(1.4)
@@ -417,8 +374,7 @@ node and
 select <span style="font-weight: bold;">New-&gt;Servlet</span>.&nbsp;
 (Figure-1.40 below)&nbsp;</li>
 </ul>
-<img alt="" src="index_files/1_addservlet1.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_addservlet1.png" style="width: 808px; height: 738px;"><br>
 Figure-1.40: Create a new servlet<br>
 <ul>
   <li>Observe that the <span style="font-weight: bold;">New Servlet</span>
@@ -430,33 +386,26 @@ in <span style="font-weight: bold; color: rgb(255, 0, 0);">MyOwnServlet</span>.<
 in <span style="font-weight: bold; color: rgb(255, 0, 0);">myownpackage</span>.
 Click <span style="font-weight: bold;">Next</span>. (Figire-1.41 below)</li>
 </ul>
-<img alt="" src="index_files/1_addservlet2.png"
- style="width: 729px; height: 505px;"><br>
+<img alt="" src="index_files/1_addservlet2.png" style="width: 729px; height: 505px;"><br>
 Figure-1.41: Create a new servlet<br>
 <ul>
-  <li>Click <span style="font-weight: bold;">Finish</span> of the <span
- style="font-weight: bold;">Configure Servlet Deployment</span> pane.
+  <li>Click <span style="font-weight: bold;">Finish</span> of the <span style="font-weight: bold;">Configure Servlet Deployment</span> pane.
 (Figure-1.42 below)</li>
 </ul>
-<img alt="" src="index_files/1_addservlet3.png"
- style="width: 729px; height: 505px;"><br>
+<img alt="" src="index_files/1_addservlet3.png" style="width: 729px; height: 505px;"><br>
 Figure-1.42: Configure Servlet Deployment pane<br>
 <ul>
-  <li>Observe now that you have one JSP file,<span
- style="font-weight: bold;"> <span style="color: rgb(51, 51, 255);">index.jsp</span></span>,
-and one servlet, <span style="font-weight: bold;"><span
- style="color: rgb(51, 51, 255);">MyOwnServlet.java</span> </span>in
+  <li>Observe now that you have one JSP file,<span style="font-weight: bold;"> <span style="color: rgb(51, 51, 255);">index.jsp</span></span>,
+and one servlet, <span style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">MyOwnServlet.java</span> </span>in
 this
 application. (Figure-1.43 below)</li>
 </ul>
-<img alt="" src="index_files/1_addservlet4.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_addservlet4.png" style="width: 808px; height: 738px;"><br>
 Figure-1.43: index.jsp and MyOwnServlet.java<br>
 <br>
 2. Modify the IDE generated <span style="font-weight: bold;">MyOwnServlet.java</span>.<br>
 <br>
-<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
- cellspacing="2">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
       <td style="vertical-align: top;">/*<br>
@@ -497,23 +446,20 @@ response.setContentType("text/html;charset=UTF-8");<br>
 response.getWriter();<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <span style="color: rgb(255, 0, 0);">// TODO output your page here</span></span><br
- style="font-weight: bold;">
+      <span style="color: rgb(255, 0, 0);">// TODO output your page here</span></span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 out.println("&lt;html&gt;");</span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 out.println("&lt;head&gt;");</span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-out.println("&lt;title&gt;Servlet MyOwnServlet&lt;/title&gt;");&nbsp; </span><br
- style="font-weight: bold;">
+out.println("&lt;title&gt;Servlet MyOwnServlet&lt;/title&gt;");&nbsp; </span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 out.println("&lt;/head&gt;");</span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 out.println("&lt;body&gt;");</span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 out.println("&lt;h1&gt;Servlet MyOwnServlet at " +
-request.getContextPath () + "&lt;/h1&gt;");</span><br
- style="font-weight: bold;">
+request.getContextPath () + "&lt;/h1&gt;");</span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 out.println("&lt;/body&gt;");</span><br style="font-weight: bold;">
       <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -579,48 +525,39 @@ description<br>
   </tbody>
 </table>
 <br>
-<img alt="" src="index_files/1_addservlet8.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_addservlet8.png" style="width: 808px; height: 738px;"><br>
 <br>
 3. Build and run the application.<br>
 <ul>
-  <li>Right click <span
- style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>project
+  <li>Right click <span style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>project
 node and select <span style="font-weight: bold;">Run</span>.&nbsp; </li>
   <li>Observe that the browser is refreshed with the same URL.<br>
   </li>
 </ul>
-<img alt="" src="index_files/1_addservlet5.png"
- style="width: 807px; height: 720px;"><br>
+<img alt="" src="index_files/1_addservlet5.png" style="width: 807px; height: 720px;"><br>
 <ul>
-  <li>Change the URL to <span style="font-weight: bold;">http://localhost:8080/MyFirstWebApp<span
- style="color: rgb(255, 0, 0);">/MyOwnServlet</span></span>.</li>
+  <li>Change the URL to <span style="font-weight: bold;">http://localhost:8080/MyFirstWebApp<span style="color: rgb(255, 0, 0);">/MyOwnServlet</span></span>.</li>
   <li>Observe that the output from the servlet is now displayed.<br>
   </li>
 </ul>
-<img alt="" src="index_files/1_addservlet9.png"
- style="width: 807px; height: 720px;"><br>
+<img alt="" src="index_files/1_addservlet9.png" style="width: 807px; height: 720px;"><br>
 <br>
 4. Change the <span style="font-weight: bold;">Relative URL</span> of
 the application.&nbsp; The Relative URL is used by the NetBeans IDE as
 the starting URL when the application is run. (This is an attribute set
 to the NetBeans project not as part of the Web application.)&nbsp; <br>
 <br>
-<img alt="" src="index_files/1_addservle7.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_addservle7.png" style="width: 808px; height: 738px;"><br>
 <br>
-<img alt="" src="index_files/1_addservlet6.png"
- style="width: 819px; height: 591px;"><br>
+<img alt="" src="index_files/1_addservlet6.png" style="width: 819px; height: 591px;"><br>
 <br>
 5. Build and run the application.<br>
 <ul>
-  <li>Right click <span
- style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>project
+  <li>Right click <span style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>project
 node and select <span style="font-weight: bold;">Run</span>.&nbsp; </li>
   <li>Observe that the browser is refreshed.</li>
 </ul>
-<img alt="" src="index_files/1_addservlet10.png"
- style="width: 807px; height: 720px;"><br>
+<img alt="" src="index_files/1_addservlet10.png" style="width: 807px; height: 720px;"><br>
 <br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -629,8 +566,7 @@ node and select <span style="font-weight: bold;">Run</span>.&nbsp; </li>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_1">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of exercise</a><br>
 <br>
 <br>
 </div>
@@ -648,8 +584,7 @@ select <span style="font-weight: bold;">New-&gt;JSP</span>. (Figure
 </ul>
 </div>
 <p style="margin-left: 40px;"></p>
-<p style="margin-left: 40px;"><img alt="" src="index_files/1_newJSP.png"
- style="width: 824px; height: 651px;"><br>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_newJSP.png" style="width: 824px; height: 651px;"><br>
 Figure 1.50: Create a new JSP file<br>
 </p>
 <div style="margin-left: 40px;">
@@ -658,26 +593,22 @@ Figure 1.50: Create a new JSP file<br>
 field, type in <span style="font-weight: bold; color: rgb(255, 0, 0);">MyOwnJSP</span>.
 (Figure 1.51 below)</li>
 </ul>
-<img alt="" src="index_files/1_myownjsp.png"
- style="width: 729px; height: 505px;"><br>
+<img alt="" src="index_files/1_myownjsp.png" style="width: 729px; height: 505px;"><br>
 </div>
 <div style="margin-left: 40px;">Figure 1.51: Name and Location pane <br>
 </div>
 <div style="margin-left: 40px;">
 <ul>
-  <li>Observe that <span
- style="color: rgb(51, 51, 255); font-weight: bold;">MyOwnJSP.jsp</span>
+  <li>Observe that <span style="color: rgb(51, 51, 255); font-weight: bold;">MyOwnJSP.jsp</span>
 is
 added to
 the project.</li>
 </ul>
-<img alt="" src="index_files/1_myownjsp2.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_myownjsp2.png" style="width: 808px; height: 738px;"><br>
 <br>
 2. Modify the IDE generated MyOnwJSP.jsp.<br>
 <br>
-<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
- cellspacing="2">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
       <td style="vertical-align: top;">&lt;%-- <br>
@@ -694,12 +625,10 @@ the project.</li>
 &nbsp;&nbsp;&nbsp; &lt;head&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta
 http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;<span
- style="font-weight: bold; color: rgb(255, 0, 0);">My Own JSP</span>&lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;<span style="font-weight: bold; color: rgb(255, 0, 0);">My Own JSP</span>&lt;/title&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;body&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;<span
- style="font-weight: bold; color: rgb(255, 0, 0);">Hello Boston!</span>&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;<span style="font-weight: bold; color: rgb(255, 0, 0);">Hello Boston!</span>&lt;/h1&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
 &lt;/html&gt;<br>
       </td>
@@ -709,16 +638,13 @@ http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;<br>
 <br>
 3. Build and run the application.<br>
 <ul>
-  <li>Right click <span
- style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>
+  <li>Right click <span style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebApp</span>
 project node and select <span style="font-weight: bold;">Run</span>.&nbsp;
   </li>
-  <li> Chage the URL to http://localhost:8080/MyFirstWebApp<span
- style="font-weight: bold; color: rgb(255, 0, 0);">/MyOwnJSP.jsp</span>.<br>
+  <li> Chage the URL to http://localhost:8080/MyFirstWebApp<span style="font-weight: bold; color: rgb(255, 0, 0);">/MyOwnJSP.jsp</span>.<br>
   </li>
 </ul>
-<img alt="" src="index_files/1_myownjsp3.png"
- style="width: 807px; height: 720px;"><br>
+<img alt="" src="index_files/1_myownjsp3.png" style="width: 807px; height: 720px;"><br>
 <br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -727,8 +653,7 @@ project node and select <span style="font-weight: bold;">Run</span>.&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_1">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_1">return to top of exercise</a><br>
 <br>
 </div>
 <p style="margin-left: 40px;"></p>
@@ -758,8 +683,7 @@ index.jsp page first and then add a new JSP page and a new servlet.<br>
 MyFirstWebApp application<br>
 </h2>
 <p style="margin-left: 40px;">In this exercise, you are going to
-examine the things under the hood such as <span
- style="font-weight: bold;">web.xml</span>.<br>
+examine the things under the hood such as <span style="font-weight: bold;">web.xml</span>.<br>
 </p>
 <ul>
   <ul>
@@ -786,8 +710,7 @@ Examine the Web application project structure in Files view<br>
 <p style="margin-left: 40px;">A Web application is made of JSP files,
 Servlets, and library files.&nbsp; The <span style="font-weight: bold;">MyFirstWebApp
 </span>application has
-two JSP files, <span style="font-weight: bold;">index.jsp</span> and <span
- style="font-weight: bold;">MyOwnJSP.jsp</span>, a single servlet,
+two JSP files, <span style="font-weight: bold;">index.jsp</span> and <span style="font-weight: bold;">MyOwnJSP.jsp</span>, a single servlet,
 <span style="font-weight: bold;">MyOwnServlet.java</span>, and default
 library files.&nbsp; You can add new JSP
 files, new Servlets, and new library files to the application as you
@@ -807,15 +730,13 @@ files of the project in your local file system.<br>
 1. Select <span style="font-weight: bold;">Files</span> tab
 window.&nbsp; You should see the <span style="font-weight: bold;">Files
 </span>view of the <span style="font-weight: bold;">MyFirstWebApp </span>project.<br>
-2. Expand <span style="font-weight: bold;">src </span>and expand <span
- style="font-weight: bold;">java</span>.&nbsp; You should see all the
+2. Expand <span style="font-weight: bold;">src </span>and expand <span style="font-weight: bold;">java</span>.&nbsp; You should see all the
 Java files.<br>
 3. Expand <span style="font-weight: bold;">web</span>.&nbsp; You
 should see all JSP files (and HTML files if you have them).&nbsp;
 (Figure 2.10 below)<br>
 </div>
-<p style="margin-left: 40px;"><img alt=""
- src="index_files/2_filesview.png" style="width: 808px; height: 738px;"><br>
+<p style="margin-left: 40px;"><img alt="" src="index_files/2_filesview.png" style="width: 808px; height: 738px;"><br>
 Figure-2.10: Files view<br>
 </p>
 <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
@@ -826,8 +747,7 @@ Figure-2.10: Files view<br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_2">return to top of exercise</a>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of exercise</a>
 </p>
 <br>
 <h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
@@ -838,8 +758,7 @@ A WAR is a zip file that contains all the pieces that are necessary for
 deploying the application over a deployment platform such as Tomcat or
 GlassFish.&nbsp; In this step, you are going to see
 internal structure of the WAR file.&nbsp; The internal structure of the
-WAR file is constructed from the contents of the <span
- style="font-weight: bold;">web </span>directory under
+WAR file is constructed from the contents of the <span style="font-weight: bold;">web </span>directory under
 <span style="font-weight: bold;">build </span>directory.&nbsp; From
 NetBeans 6.1, if you "Run" the project, the WAR file
 is not created as a default.&nbsp; You will have to "Build" project in
@@ -849,8 +768,7 @@ order to see the WAR file under <span style="font-weight: bold;">dist </span>dir
 node and select <span style="font-weight: bold;">Build</span>.&nbsp;
 This is to create WAR file for the sake of this exercise.<br>
 <br>
-<img alt="" src="index_files/2_filesview2.png"
- style="width: 826px; height: 704px;"><br>
+<img alt="" src="index_files/2_filesview2.png" style="width: 826px; height: 704px;"><br>
 <br>
 1. Under <span style="font-weight: bold;">Files </span>view of the
 project, expand <span style="font-weight: bold;">dist</span>. You
@@ -858,16 +776,14 @@ should see <span style="font-weight: bold; color: rgb(51, 51, 255);">MyFirstWebA
 file.<br>
 2. Expand <span style="font-weight: bold;">MyFirstWebApp.war</span>.
 You should see <span style="font-weight: bold;">WEB-INF</span>
-directory, <span style="font-weight: bold;">MyOwnJSP.jsp</span> and <span
- style="font-weight: bold;">index.jsp</span> in the root directory.<br>
+directory, <span style="font-weight: bold;">MyOwnJSP.jsp</span> and <span style="font-weight: bold;">index.jsp</span> in the root directory.<br>
 3. Expand <span style="font-weight: bold;">WEB-INF-&gt;classes</span>.&nbsp;
 You
 should see <span style="font-weight: bold;">myownpackage </span>directory
 which then contains <span style="font-weight: bold;">MyOwnServlet.class</span>.
 (Figure 2.20 below)<br>
 <br>
-<img alt="" src="index_files/2_war2.png"
- style="width: 826px; height: 704px;"><br>
+<img alt="" src="index_files/2_war2.png" style="width: 826px; height: 704px;"><br>
 Figure-2.20: MyFirstWebApp.war<br>
 <br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -877,8 +793,7 @@ Figure-2.20: MyFirstWebApp.war<br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_2">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of exercise</a><br>
 <br>
 <br>
 </div>
@@ -887,13 +802,10 @@ Examine the web.xml<br>
 </h3>
 <div style="margin-left: 40px;"><br>
 1. Click <span style="font-weight: bold;">Projects </span>tab window.<br>
-2. Double click <span style="font-weight: bold;">web.xml</span> under <span
- style="font-weight: bold;">WEB-INF</span> directory.&nbsp; Click <span
- style="font-weight: bold;">XML </span>to see the file in the XML file
+2. Double click <span style="font-weight: bold;">web.xml</span> under <span style="font-weight: bold;">WEB-INF</span> directory.&nbsp; Click <span style="font-weight: bold;">XML </span>to see the file in the XML file
 format.&nbsp; <br>
 <br>
-<img alt="" src="index_files/2_webxml.png"
- style="width: 824px; height: 651px;"><br>
+<img alt="" src="index_files/2_webxml.png" style="width: 824px; height: 651px;"><br>
 Figure-2.30: web.xml<br>
 <br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -903,8 +815,7 @@ Figure-2.30: web.xml<br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_2">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of exercise</a><br>
 <br>
 </div>
 <h3 style="margin-left: 40px;" class="tutorial"><a name="2.4"></a>(2.4)
@@ -917,8 +828,7 @@ shown below.&nbsp; The code fragments that need to be modified are
 highlighted in <span style="font-weight: bold; color: rgb(255, 0, 0);">bold
 and red-colored</span> font.<br>
 <br>
-<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
- cellspacing="2">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
       <td style="vertical-align: top;">&lt;%-- <br>
@@ -935,12 +845,10 @@ and red-colored</span> font.<br>
 &nbsp;&nbsp;&nbsp; &lt;head&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta
 http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;My Own JSP<span
- style="font-weight: bold; color: rgb(255, 0, 0);"> Changed 2nd time</span>&lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;My Own JSP<span style="font-weight: bold; color: rgb(255, 0, 0);"> Changed 2nd time</span>&lt;/title&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;body&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;Hello <span
- style="font-weight: bold; color: rgb(255, 0, 0);">Korea!</span>&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;Hello <span style="font-weight: bold; color: rgb(255, 0, 0);">Korea!</span>&lt;/h1&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
 &lt;/html&gt;<br>
       </td>
@@ -949,16 +857,14 @@ http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;<br>
 </table>
 Code-2.40: Modified MyOwnJSP.jsp<br>
 <br>
-<img alt="" src="index_files/1_myownjsp4.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_myownjsp4.png" style="width: 808px; height: 738px;"><br>
 <br>
 2. Modify the <span style="font-weight: bold;">web.xml </span>as
 shown below.&nbsp; The code fragments that need to be modified are
 highlighted in <span style="font-weight: bold; color: rgb(255, 0, 0);">bold
 and red-colored</span> font.<br>
 <br>
-<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
- cellspacing="2">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
       <td style="vertical-align: top;">&lt;?xml version="1.0"
@@ -985,8 +891,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/session-timeout&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/session-config&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;welcome-file-list&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;welcome-file&gt;<span
- style="font-weight: bold; color: rgb(255, 0, 0);">MyOwnJSP.jsp</span>&lt;/welcome-file&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;welcome-file&gt;<span style="font-weight: bold; color: rgb(255, 0, 0);">MyOwnJSP.jsp</span>&lt;/welcome-file&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/welcome-file-list&gt;<br>
 &lt;/web-app&gt;<br>
       </td>
@@ -995,15 +900,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"&gt;<br>
 </table>
 Figure-2.41: Modified web.xml<br>
 <br>
-<img alt="" src="index_files/1_myownjsp5.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_myownjsp5.png" style="width: 808px; height: 738px;"><br>
 <br>
 3. Right click <span style="font-weight: bold;">MyFirstWebApp</span>
 project node and select <span style="font-weight: bold;">Run</span>.&nbsp;
 You should see MyOwnJSP.jsp file gets displayed.<br>
 <br>
-<img alt="" src="index_files/2_myownjsp1.png"
- style="width: 807px; height: 720px;"><br>
+<img alt="" src="index_files/2_myownjsp1.png" style="width: 807px; height: 720px;"><br>
 Figure-2.42: MyOwnJSP.jsp is displayed<br>
 <br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -1013,8 +916,7 @@ Figure-2.42: MyOwnJSP.jsp is displayed<br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_2">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of exercise</a><br>
 <br>
 </div>
 <h3 style="margin-left: 40px;" class="tutorial"><a name="2.5"></a>(2.5)
@@ -1026,8 +928,7 @@ shown below.&nbsp; The code fragments that need to be modified are
 highlighted in <span style="font-weight: bold; color: rgb(255, 0, 0);">bold
 and red-colored</span> font.<br>
 <br>
-<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
- cellspacing="2">
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
       <td style="vertical-align: top;">&lt;?xml version="1.0"
@@ -1045,8 +946,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &lt;servlet-name&gt;MyOwnServlet&lt;/servlet-name&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;url-pattern&gt;<span
- style="font-weight: bold; color: rgb(255, 0, 0);">/MyOwnServletUseDifferentURL</span>&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;url-pattern&gt;<span style="font-weight: bold; color: rgb(255, 0, 0);">/MyOwnServletUseDifferentURL</span>&lt;/url-pattern&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
 &nbsp;&nbsp;&nbsp; &lt;session-config&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;session-timeout&gt;<br>
@@ -1068,15 +968,12 @@ Figure-2.54: Modified web.xml<br>
 project node and select <span style="font-weight: bold;">Run</span>.&nbsp;
 You should experience an error.<br>
 <br>
-<img alt="" src="index_files/2_404.png"
- style="width: 807px; height: 720px;"><br>
+<img alt="" src="index_files/2_404.png" style="width: 807px; height: 720px;"><br>
 Figure 2.55: Error condition expected<br>
 <br>
-8. From your browser, go to directly to <a
- href="http://localhost:8080/MyFirstWebApp/MyOwnServletUseDifferentURL">http://localhost:8080/MyFirstWebApp/MyOwnServletUseDifferentURL</a>.<br>
+8. From your browser, go to directly to <a href="http://localhost:8080/MyFirstWebApp/MyOwnServletUseDifferentURL">http://localhost:8080/MyFirstWebApp/MyOwnServletUseDifferentURL</a>.<br>
 <br>
-<img alt="" src="index_files/2_404.1.png"
- style="width: 829px; height: 609px;"><br>
+<img alt="" src="index_files/2_404.1.png" style="width: 829px; height: 609px;"><br>
 <br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -1085,8 +982,7 @@ Figure 2.55: Error condition expected<br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_2">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of exercise</a><br>
 <br>
 </div>
 <h3 style="margin-left: 40px;" class="tutorial"><a name="2.6"></a>(2.6)
@@ -1102,8 +998,7 @@ You should see <span style="font-weight: bold;">/MyFirstWebApp</span>
 is deployed.<br>
 </div>
 <div style="margin-left: 40px;"><br>
-<img alt="" src="index_files/1_addservlet11.png"
- style="width: 808px; height: 738px;"><br>
+<img alt="" src="index_files/1_addservlet11.png" style="width: 808px; height: 738px;"><br>
 Figure-2.60: Services platform<br>
 <br>
 2. Click back <span style="font-weight: bold;">Projects </span>tab
@@ -1116,8 +1011,7 @@ window.<br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a
- href="index.html#Exercise_2">return to top of exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Exercise_2">return to top of exercise</a><br>
 </div>
 <br>
 <br>
@@ -1133,8 +1027,7 @@ the application.&nbsp; <br>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
- href="#Tutorial_Exercises">Return to the top</a> </p>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">Return to the top</a> </p>
 <div class="indent"></div>
 <p></p>
 <div class="indent">
@@ -1152,16 +1045,11 @@ the application.&nbsp; <br>
 </h2>
 <br>
 <div style="margin-left: 40px;"><span style="color: rgb(0, 0, 0);">1.
-The homework is to modify the </span><span
- style="font-weight: bold; color: rgb(0, 0, 0);">MyFirstWebApp</span><span
- style="color: rgb(0, 0, 0);"> project as described below.&nbsp; (You
+The homework is to modify the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">MyFirstWebApp</span><span style="color: rgb(0, 0, 0);"> project as described below.&nbsp; (You
 might want to create a new project by copying
-the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">MyFirstWebApp</span><span
- style="color: rgb(0, 0, 0);"> project.)&nbsp; You can name the
+the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">MyFirstWebApp</span><span style="color: rgb(0, 0, 0);"> project.)&nbsp; You can name the
 homework project in any way you want
-but here I am going to call it </span><span
- style="font-weight: bold; color: rgb(0, 0, 0);">MyFirstWebAppMyOwn</span><span
- style="color: rgb(0, 0, 0);">.</span><br style="color: rgb(0, 0, 0);">
+but here I am going to call it </span><span style="font-weight: bold; color: rgb(0, 0, 0);">MyFirstWebAppMyOwn</span><span style="color: rgb(0, 0, 0);">.</span><br style="color: rgb(0, 0, 0);">
 <ul style="color: rgb(0, 0, 0);">
   <li>Add another JSP file called <span style="font-weight: bold;">MyOwnJSP2.jsp</span>.&nbsp;
 Modify the file as you did in <a href="#2.4">step 2.4</a>.<br>
@@ -1173,44 +1061,19 @@ you did in <a href="#2.5">step 2.5</a>.</li>
   <li>Run the application as you did in <a href="#2.5">step 2.5</a>.<br>
   </li>
 </ul>
-2<span style="color: rgb(0, 0, 0);">. Send the following files to</span><span
- style="color: rgb(0, 0, 0);">
+2<span style="color: rgb(0, 0, 0);">. Send the following files to</span><span style="color: rgb(0, 0, 0);">
 <a href="mailto:j2eehomeworks@javapassion.com">j2eehomeworks@javapassion.com</a>
 with </span><span style="font-weight: bold; color: rgb(0, 0, 0);">Subject
-</span><span style="color: rgb(0, 0, 0);">as </span><span
- style="font-weight: bold; color: rgb(0, 0, 0);">webapp_architecture.</span><br
- style="color: rgb(0, 0, 0);">
+</span><span style="color: rgb(0, 0, 0);">as </span><span style="font-weight: bold; color: rgb(0, 0, 0);">webapp_architecture.</span><br style="color: rgb(0, 0, 0);">
 <span style="font-weight: bold; color: rgb(0, 0, 0);"></span>
 <ul style="color: rgb(0, 0, 0);">
   <li>Zip file of the<span style="font-weight: bold;">
 MyFirstWebAppMyOwn</span>
-NetBeans project.&nbsp; (Someone else
-should be able to open and run it as a NetBeans project.)&nbsp; You can
-use your favorite zip utility or you can use "jar" utility that comes
-with JDK as following.<br>
-  </li>
-  <ul>
-    <li>cd &lt;parent directory that contains <span
- style="font-weight: bold;">MyFirstWebAppMyOwn</span> directory&gt;
-(assuming you named your project as <span style="font-weight: bold;">MyFirstWebAppMyOwn</span>)<br>
-    </li>
-    <li>jar cvf MyFirstWebAppMyOwn.zip MyFirstWebAppMyOwn (<span
- style="font-weight: bold;">MyFirstWebAppMyOwn </span>should contain <span
- style="font-weight: bold;">nbproject </span>directory)</li>
-  </ul>
-</ul>
-<div style="margin-left: 40px;">Or you can install Project Packager
-NetBeans plug-in (from <a
- href="http://plugins.netbeans.org/PluginPortal/faces/PluginDetailPage.jsp?pluginid=3742">http://plugins.netbeans.org/PluginPortal/faces/PluginDetailPage.jsp?pluginid=3742</a>).&nbsp;
-You can then export your project as a zip file - the build and dist
-directories are removed automatically to make the smaller zip file. If
-you set up SMTP, you can even e-mail your zipped project to someone.</div>
-<ul style="color: rgb(0, 0, 0);">
+project - either NetBeans or Maven project.<br>
+</li></ul><ul style="color: rgb(0, 0, 0);">
   <li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
 name it as <span style="font-weight: bold;">webapp_architecture.gif</span>
-or <span style="font-weight: bold;">webapp_architecture</span><span
- style="font-weight: bold;">.jpg</span> (or <span
- style="font-weight: bold;">webapp_architecture.&lt;whatever
+or <span style="font-weight: bold;">webapp_architecture</span><span style="font-weight: bold;">.jpg</span> (or <span style="font-weight: bold;">webapp_architecture.&lt;whatever
 graphics format&gt;</span>)</li>
   <ul>
     <li>Any screen capture that shows that your program is working is
@@ -1218,15 +1081,10 @@ good enough.&nbsp; <br>
     </li>
   </ul>
 </ul>
-<ul style="color: rgb(0, 0, 0);">
-  <li>If you decide to use
-different IDE other than NetBeans, the zip
-file should contain all the files that are needed for rebuilding the
-project - war file with necessary source files is OK.<br>
-  </li>
-</ul>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp; <a href="#Tutorial_Exercises">return to the top</a><br>
+&nbsp;
+ <a href="#Tutorial_Exercises">return to the top</a><br>
 </div>
 <br>
 <br>
@@ -1234,5 +1092,6 @@ project - war file with necessary source files is OK.<br>
 <br>
 <p> </p>
 <!-- ======================================================================================== -->
-</body>
-</html>
+
+
+</body></html>

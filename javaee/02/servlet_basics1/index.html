@@ -1,0 +1,884 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-4002: Servlet Basics I</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <meta name="keywords" content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<br>
+<div style="text-align: center;">@Copyright notice: This content is
+meant to be used only for paying
+subscriber's personal
+consumption. Sharing with others in any shape or form is
+strictly
+prohibited&nbsp;
+unless a special licensing arrangement has been made with <a href="mailto:support@javapassion.com">JPassion.com</a>.<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+</div>
+<br>
+<h1 style="text-align: center;">Servlet Basics I<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="http://www.javapassion.com">www.javapassion.com</a><a href="mailto:sang.shin@sun.com"><i>
+</i></a></div>
+<div class="indent"><br>
+<div style="text-align: center;"><img alt="" src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</div>
+<br>
+The goal of this lab is to exercise basic features of Servlet
+leveraging NetBeans IDE.&nbsp;
+You are going to build, run, and modify ServletExamples sample
+application using NetBeans. <br>
+<br>
+<br>
+<div style="text-align: center;"><b>Expected duration: 60 minutes
+(excluding homework)<br>
+<br>
+<br>
+</b></div>
+<br>
+<br>
+<h3 class="tutorial">Resources<br>
+</h3>
+<ul>
+  <li> <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/bnafd.html">"Chapter
+4: Java Servlet Technology"</a> of <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/index.html">Java
+EE Tutorial </a>- must read</li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Oct. 12th, 2006: Homework is added</li>
+  <li>Nov. 3rd, 2006: The hyperlink to J2EE 1.4 JavaDoc is corrected</li>
+  <li>April 9th, 2008: NetBeans 6.0 is used</li>
+  <li>June 10th, 2008: NetBeans 6.1 is used</li>
+  <li>Aug. 5th, 2009: Tested with NetBeans 6.7.1</li>
+  <li>Feb. 21st, 2010: Tested with NetBeans 6.8, ServletExamples is
+provided under samples_maven directory of the zip file (Sang Shin)</li>
+  <li>Nov. 30th, 2010: Name of the zip file has been changed (Sang Shin)</li>
+<li>July 25th, 2012: Sample projects are provided as Maven projects<br>
+</li>
+
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<br>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: Build and run HelloWorld
+Servlet application (30 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Build and run Servlet Sample
+application (30 minutes)</a></li>
+  <li><a href="#Homework_Exercise">Homework
+Exercise</a></li>
+</ul>
+<ul>
+</ul>
+</div>
+<br>
+<br>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_1"></a>Exercise 1: Build and run HelloWorld
+Servlet Application<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">In this exercise, you are going to open
+"hello2" Maven project, which is provided as part of the hands-on
+lab zip file.<br>
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#1.1">Open, build, and run "hello2" sample Servlet
+application</a></li>
+  <li><a href="#1.2">Modify "hello2" sample Servlet application to
+display hobby field</a></li>
+  <li><a href="#1.3">Display context sensitive JavaDoc of any J2EE
+class such as
+HttpServlet</a></li>
+</ol>
+</div>
+<ol style="margin-left: 40px;">
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Open, build, and run "hello2" sample Servlet application<br>
+</h3>
+<p style="margin-left: 40px;">0. Start Maven-aware IDE of your choice.&nbsp; <br>
+1. Open <span style="font-weight: bold; color: rgb(51, 51, 255);">hello2</span><span style="color: rgb(51, 51, 255);"> </span>Maven project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_webapp2.png" style="width: 790px; height: 738px;"><br>
+<ul>
+  <li>The <span style="font-weight: bold;">Open Project</span> dialog
+box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/servlet_basics1/samples_maven</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>Windows: If you unzipped the <span style="font-weight: bold;">4002_servlet_basics1.zip</span>
+file under
+C:\
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\servlet_basics1\samples_maven.</span></li>
+    <li>Solaris/Linux:<span style="font-weight: bold;"> </span>If you
+unzipped the <span style="font-weight: bold;">4002_servlet_basics1.zip</span>
+file under $HOME
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/servlet_basics1/samples_maven.</span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">hello2</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+  </li>
+</ul>
+<img alt="" src="index_files/1_webapp3.png" style="width: 694px; height: 401px;"><br>
+<ul>
+  <li>The <span style="font-weight: bold;">hello2</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+<img alt="" src="index_files/1_webapp4.png" style="width: 790px; height: 738px;"><br>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span style="font-weight: bold;">hello2 </span>project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">hello2</span>
+project and select <span style="font-weight: bold;">Run</span>. <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_webapp5.png" style="width: 790px; height: 738px;"><br>
+<ul>
+  <li>Browser gets displayed.&nbsp; <br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_duke.png" style="width: 796px; height: 629px;"><br>
+Figure-1.12: Running hello2 project<br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_duke2.png" style="width: 796px; height: 629px;"><br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_duke3.png" style="width: 796px; height: 629px;"><br>
+</p>
+<p style="margin-left: 40px;"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercise_1">return to top of the exercise</a>
+</p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Modify the application to display hobby<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">In this step, you are going to modify
+the application to ask a hobby of a user and then redisplay it.<br>
+<br>
+</div>
+<div style="margin-left: 40px;">1. Double click <span style="font-weight: bold; color: rgb(51, 51, 255);">GreetingServlet.java</span>
+under <span style="font-weight: bold;">hello2-&gt;Source
+Packages-&gt;servlets</span>
+to open in the source editor.<br>
+2. Modify <span style="font-weight: bold;"><span style="color: rgb(51, 51, 255);">GreetingServlet.java</span> </span>as
+shown in Code-1.13 below.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import java.util.*;<br>
+import java.sql.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp; throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;h2&gt;<span style="font-weight: bold; color: rgb(51, 51, 255);">Hello,
+my name is Duke. My hobby is Golf. What are your name and hobby?</span>&lt;/h2&gt;"
++<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;form method=\"get\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">"&lt;input
+type=\"text\" name=\"hobby\" size=\"25\"&gt;" + "&lt;p&gt;&lt;/p&gt;" +</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"submit\" value=\"Submit\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+.getRequestDispatcher("/response");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.13: Modified GreetingServlet.java<br>
+<br>
+3. Modify <span style="font-weight: bold; color: rgb(51, 51, 255);">ResponseServlet.java</span>
+under <span style="font-weight: bold;">hello2-&gt;Source
+Packages-&gt;servlets</span> as shown in Code-1.14 below.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import java.util.*;<br>
+import java.sql.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class ResponseServlet extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp; throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Hello, " + username + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold; color: rgb(51, 51, 255);">String hobby =
+request.getParameter("hobby");</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if ((hobby != null) &amp;&amp; (hobby.length() &gt; 0)) {</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Your hobby is " + hobby + "!&lt;/h2&gt;");</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Response servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-1.14: Modified ResponseServlet.java<br>
+<br>
+4. Right-click <span style="font-weight: bold;">hello2</span>
+project and select <span style="font-weight: bold;">Run</span>.&nbsp;
+This will compile the servlet code, create a hello2.war file, deploys
+it on a deployment platform (GlassFish v2 in this case) and then pop up
+a
+browser to access it.<br>
+5. Type in a name and hobby into the blank fields.&nbsp; Clock <span style="font-weight: bold;">Submit </span>button.<br>
+6. Observe the name and hobby you typed are displayed. (Figure-1.15
+below)<br>
+<br>
+<img alt="" src="index_files/1_hobby.png" style="width: 804px; height: 761px;"><br>
+Figure-1.15: Result of running the application<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_1">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.3"></a>(1.3)
+Display context sensitive Javadoc on Java EE class </h3>
+<div style="margin-left: 40px;"><br>
+1. Right click HttpServlet and select Show Javadoc.<br>
+<br>
+<img alt="" src="index_files/3_javadoc1.png" style="width: 817px; height: 669px;"><br>
+Figure-1.31: Show Javadoc<br>
+<br>
+2. Observe that the Javadoc of the HttpServlet gets displayed.<br>
+<br>
+<img alt="" src="index_files/3_javadoc2.png" style="width: 820px; height: 666px;"><br>
+Figure-1.32: Javadoc of HttpServlet<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_1">return to top of the exercise</a><br>
+</div>
+<br>
+<p style="margin-left: 40px;"></p>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise,&nbsp; you have built
+and run a simplest possible Web application that contains two servlets.<br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a>
+<br>
+</p>
+<p style="margin-left: 40px;"><br>
+<br>
+</p>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_2"></a>Exercise 2: Build and run "Servlet
+Examples" sample
+application<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to build
+and run "<span style="font-weight: bold;">ServletExamples</span>"
+sample application that is provided as part of this hands-on lab.&nbsp; <br>
+</p>
+<ul>
+  <ul>
+  </ul>
+  <ol>
+    <li><a href="#2.1">Build and run Servlet Examples sample
+application</a></li>
+    <li><a href="#2.2">Modify "Hello World" part of the sample
+application</a></li>
+    <li><a href="#2.3">Modify "Request Info" part of the sample
+application</a></li>
+    <li><a href="#2.4">For your own exercise</a><br>
+    </li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run "Servlet Examples" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open <span style="font-weight: bold; color: rgb(51, 51, 255);">ServletExamples</span> Maven project (that is provided as part of hands-on lab zip file).
+<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>.</li>
+</ul>
+<img alt="" src="index_files/1_webapp6.png" style="width: 767px; height: 728px;"><br>
+<ul>
+  <li>The <span style="font-weight: bold;">Open Project</span> dialog
+box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/servlet_basics1/samples_maven</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>Windows: If you unzipped the <span style="font-weight: bold;">4002_servlet_basics1.zip</span>
+file under
+C:\
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\servlet_basics1\samples_maven.</span></li>
+    <li>Solaris/Linux: If you unzipped the <span style="font-weight: bold;">4002_servlet_basics1.zip</span>
+file under $HOME
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/servlet_basics1/samples_maven.</span><span style="font-weight: bold;"></span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">ServletExamples</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.</li>
+</ul>
+<img alt="" src="index_files/1_webapp7.png" style="width: 779px; height: 403px;"><br>
+<ul>
+  <li>Observe that the <span style="font-weight: bold;">ServletExamples</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">ServletExamples </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+  <li>Observe that the browser gets displayed.</li>
+  <li>Click <span style="font-weight: bold;">Execute </span>to
+execute
+the "<span style="font-weight: bold;">Hello World</span>" servlet code.
+(Figure-2.12 below)</li>
+  <li>Click <span style="font-weight: bold;">Source </span>to see the
+corresponding source code. (Figure-2.12 below)</li>
+</ul>
+<br>
+<img alt="" src="index_files/2_tomcatsample3.png" style="width: 803px; height: 886px;"><br>
+Figure-2.12: ServletExamples application<br>
+<br>
+7. Try to execute and see the sources of <span style="font-weight: bold;">Request Info</span>,<span style="font-weight: bold;"> Request Headers</span> and <span style="font-weight: bold;">Request Parameters</span>.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Modify "Hello World" part of the application<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Modify <span style="font-weight: bold;">HelloWorldExample.java</span>
+under <span style="font-weight: bold;">ServletExamples-&gt;Source
+Packages-&gt;&lt;default package&gt;</span> as shown in Code-2.20
+below.&nbsp; The code fragments that need to be added are highlighted
+in <span style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">public class HelloWorldExample
+extends HttpServlet {<br>
+      <br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws IOException,
+ServletException<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ResourceBundle rb =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ResourceBundle.getBundle("LocalStrings",request.getLocale());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; String title =
+rb.getString("helloworld.title");<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; out.println("&lt;title&gt;" +
+title + "&lt;/title&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;/head&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body
+bgcolor=\"white\"&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp; // note that all links are created to be relative.
+this<br>
+&nbsp;&nbsp;&nbsp; // ensures that we can move the web application that
+this<br>
+&nbsp;&nbsp;&nbsp; // servlet belongs to to a different place in the url<br>
+&nbsp;&nbsp;&nbsp; // tree and not have any harmful side effects.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // XXX<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // making these absolute
+till we work out the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // addition of a PathInfo
+issue<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; out.println("&lt;a
+href=\"../helloworld.html\"&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;img
+src=\"../images/code.gif\" height=24 " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"width=24 align=right border=0 alt=\"view code\"&gt;&lt;/a&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;a
+href=\"../index.html\"&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;img
+src=\"../images/return.gif\" height=24 " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"width=24 align=right border=0 alt=\"return\"&gt;&lt;/a&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;h1&gt;" +
+title + "&lt;/h1&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold; color: rgb(51, 51, 255);">out.println("my
+own message gets displayed here");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;/body&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.20: Modified HelloWorldExample.java<br>
+<br>
+2. Right click <span style="font-weight: bold;">ServletExamples </span>project
+node and select <span style="font-weight: bold;">Run</span>.<br>
+3. Click <span style="font-weight: bold;">Execute </span>to execute
+the "<span style="font-weight: bold;">Hello World</span>" servlet code.<br>
+4. Observe that the browser gets displayed as shown in Figure-2.21
+below.<br>
+<br>
+<img alt="" src="index_files/2_myownmessage.png" style="width: 737px; height: 573px;"><br>
+Figure-2.21: Result of running the application<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Modify "Request Info" Example part of the application<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to display various information of
+the <span style="font-weight: bold;">HttpRequest </span>object, which
+reflects Http Request from the client.<br>
+<br>
+1.&nbsp; Move your cursor to the <span style="font-weight: bold;">HttpServletRequest
+</span>string and right click and select <span style="font-weight: bold;">Show Javadoc</span>. (Figure-2.30 below)<br>
+<br>
+<img alt="" src="index_files/2_javadoc1.png" style="width: 827px; height: 671px;"><br>
+Figure-2.30: Show Javadoc of HttpServletRequest<br>
+<br>
+2. The JavaDoc of the <span style="font-weight: bold;">HttpServletRequest
+</span>class gets displayed in a browser. (Figure-2.31 below)<br>
+<br>
+<img alt="" src="index_files/2_javadoc2.png" style="width: 804px; height: 761px;"><br>
+Figure-2.31: Javadoc of HttpServletRequest<br>
+<br>
+3. Modify <span style="font-weight: bold; color: rgb(51, 51, 255);">RequestInfoExample.java</span>
+under <span style="font-weight: bold;">ServletExamples-&gt;Source
+Packages-&gt;&lt;default package&gt;</span> as shown in Code-2.32
+below.&nbsp; The code fragments that need to be added are highlighted
+in <span style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import java.io.*;<br>
+import java.text.*;<br>
+import java.util.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+import util.HTMLFilter;<br>
+      <br>
+/**<br>
+&nbsp;* Example servlet showing request information.<br>
+&nbsp;*<br>
+&nbsp;* @author James Duncan Davidson &lt;duncan@eng.sun.com&gt;<br>
+&nbsp;*/<br>
+      <br>
+public class RequestInfoExample extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; ResourceBundle rb =
+ResourceBundle.getBundle("LocalStrings");<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws IOException, ServletException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;head&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String title =
+rb.getString("requestinfo.title");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;title&gt;"
++ title + "&lt;/title&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;/head&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body
+bgcolor=\"white\"&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // img stuff not req'd for
+source code html showing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // all links relative!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // XXX<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // making these absolute
+till we work out the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // addition of a PathInfo
+issue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;a
+href=\"../reqinfo.html\"&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;img
+src=\"../images/code.gif\" height=24 " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"width=24 align=right border=0 alt=\"view code\"&gt;&lt;/a&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;a
+href=\"../index.html\"&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;img
+src=\"../images/return.gif\" height=24 " +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"width=24 align=right border=0 alt=\"return\"&gt;&lt;/a&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;h3&gt;" +
+title + "&lt;/h3&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;table
+border=0&gt;&lt;tr&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(rb.getString("requestinfo.label.method"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(request.getMethod());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(rb.getString("requestinfo.label.requesturi"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(HTMLFilter.filter(request.getRequestURI()));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(rb.getString("requestinfo.label.protocol"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(request.getProtocol());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(rb.getString("requestinfo.label.pathinfo"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(HTMLFilter.filter(request.getPathInfo()));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(rb.getString("requestinfo.label.remoteaddr"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String cipherSuite=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(String)request.getAttribute("javax.servlet.request.cipher_suite");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(request.getRemoteAddr());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/table&gt;");<br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display authentication
+type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;h3&gt;
+AuthType &lt;/h3&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("AuthType = " +
+request.getAuthType());<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Display HTTP method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;h3&gt; HTTP
+Method &lt;/h3&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("HTTP Method = "
++
+request.getMethod());&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(cipherSuite!=null){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("SSLCipherSuite:");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println(request.getAttribute("javax.servlet.request.cipher_suite"));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/td&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; public void doPost(HttpServletRequest request,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws IOException, ServletException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doGet(request, response);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.32: Modified RequestInfoExample.java<br>
+<br>
+4. Right click <span style="font-weight: bold;">ServletExamples </span>project
+node and select <span style="font-weight: bold;">Run</span>.<br>
+5. Click <span style="font-weight: bold;">Execute </span>to execute
+the "<span style="font-weight: bold;">Request Info</span>" servlet code.<br>
+6. Observe that the browser gets displayed as shown in Figure-2.33
+below.<br>
+<br>
+<img alt="" src="index_files/2_requestinfo.png" style="width: 804px; height: 761px;"><br>
+Figure-2.33: Result of running the application<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Summary</h3>
+<p style="margin-left: 40px;">In this exercise, you have built and run
+"ServletExampless" sample application.<br>
+&nbsp;&nbsp;&nbsp; <br>
+</p>
+<p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="#Tutorial_Exercises">return to the top</a></p>
+<p style="margin-left: 40px;"> </p>
+<div class="indent"></div>
+<p></p>
+<div class="indent">
+<div class="indent">
+<p><br>
+</p>
+</div>
+<p> </p>
+</div>
+<!-- ======================================================================================= -->
+<br>
+<h2><a name="Homework_Exercise"></a>Homework Exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;"><span style="color: rgb(0, 0, 0);">1.
+The homework is to modify the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">hello2</span><span style="color: rgb(0, 0, 0);"> project as described below.&nbsp; (You
+might want to create a new project by copying
+the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">hello2
+</span><span style="color: rgb(0, 0, 0);">project.)&nbsp; You can name
+the
+homework project in any way you want
+but here I am going to call it </span><span style="font-weight: bold; color: rgb(0, 0, 0);">Myhello2</span><span style="color: rgb(0, 0, 0);">.</span><br>
+<ul>
+  <li>Modify <span style="font-weight: bold;">GreetingServlet.java</span>
+and<span style="font-weight: bold;"> ResponseServlet.java</span> to add
+another
+information such as <span style="font-weight: bold;">Birth Place</span>.</li>
+</ul>
+2<span style="color: rgb(0, 0, 0);">. Send the following files to</span><span style="color: rgb(0, 0, 0);">
+<a href="mailto:j2eehomeworks@javapassion.com">j2eehomeworks@javapassion.com</a>
+with </span><span style="font-weight: bold; color: rgb(0, 0, 0);">Subject
+</span><span style="color: rgb(0, 0, 0);">as </span><span style="font-weight: bold; color: rgb(0, 0, 0);">servlet_basics1.</span><br style="color: rgb(0, 0, 0);">
+<span style="font-weight: bold; color: rgb(0, 0, 0);"></span>
+<ul style="color: rgb(0, 0, 0);">
+  <li>Zip file of the<span style="font-weight: bold;"> Myhello2</span> Maven project.&nbsp; <br>
+</li><li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">servlet_basics1.gif</span>
+or <span style="font-weight: bold;">servlet_basics1</span><span style="font-weight: bold;">.jpg</span> (or <span style="font-weight: bold;">servlet_basics1.&lt;whatever
+graphics format&gt;</span>)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; <br>
+    </li>
+  </ul>
+  
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="#Tutorial_Exercises">return
+to the top</a></div>
+<div class="indent"><br>
+<br>
+<br>
+</div>
+<br>
+<p> </p>
+<!-- ======================================================================================== -->
+
+
+</body></html>
