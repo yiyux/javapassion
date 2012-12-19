@@ -66,6 +66,7 @@ public class HelloWorldExample extends HttpServlet {
         out.println("<img src=\"../images/return.gif\" height=24 " +
                     "width=24 align=right border=0 alt=\"return\"></a>");
         out.println("<h1>" + title + "</h1>");
+        out.println("My own message gets displayed here!!!!");
         out.println("</body>");
         out.println("</html>");
     }

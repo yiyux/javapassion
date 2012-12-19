@@ -91,7 +91,13 @@ public class RequestInfoExample extends HttpServlet {
         out.println("</td><td>");                
         out.println(request.getRemoteAddr());
         out.println("</table>");
-
+        
+        out.println("<h3>Auth type:</h3>");
+        out.println("Auth type = " + request.getAuthType());
+        
+        out.println("<h3>HTTP Method:</h3>");
+        out.println("HTTP Method = " + request.getMethod());
+        
  	if(cipherSuite!=null){
  	    out.println("</td></tr><tr><td>");	
  	    out.println("SSLCipherSuite:");

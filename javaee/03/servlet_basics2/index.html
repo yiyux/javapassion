@@ -1,0 +1,2384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-4007: Servlet Basics II</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <meta name="keywords" content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<br>
+<div style="text-align: center;">@Copyright notice: This content is
+meant to be used only for paying
+subscriber's personal
+consumption. Sharing with others in any shape or form is
+strictly
+prohibited&nbsp;
+unless a special licensing arrangement has been made with <a href="mailto:support@javapassion.com">JPassion.com</a>.<br>
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet --><br>
+</div>
+<br>
+<h1 style="text-align: center;">Servlet Basics II<br>
+</h1>
+<div style="text-align: center;"><a href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,
+<a href="http://www.javapassion.com/">www.javapassion.com,</a> <a href="http://groups.google.com/group/jpassion_web">class forum</a></div>
+<div class="indent"><br>
+<div style="text-align: center;"><img alt="" src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+</div>
+<br>
+In this hands-on lab, you are going to learn the second part of Servlet
+basics, which include how to return HTTP status and error code, how to
+set and get attributes in the various types of scope objects, how to
+set and retrieve init parameters, how to use include contents from
+other servlet through Dispatcher, and how to do logging in the Servlet
+code.<br>
+<br>
+<br>
+<div style="text-align: center;"><b>Expected duration: 110 minutes
+(excluding homework)<br>
+<br>
+<br>
+</b></div>
+<br>
+<br>
+<h3 class="tutorial">Resources<br>
+</h3>
+<ul>
+  <li> <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/bnafd.html">"Chapter
+4: Java Servlet Technology"</a> of <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/index.html">Java
+EE Tutorial </a>- must read</li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Oct. 4th, 2011: Created (Sang Shin)</li>
+<li>July 25th, 2012: Sample apps are now provided as Maven projects</li>
+<li>Sep. 3rd, 2012: RequestDispatcher forward exercise is added as step 5.2 (Sang Shin)<br>
+</li>
+
+
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<br>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: sendError()&nbsp; (10 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Scope objects (30 minutes)</a></li>
+  <li><a href="#Exercise_3">Exercise 3: Init parameters (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_4">Exercise 4: Handling errors (20 minutes)</a></li>
+  <li><a href="#Exercise_5">Exercise 5: Dispatcher (20 minutes)<br>
+    </a></li>
+  <li><a href="#Exercise_6">Exercise 6: Logging (10 minutes)<br>
+    </a></li>
+  <li><a href="#Homework_Exercise">Homework
+Exercise</a></li>
+</ul>
+<ul>
+</ul>
+</div>
+<br>
+<br>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_1"></a>Exercise 1: sendError()<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>You can return HTTP status or error code through send() or
+sendError() methods of HttpServletResponse object<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be performed:<br>
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#1.1">Open, build, and run "hello_response_sendError"
+sample Servlet
+application</a></li>
+  <li><a href="#1.2">Study the code<br>
+    </a></li>
+</ol>
+</div>
+<ol style="margin-left: 40px;">
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Open, build, and run "hello2" sample Servlet application<br>
+</h3>
+<p style="margin-left: 40px;">0. Start Maven-capable IDE.&nbsp; <br>
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_response_sendError</span><span style="color: rgb(51, 51, 255);"> </span>Maven project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. <br>
+  </li>
+</ul>
+<ul>
+  <li>The <span style="font-weight: bold;">Open Project</span> dialog
+box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/servlet_basics2/samples_maven</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>Windows: If you unzipped the <span style="font-weight: bold;">4007_servlet_basics2.zip</span>
+file under
+C:\
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\servlet_basics2\samples_maven.</span></li>
+    <li>Solaris/Linux:<span style="font-weight: bold;"> </span>If you
+unzipped the <span style="font-weight: bold;">4007_servlet_basics2.zip</span>
+file under $HOME
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/servlet_basics2/samples_maven.</span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_response_sendError</span>.
+    <br>
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+  </li>
+</ul>
+<ul>
+  <li>The <span style="font-weight: bold;">hello_response_sendError</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;">2. Build and run <span style="font-weight: bold;">hello2 </span>project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">hello_response_sendError</span>
+project and select <span style="font-weight: bold;">Run</span>. <br>
+  </li>
+  <li>Browser gets displayed.&nbsp; <br>
+  </li>
+  <li>Click Submit button without entering any name in the blank text
+field.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_servlet1.png" style="width: 751px; height: 631px;"><br>
+</p>
+<p style="margin-left: 40px;"><img alt="" src="index_files/1_servlet2.png" style="width: 751px; height: 631px;"><br>
+</p>
+<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercise_1">return to top of the exercise</a>
+</p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Study the code<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. GreetingServlet2.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws ServletException,
+IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;form method=\"get\" action=\"greeting2\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"submit\" value=\"Submit\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+.getRequestDispatcher("/response");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">response.sendError(500, "You did not enter
+your name");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_1">return to top of the exercise</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<br>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_2"></a>Exercise 2: Scope objects<br>
+</h2>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Scope objects are used for saving attrubutes.&nbsp; These
+attrubutes can be then accessed within the Servlet code</li>
+  <li>There are various types of scopes and they are ServletContext
+scope, Session scope, and Request scope.</li>
+  <li>The attributes maintained in the ServletContext scoipe are
+accessible by any Servlet (and JSPs) in that application</li>
+  <li>The attributes maintained in a Session scope are accessible by
+Servlets (and JSPs) in that session</li>
+  <li>The attributes maintained in a Request scope are accessible by
+Servlets (and JSPs) that handles the request<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be perrformed:<br>
+</p>
+<ul>
+  <ul>
+  </ul>
+  <ol>
+    <li><a href="#2.1">Build and run "hello_scope_context" sample
+application</a></li>
+    <li><a href="#2.2">Study the code</a></li>
+    <li><a href="index.html#2.3">Build and run "hello_scope_session"
+sample
+application</a></li>
+    <li><a href="index.html#2.4">Study the code</a></li>
+    <li><a href="index.html#2.5">Build and run "hello_scope_request"
+sample
+application</a></li>
+    <li><a href="index.html#2.6">Study the code</a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run "hello_scope_context" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_scope_context</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+</div>
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+<ul></ul>
+<img alt="" src="index_files/1_servlet3.png" style="width: 751px; height: 631px;"><br>
+<br>
+<img alt="" src="index_files/1_servlet4.png" style="width: 751px; height: 631px;"><br>
+<br>
+3. Open another browser and access <a href="http://localhost:8080/hello_scope_context/response">http://localhost:8080/hello_scope_context/response</a>.&nbsp;
+This is to simulate another user accessing the same&nbsp; application.<br>
+<br>
+<img alt="" src="index_files/1_servlet5.png" style="width: 800px; height: 719px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+0. web.xml<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;?xml version="1.0"
+encoding="UTF-8"?&gt;<br>
+&lt;web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;display-name&gt;hello2&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet2&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet2&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;ResponseServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.ResponseServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting2&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/response&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&lt;/web-app&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+1. GreetingServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws ServletException,
+IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;
+// Set attribute</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ServletContext servletContext = request.getServletContext();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+servletContext.setAttribute("city", "Boston");</span><br style="font-weight: bold;">
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;form method=\"get\" action=\"greeting2\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"submit\" value=\"Submit\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. GreetingServlet2.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws ServletException,
+IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Set attribute</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ServletContext servletContext = request.getServletContext();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+servletContext.setAttribute("age", new Integer(22));</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;form method=\"get\" action=\"greeting2\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"submit\" value=\"Submit\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+.getRequestDispatcher("/response");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+3. ResponseServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class ResponseServlet extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Hello," + username + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+ServletContext servletContext = request.getServletContext();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;You live in " +
+servletContext.getAttribute("city") + "!&lt;/h2&gt;");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Your age is&nbsp; " +
+servletContext.getAttribute("age") + "!&lt;/h2&gt;");</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Response servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Build and run "hello_scope_session" project<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_scope_session</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+<div style="margin-left: 40px;"></div>
+2. Build and run the project.<br>
+<ul></ul>
+<img alt="" src="index_files/1_servlet6.png" style="width: 751px; height: 631px;"><br>
+<br>
+3. Open another browser and access <a href="http://localhost:8080/hello_scope_session/response">http://localhost:8080/hello_scope_session/response</a>.&nbsp;
+This is to simulate another user accessing the same&nbsp;
+application.&nbsp; Note that the attributes of the previous session are
+not accessible.<br>
+<br>
+<img alt="" src="index_files/1_servlet7.png" style="width: 800px; height: 719px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.4"></a>(2.4)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 40px;" class="indent">1. GreetingServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws ServletException,
+IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;
+// Set attribute in HttpSession</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HttpSession session = request.getSession();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+session.setAttribute("city", "Boston");</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;form method=\"get\" action=\"greeting2\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"submit\" value=\"Submit\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. GreetingServlet2.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Set attribute in HttpSession</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HttpSession session = request.getSession();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+session.setAttribute("age", new Integer(22));</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;form method=\"get\" action=\"greeting2\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"submit\" value=\"Submit\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext().getRequestDispatcher("/response");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+3. ResponseServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class ResponseServlet extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Hello, " + username + "!&lt;/h2&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+HttpSession session = request.getSession();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;You live in " + session.getAttribute("city") +
+"!&lt;/h2&gt;");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Your age is&nbsp; " +
+session.getAttribute("age") + "!&lt;/h2&gt;");</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Response servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<p> </p>
+</div>
+<!-- ======================================================================================= -->
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.5"></a>(2.5)
+Build and run "hello_scope_request" project<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_scope_request</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+<div style="margin-left: 40px;">
+</div>
+2. Build and run the project.<br>
+<ul></ul>
+<img alt="" src="index_files/1_servlet8.png" style="width: 751px; height: 631px;"><br>
+<br>
+<img alt="" src="index_files/1_servlet9.png" style="width: 751px; height: 631px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.6"></a>(2.6)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 40px;" class="indent">1. GreetingServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Set attribute in HttpServletRequest object</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+request.setAttribute("city", "Boston");</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;form method=\"get\" action=\"greeting2\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"submit\" value=\"Submit\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. GreetingServlet2.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+// Set attribute in HttpServletRequest object</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+request.setAttribute("age", new Integer(22));</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;form method=\"get\" action=\"greeting2\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"submit\" value=\"Submit\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext().getRequestDispatcher("/response");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+3. ResponseServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class ResponseServlet extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Hello," + username + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;
+out.println("&lt;h2&gt;You live in " + request.getAttribute("city") +
+"!&lt;/h2&gt;");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Your age is&nbsp; " +
+request.getAttribute("age") + "!&lt;/h2&gt;");</span><br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Response servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_2">return to top of the exercise</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Init parameters<br>
+</h2>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Init parameters are key/value pairs that can be specified in the
+web.xml <br>
+  </li>
+  <li>Init parameters can be specified for the ServletConext or per
+each Servlet<br>
+  </li>
+  <li>Init parameter values then can be accessible in the servlet<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be performed:<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="index.html#3.1">Build and run "hello_scope_context"
+sample
+application</a></li>
+    <li><a href="index.html#3.2">Study the code</a></li>
+    <li><a href="index.html#3.3">Build and run "hello_scope_servlet"
+sample
+application</a></li>
+    <li><a href="index.html#3.4">Study the code</a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Build and run "hello_initparam_context" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_initparam_context</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+</div>
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+<ul></ul>
+<img alt="" src="index_files/1_servlet10.png" style="width: 751px; height: 631px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_3">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Study code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+0.web.xml<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;?xml version="1.0"
+encoding="UTF-8"?&gt;<br>
+&lt;web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;display-name&gt;hello2&lt;/display-name&gt;<br>
+&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;
+&lt;context-param&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-name&gt;city&lt;/param-name&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-value&gt;Seoul&lt;/param-value&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&lt;/context-param&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&lt;context-param&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-name&gt;age&lt;/param-name&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-value&gt;22&lt;/param-value&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&lt;/context-param&gt;</span><br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet2&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet2&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;ResponseServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.ResponseServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting2&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/response&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&lt;/web-app&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+1. ResponseServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class ResponseServlet extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Hello, " + username + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> out.println("&lt;h2&gt;You live in " +
+getServletContext().getInitParameter("city") + "!&lt;/h2&gt;");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Your age is&nbsp; " +
+getServletContext().getInitParameter("age") + "!&lt;/h2&gt;");</span><br style="font-weight: bold;">
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Response servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_3">return to top of the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.3"></a>(3.3)
+Build and run "hello_initparam_servlet" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_initparam_servlet</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+</div>
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+<ul></ul>
+<img alt="" src="index_files/1_servlet11.png" style="width: 751px; height: 631px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_3">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.4"></a>(3.4)
+Study code</h3>
+<br>
+<div style="margin-left: 40px;">0. web.xml<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;?xml version="1.0"
+encoding="UTF-8"?&gt;<br>
+&lt;web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;display-name&gt;hello2&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;context-param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-name&gt;city&lt;/param-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-value&gt;Seoul&lt;/param-value&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/context-param&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;context-param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-name&gt;age&lt;/param-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-value&gt;22&lt;/param-value&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/context-param&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;init-param&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-name&gt;greeting1&lt;/param-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-value&gt;hello&lt;/param-value&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/init-param&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet2&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet2&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;init-param&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-name&gt;greeting2&lt;/param-name&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-value&gt;goodbye&lt;/param-value&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/init-param&gt;</span><br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;ResponseServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.ResponseServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;init-param&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-name&gt;greeting3&lt;/param-name&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;param-value&gt;yo&lt;/param-value&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/init-param&gt;</span><br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting2&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/response&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&lt;/web-app&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+1. ResponseServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class ResponseServlet extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Hello, " + username + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+out.println("&lt;h2&gt;Your greeting message is&nbsp; " +
+getInitParameter("greeting3") + "!&lt;/h2&gt;");</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Response servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_3">return to top of the exercise</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Handling errors<br>
+</h2>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>You can throw a custom exception <br>
+  </li>
+  <li>The custom exception can trigger displaying particular Servlet,
+JSP, or HTML page<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be performed: <br>
+</p>
+<ul>
+  <ol>
+    <li><a href="index.html#4.1">Build and run
+"hello_servlet_errorhandling" sample
+application</a></li>
+    <li><a href="index.html#4.2">Study the code<br>
+      </a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Build and run "hello_servlet_errorhandling" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_servlet_errorhandling</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+</div>
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+<ul></ul>
+<img alt="" src="index_files/1_servlet12.png" style="width: 751px; height: 631px;"><br>
+<br>
+<img alt="" src="index_files/1_servlet13.png" style="width: 751px; height: 631px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_4">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.2"></a>(4.2)
+Study code</h3>
+<br>
+<div style="margin-left: 40px;">0. web.xml<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;?xml version="1.0"
+encoding="UTF-8"?&gt;<br>
+&lt;web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;display-name&gt;hello2&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;GreetingServlet2&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.GreetingServlet2&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;display-name&gt;ResponseServlet&lt;/display-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servlets.ResponseServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;GreetingServlet2&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/greeting2&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;ResponseServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/response&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp; &lt;error-page&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;exception-type&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+exceptions.NameNotEnteredException</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/exception-type&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;location&gt;/NameNotEnteredError.html&lt;/location&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&lt;/error-page&gt;</span><br>
+&lt;/web-app&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+1.&nbsp; exceptions/NameNotEnteredException.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package exceptions;<br>
+      <br>
+import javax.servlet.ServletException;<br>
+      <br>
+public class NameNotEnteredException extends ServletException {<br>
+&nbsp;&nbsp;&nbsp; <br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. GreetingServlet2.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import exceptions.NameNotEnteredException;<br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;form method=\"get\" action=\"greeting2\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"submit\" value=\"Submit\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext().getRequestDispatcher("/response");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">// If user does not enter anything, throw a
+custom exception</span><br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throw new NameNotEnteredException();</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+3. NameNotEnteredError.html<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;head&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;&lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta
+http-equiv="Content-Type" content="text/html; charset=windows-1252"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h1&gt;Name not entered
+from "NameNotEnteredError.html"&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_4">return to top of the exercise</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+</div>
+<br>
+<br>
+<h2><a name="Exercise_5"></a>Exercise 5: Dispatcher<br>
+</h2>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>RequestDispatcher object can be used to include the resulting
+contents of another Servlet, JSP, or HTML file</li>
+  <li>RequestDispatcher object can be used to forward&nbsp; to another
+Servlet, JSP, or HTML file<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be performed:<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="index.html#5.1">Include a page using "RequestDispatcher"<br>
+</a></li>
+    <li><a href="index.html#5.2">Forward to a page using "RequestDispatcher"<br>
+      </a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.1"></a>(5.1) Include a page using "RequestDispatcher"<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_servlet_dispatcher_include</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+</div>
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+<ul></ul>
+<img alt="" src="index_files/1_servlet14.png" style="width: 751px; height: 631px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_5">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial">Study code<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. GreetingServlet2.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;form method=\"get\" action=\"greeting2\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"submit\" value=\"Submit\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext().getRequestDispatcher("/response");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> // Include banner </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext().getRequestDispatcher("/banner.html");</span><br style="font-weight: bold;">
+      <br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (dispatcher != null) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. banner.html<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;head&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;&lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta
+http-equiv="Content-Type" content="text/html; charset=windows-1252"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h2&gt;<b>I am from
+"banner.html"</b>&lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_5">return to top of the exercise</a><br>
+<br><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.2"></a>(5.2) Forward to a page using "RequestDispatcher"<br>
+</h3>
+
+<br>
+
+<div style="margin-left: 40px;">
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_servlet_dispatcher_forward</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+</div>
+
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+  <br>
+  <img alt="" src="index_files/1_servlet16.png" height="608" width="744"><br>
+  <br>
+</div>
+
+<br>
+<h3 style="margin-left: 40px;" class="tutorial">Study code<br>
+</h3>
+
+
+<blockquote>1. GreetingServlet2.java<br>
+  <br>
+  <table border="1" cellpadding="2" cellspacing="2" width="100%">
+    <tbody>
+      <tr>
+        <td valign="top">package servlets;<br>
+          <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+          <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+          <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request, HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out = response.getWriter();<br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" + 
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp; bgcolor=\"#ffffff\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ + "&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ + "&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ + "&lt;form method=\"get\" action=\"greeting2\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ + "&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" + 
+"&lt;p&gt;&lt;/p&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ + "&lt;input type=\"submit\" value=\"Submit\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ + "&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username = request.getParameter("username");<br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null) &amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ getServletContext().getRequestDispatcher("/response");<br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp; // Forward to another page - banner page in this example</b><b><br>
+          </b><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RequestDispatcher dispatcher =</b><b><br>
+          </b><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ getServletContext().getRequestDispatcher("/banner.html");</b><b><br>
+          </b><b><br>
+          </b><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dispatcher != null) {</b><b><br>
+          </b><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dispatcher.<font color="#ff0000">forward</font>(request, response);</b><b><br>
+          </b><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</b><br>
+          <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+</blockquote>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Exercise_5">return to top of the exercise</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tutorial_Exercises">return
+to the top</a><br>
+
+<br>
+<br>
+<br>
+<br>
+
+<h2><a name="Exercise_6"></a>Exercise 6: Logging<br>
+</h2>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>You can do logging in the Servlet code by calling log() method of
+the ServletContext object.<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be performed <br>
+</p>
+<ul>
+  <ol>
+    <li><a href="index.html#6.1">Build and run "hello_servlet_logging"
+sample
+application</a></li>
+    <li><a href="index.html#6.2">Study the code<br>
+      </a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="6.1"></a>(6.1)
+Build and run "hello_servlet_logging" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">
+1. Open/Import <span style="font-weight: bold; color: rgb(51, 51, 255);">hello_servlet_logging</span> Maven project (that is provided as part of hands-on lab zip file).
+<br><br>
+</div>
+<div style="margin-left: 40px;">2. Build and run the project.<br>
+<ul></ul>
+3. Observe the logging messages.<br>
+<br>
+<img alt="" src="index_files/1_servlet15.png" style="width: 735px; height: 601px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_6">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="6.2"></a>(6.2)
+Study code</h3>
+<br>
+<div style="margin-left: 40px;">1. GreetingServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet extends HttpServlet {<br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throws ServletException,
+IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set attribute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServletContext
+servletContext = request.getServletContext();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+servletContext.setAttribute("city", "Boston");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> servletContext.log("-----&gt;
+GreetingServlet entered");</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;form method=\"get\" action=\"greeting2\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"submit\" value=\"Submit\"&gt;" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. GreetingServlet2.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class GreetingServlet2 extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+response.setContentType("text/html");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.setBufferSize(8192);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set attribute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServletContext
+servletContext = request.getServletContext();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+servletContext.setAttribute("age", new Integer(22));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">servletContext.log("-----&gt;
+GreetingServlet2 entered");</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;html&gt;" +
+"&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.println("&lt;body&nbsp;
+bgcolor=\"#ffffff\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;img src=\"duke.waving.gif\" alt=\"Duke waving\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;h2&gt;Hello, my name is Duke. What's yours?&lt;/h2&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;form method=\"get\" action=\"greeting2\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"text\" name=\"username\" size=\"25\"&gt;" +
+"&lt;p&gt;&lt;/p&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"submit\" value=\"Submit\"&gt;"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ "&lt;input type=\"reset\" value=\"Reset\"&gt;" + "&lt;/form&gt;");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RequestDispatcher dispatcher =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+getServletContext().getRequestDispatcher("/response");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(dispatcher != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dispatcher.include(request, response);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;/body&gt;&lt;/html&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Hello servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+3. ResponseServlet.java<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">package servlets;<br>
+      <br>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+/**<br>
+&nbsp;* This is a simple example of an HTTP Servlet.&nbsp; It responds
+to the GET<br>
+&nbsp;* method of the HTTP protocol.<br>
+&nbsp;*/<br>
+public class ResponseServlet extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+throws ServletException, IOException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServletContext
+servletContext = request.getServletContext();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">servletContext.log("-----&gt;
+ResponseServlet entered");</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintWriter out =
+response.getWriter();<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // then write the data of
+the response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String username =
+request.getParameter("username");<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((username != null)
+&amp;&amp; (username.length() &gt; 0)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Hello," + username + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;You live in " +
+servletContext.getAttribute("city") + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("&lt;h2&gt;Your age is&nbsp; " +
+servletContext.getAttribute("age") + "!&lt;/h2&gt;");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "The Response servlet
+says hello.";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Exercise_6">return to top of the exercise</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+</div>
+<br>
+<h2><a name="Homework_Exercise"></a>Homework Exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;"><span style="color: rgb(0, 0, 0);">1.
+The homework is to modify the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">Myhello2</span><span style="color: rgb(0, 0, 0);"> home project you did (in
+4002_servlet_basics1.zip) as described below.</span><span style="color: rgb(0, 0, 0);"></span><br>
+<ul>
+  <li>Add one attribute (whatever attrubute of your choice) each to the
+ServletContext scope, Session scope, and Request scipe <br>
+  </li>
+  <li>Add an ServletContext init parameter</li>
+  <li>Add init parameter to all servlets<br>
+  </li>
+</ul>
+2<span style="color: rgb(0, 0, 0);">. Send the following files to</span><span style="color: rgb(0, 0, 0);">
+<a href="mailto:j2eehomeworks@javapassion.com">j2eehomeworks@javapassion.com</a>
+with </span><span style="font-weight: bold; color: rgb(0, 0, 0);">Subject
+</span><span style="color: rgb(0, 0, 0);">as </span><span style="font-weight: bold; color: rgb(0, 0, 0);">servlet_basics2.</span><br style="color: rgb(0, 0, 0);">
+<span style="font-weight: bold; color: rgb(0, 0, 0);"></span>
+<ul style="color: rgb(0, 0, 0);">
+  <li>Zip file of the<span style="font-weight: bold;"> Myhello2</span> Maven project.&nbsp; (Someone else
+should be able to open and run it as a Maven project.) <br>
+</li><li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">servlet_basics2.gif</span>
+or <span style="font-weight: bold;">servlet_basics2</span><span style="font-weight: bold;">.jpg</span> (or <span style="font-weight: bold;">servlet_basics2.&lt;whatever
+graphics format&gt;</span>)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; <br>
+    </li>
+  </ul>
+  
+</ul>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+
+ <a href="#Tutorial_Exercises">return
+to the top</a></div>
+<div class="indent"><br>
+<br>
+<br>
+</div>
+<br>
+<p> </p>
+<!-- ======================================================================================== -->
+
+
+</body></html>

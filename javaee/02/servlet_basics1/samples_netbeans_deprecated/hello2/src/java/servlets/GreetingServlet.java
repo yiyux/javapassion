@@ -53,9 +53,10 @@ public class GreetingServlet extends HttpServlet {
         // then write the data of the response
         out.println("<body  bgcolor=\"#ffffff\">" +
             "<img src=\"duke.waving.gif\" alt=\"Duke waving\">" +
-            "<h2>Hello, my name is Duke. What's yours?</h2>" +
+            "<h2>Hello, my name is Duke. My Hobby is golf. What's yours name and hobby?</h2>" +
             "<form method=\"get\">" +
             "<input type=\"text\" name=\"username\" size=\"25\">" + "<p></p>" +
+            "<input type=\"text\" name=\"hobby\" size=\"25\">" + "<p></p>" +
             "<input type=\"submit\" value=\"Submit\">" +
             "<input type=\"reset\" value=\"Reset\">" + "</form>");
 

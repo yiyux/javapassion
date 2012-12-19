@@ -48,6 +48,11 @@ public class ResponseServlet extends HttpServlet {
         if ((username != null) && (username.length() > 0)) {
             out.println("<h2>Hello, " + username + "!</h2>");
         }
+        String hobby = request.getParameter("hobby");
+        
+        if((hobby != null) && (username.length() > 0)){
+            out.println("<h2> Your hobby is " + hobby + "!</h2>");
+        }
     }
 
     public String getServletInfo() {
