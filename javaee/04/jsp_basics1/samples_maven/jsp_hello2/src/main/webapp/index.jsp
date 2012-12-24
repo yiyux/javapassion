@@ -4,9 +4,10 @@
     <head><title>Hello</title></head>
     <body bgcolor="white">
         <img src="duke.waving.gif"> 
-        <h2>Hello, my name is Duke. What's yours?</h2>
+         <h2>Hello, my name is Duke. My hobby is Golf. What are your name and hobby?</h2>
         <form method="get">
             <input type="text" name="username" size="25">
+            <input type="text" name="hobby" size="25" >
             <p></p>
             <input type="submit" value="Submit">
             <input type="reset" value="Reset">
