@@ -1,0 +1,1752 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <script src="index_files/tigris.txt" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="index_files/netbeans.css">
+  <title>LAB-4009: JSP Basics II</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="SourceCastVersion" content="2.6.2.4.10">
+  <meta name="keywords" content="NetBeans, IDE, Platform, free, open source, developer">
+  <link rel="stylesheet" href="index_files/netbeans_002.css">
+  <meta name="author" content="Sang Shin">
+  <style type="text/css">
+#search {height:100%;}
+#topmodule {align:right;}
+  </style>
+  <script language="JavaScript" type="text/javascript">
+<!--
+function get_sc_login() {
+  var sclogin = "guest";
+  return (sclogin);
+}
+var username=get_sc_login();
+//-->
+  </script>
+</head>
+<body onload="loginfocus()" class="composite">
+<!-- begin TopTabs --><!-- end TopTabs --><!-- start NavCol --><!-- end NavCol --><!-- Servlet-Specific template --><!-- Show servlet name if it is a servlet -->
+<br>
+<br>
+<h1 style="text-align: center;">JavaServer Pages (JSP) Basics II<br>
+</h1>
+<div class="articledate" style="margin-left: 0px; text-align: center;"><a href="http://www.javapassion.com/SangShinSchedule.html#Bio">Sang Shin</a>,<a href="mailto:sang.shin@sun.com"></a> <a href="http://www.javapassion.com">www.javapassion.com</a><a href="mailto:sang.shin@sun.com"><i>
+</i></a></div>
+<div class="indent"><br>
+<div style="text-align: center;"><img alt="" src="index_files/sangshin2009.jpg" style="width: 88px; height: 101px;"><br>
+<br>
+</div>
+JSP allows JSP scripting through which you can insert Java code in the
+JSP pages.&nbsp; JSP, just like Servlet, supports include and
+forward.&nbsp; JSP also lets you display a designated error page.&nbsp;
+Just like Servlet, JSP supports various scopes including page
+scope.&nbsp; In this lab, you are going exercise these features.<br>
+<br>
+<b><br>
+</b>
+<div style="text-align: center;"><b>Expected duration: 100 minutes
+(excluding homework)<br>
+<br>
+</b></div>
+<br>
+<br>
+<h3 class="tutorial">Resources<br>
+</h3>
+<ul>
+  <li> <span style="color: rgb(0, 0, 0);"><a href="http://java.sun.com/javaee/5/docs/tutorial/doc/bnagx.html">Chapter
+5: JavaServer Pages (JSP) Technology</a> in</span> <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/index.html">Java
+EE 5 Tutorial</a>
+    <ul>
+      <li>Just read the introduction part on what JSP page is.&nbsp;
+You will build
+Bookstore sample applications later in this course.&nbsp; If you want
+to
+build Bookstore sample apps, please see <a href="http://javapassion.com/portal/java-ee-programming-basics-i-with-passion/java-ee-programming-with-passion#Building_BookStore_Sample_Application">Building
+Bookstore sample application</a> topic below.</li>
+    </ul>
+  </li>
+  <li> <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/bnajo.html">Chapter
+6: JavaServer Pages (JSP) Documents</a> in <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/index.html">Java
+EE 5 Tutorial</a></li>
+</ul>
+<br>
+<h3 class="tutorial"><a name="Change_Log"></a>Change Log<br>
+</h3>
+<ul>
+  <li>Oct. 18th, 2011: Separated out from jsp_basics (Sang Shin)</li>
+<li>July 25th, 2012: Sample projects are now provided as Maven projects<br>
+</li>
+
+</ul>
+<br>
+<h3 class="tutorial"><a name="Tutorial_Exercises"></a>Lab Exercises</h3>
+<ul>
+  <li><a href="#Exercise_1">Exercise 1: JSP scripting (20 minutes)</a><br>
+  </li>
+  <li><a href="#Exercise_2">Exercise 2: Include and Forward (20 minutes)</a></li>
+  <li><a href="index.html#Exercise_3">Exercise 3: Error page (20
+minutes)</a></li>
+  <li><a href="index.html#Exercise_4">Exercise 4: Scope objects (20
+minutes)</a></li>
+  <li><a href="index.html#Exercise_5">Exercise 5: Forwarding between
+JSP and Servlet (20 minutes)</a></li>
+  <li><a href="#Homework_Exercise">Homework
+Exercise</a></li>
+</ul>
+</div>
+<br>
+<!-- ===================================================================================== -->
+<h2><a name="Exercise_1"></a>Exercise 1: JSP Scripting<br>
+</h2>
+<i></i>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>JSP scripting allows Java code to be inserted into a JSP page
+(even though this is strongly discouraged practice.)<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be performed <br>
+</p>
+<ul style="margin-left: 40px;">
+</ul>
+<div style="margin-left: 40px;">
+<ol>
+  <li><a href="#1.1">Open, build, and run "jsp_scripting" sample JSP
+application</a></li>
+  <li><a href="#1.2">Modify "jsp_scripting" sample application to
+display hobby field</a></li>
+</ol>
+</div>
+<ol style="margin-left: 40px;">
+</ol>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.1"></a>(1.1)
+Open, build, and run "jsp_scripting" sample application<br>
+</h3>
+<p style="margin-left: 40px;">0. Start any Maven-aware IDE.&nbsp; <br>
+1. Open <span style="font-weight: bold; color: rgb(255, 0, 0);">jsp_scripting</span> Maven project.&nbsp; <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>. The <span style="font-weight: bold;">Open Project</span> dialog box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/jsp_basics2/samples_maven</span>
+directory.&nbsp; <br>
+  </li>
+  <ul>
+    <li>Windows: If you unzipped the <span style="font-weight: bold;">4003_jsp_basics2.zip</span>
+file under
+C:\
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">C:\jsp_basics2\samples_maven.</span></li>
+    <li>Solaris/Linux: If you unzipped the <span style="font-weight: bold;">4003_jsp_basics2.zip</span>
+file under $HOME
+directory, the directory to which you want
+to browse down should be <span style="font-weight: bold;">$HOME/jsp_basics2/samples_maven.</span><span style="font-weight: bold;"></span></li>
+  </ul>
+  <li>Select <span style="font-weight: bold; color: rgb(255, 0, 0);">jsp_scripting</span>.&nbsp;
+  </li>
+  <li>Click <span style="font-weight: bold;">Open Project</span>.&nbsp;
+The <span style="font-weight: bold;">jsp_scripting</span>
+project node appears under <span style="font-weight: bold;">Projects </span>tab
+window.</li>
+</ul>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span style="font-weight: bold;">jsp_scripting </span>project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>Right-click <span style="font-weight: bold;">jsp_scripting</span>
+project and select <span style="font-weight: bold;">Run</span>. <br>
+  </li>
+  <li>Browser gets displayed.&nbsp; <br>
+  </li>
+</ul>
+<img alt="" src="index_files/1_result0.png" style="width: 812px; height: 630px;"><br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_1">return to top of the exercise</a>
+<p style="margin-left: 40px;"><span style="font-weight: bold;"></span></p>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="1.2"></a>(1.2)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. index.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body
+bgcolor="white"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h2&gt; Examples of
+expression &lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> &lt;h3&gt;Current time: &lt;%= new
+java.util.Date() %&gt;&lt;/h3&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h3&gt;Random number: &lt;%= Math.random() %&gt;&lt;/h3&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h3&gt;Your hostname: &lt;%= request.getRemoteHost() %&gt;&lt;/h3&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h3&gt;Your parameter: &lt;%= request. getParameter("username")
+%&gt;&lt;/h3&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h3&gt;Server: &lt;%= application.getServerInfo() %&gt;&lt;/h3&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h3&gt;Session ID: &lt;%= session.getId() %&gt;&lt;/h3&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h3&gt;Hello, my name is
+Duke. What's yours?&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form method="get"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="text" name="username" size="25"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p&gt;&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="submit" value="Submit"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="reset" value="Reset"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">&lt;%</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String username = request.getParameter("username");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if ( username != null &amp;&amp; username.length() &gt; 0 ) {</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%@include file="response.jsp" %&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+%&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_1">return to top of the exercise</a><br>
+<div style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="index.html#Tutorial_Exercises">return to the top</a><br>
+</div>
+<p style="margin-left: 40px;"></p>
+<br>
+<br>
+<br>
+
+<h2><a name="Exercise_2"></a>Exercise 2: Include and forward<br>
+</h2>
+<p style="margin-left: 40px;">In this exercise, you are going to build
+and run "JSP 1.2" part of the "JSP Examples" sample application
+that comes with
+NetBeans.<br>
+</p>
+<ul>
+  <ol>
+    <li><a href="#2.1">Build and run "jsp_include" sample application</a></li>
+    <li><a href="#2.2">Study the code</a></li>
+    <li><a href="#2.3">Build and run "jsp_forward" sample application</a></li>
+    <li><a href="#2.4">Study the code</a><br>
+    </li>
+    <li><a href="index.html#2.5">Build and run "JSP Examples" sample
+application</a></li>
+    <li><a href="index.html#2.6">"Include" </a><br>
+    </li>
+    <li><a href="index.html#2.7">"Forward"</a></li>
+  </ol>
+</ul>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.1"></a>(2.1)
+Build and run "jsp_include" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Open<span style="font-weight: bold;">jsp_include</span><span style="font-weight: bold; color: rgb(255, 0, 0);"></span> Maven project.&nbsp; <br>
+</div>
+<div style="margin-left: 40px;">
+<ul></ul>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span style="font-weight: bold;">jsp_include </span>project. <br>
+</p>
+<ul style="margin-left: 40px;"></ul>
+<div style="margin-left: 40px;"><img alt="" src="index_files/1_result19.png" style="width: 669px; height: 542px;"><br>
+<br>
+<img alt="" src="index_files/1_result20.png" style="width: 669px; height: 542px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.2"></a>(2.2)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. index.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body
+bgcolor="white"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h3&gt;Hello, my name is
+Duke. What's yours?&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form method="get"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="text" name="username" size="25"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p&gt;&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="submit" value="Submit"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="reset" value="Reset"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String username = request.getParameter("username");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (
+username != null &amp;&amp; username.length() &gt; 0 ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;<span style="font-weight: bold;">%@include file="response.jsp" %&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. response.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;h2&gt;&lt;font
+color="black"&gt;Hello, &lt;%= username %&gt;!&lt;/font&gt;&lt;/h2&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.3"></a>(2.3)
+Build and run "jsp_forward" sample application</h3>
+<br>
+<div style="margin-left: 40px;"><img alt="" src="index_files/1_result21.png" style="width: 669px; height: 542px;"><br>
+<br>
+<img alt="" src="index_files/1_result22.png" style="width: 669px; height: 542px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.4"></a>(2.4)
+Study the code<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. index.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body
+bgcolor="white"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h3&gt;Hello, my name is
+Duke. What's yours?&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form method="get"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="text" name="username" size="25"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p&gt;&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="submit" value="Submit"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="reset" value="Reset"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String username = request.getParameter("username");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (
+username != null &amp;&amp; username.length() &gt; 0 ) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style="font-weight: bold;">pageContext.setAttribute("username",
+username, PageContext.REQUEST_SCOPE);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold; color: rgb(255, 0, 0);">&lt;jsp:forward
+page="response.jsp"/&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. response.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&lt;head&gt;&lt;title&gt;Response&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body bgcolor="white"&gt; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h2&gt;&lt;font
+color="black"&gt;Hello,<span style="font-weight: bold;"> &lt;%=
+pageContext.getAttribute("username", PageContext.REQUEST_SCOPE)%&gt;</span>!&lt;/font&gt;&lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.5"></a>(2.5)
+Build and run "JSP Examples" sample application<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Open <span style="font-weight: bold; color: rgb(51, 51, 255);">JSPExamples</span> Maven project (that is provided as part of hands-on lab zip file).
+<br>
+<ul>
+  <li>Select <span style="font-weight: bold;">File</span>-&gt;<span style="font-weight: bold;">Open Project (Ctrl+Shift+O)</span>.</li>
+</ul>
+<img alt="" src="index_files/1_result4.png" style="width: 767px; height: 728px;"><br>
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <li>The <span style="font-weight: bold;">Open Project</span> dialog
+box appears.</li>
+  <li>Browse down to <span style="font-weight: bold;">&lt;LAB_UNZIPPED_DIRECTORY&gt;/jsp_basics2/samples_maven</span>
+directory.&nbsp; <br>
+  </li>
+  <li>Select <span style="font-weight: bold; color: rgb(51, 51, 255);">JSPExamples</span>.
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<img alt="" src="index_files/1_result5.png" style="width: 779px; height: 403px;"><br>
+<br>
+2. Build and run the project.<br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">JSPExamples </span>project
+node and select <span style="font-weight: bold;">Run</span>.</li>
+</ul>
+<img alt="" src="index_files/2_tomcatjsp3.png" style="width: 809px; height: 671px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.6"></a>(2.6)&nbsp;
+Include<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+1. Run the "<span style="font-weight: bold;">Include</span>" part of
+the sampe application.<br>
+<br>
+<img alt="" src="index_files/2_include1.png" style="width: 739px; height: 578px;"><br>
+<br>
+<img alt="" src="index_files/2_include2.png" style="width: 739px; height: 578px;"><br>
+<br>
+2. Create a new JSP file, called <span style="font-weight: bold; color: rgb(51, 51, 255);">foo1.jsp</span>
+under <span style="font-weight: bold;">JSPExamples-&gt;Web
+Pages-&gt;include</span>.&nbsp; The code fragments that need to be
+changed from the IDE generated JSP file are highlighted in <span style="font-weight: bold; color: rgb(51, 51, 255);">bold and blue
+colored</span> font.<br>
+<ul>
+  <li>Right click include and select New-&gt;JSP.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_include3.png" style="width: 799px; height: 701px;"><br>
+<ul>
+  <li>For the JSP File Name field, enter <span style="font-weight: bold; color: rgb(255, 0, 0);">foo1</span>.</li>
+  <li>Click Finish.<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_include4.png" style="width: 663px; height: 452px;"><br>
+<ul>
+  <li>Modify the code as shown below.</li>
+</ul>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;%@page
+contentType="text/html"%&gt;<br>
+&lt;%@page pageEncoding="UTF-8"%&gt;<br>
+      <br>
+      <br>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"<br>
+&nbsp;&nbsp; "http://www.w3.org/TR/html4/loose.dtd"&gt;<br>
+&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;head&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;meta
+http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;JSP
+Page&lt;/title&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;h1&gt;<span style="font-weight: bold; color: rgb(255, 0, 0);">This is foo1.jsp</span>&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.40: foo1.jsp<br>
+<br>
+3. Modify <span style="font-weight: bold; color: rgb(51, 51, 255);">include.jsp</span>
+under <span style="font-weight: bold;">JSPExamples-&gt;Web
+Pages-&gt;include</span>.&nbsp;
+The code fragments that need to be changed from the IDE generated JSP
+file are highlighted in <span style="font-weight: bold; color: rgb(51, 51, 255);">bold and blue
+colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&lt;!--<br>
+&nbsp; Copyright 2004 The Apache Software Foundation<br>
+      <br>
+&nbsp; Licensed under the Apache License, Version 2.0 (the "License");<br>
+&nbsp; you may not use this file except in compliance with the License.<br>
+&nbsp; You may obtain a copy of the License at<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://www.apache.org/licenses/LICENSE-2.0<br>
+      <br>
+&nbsp; Unless required by applicable law or agreed to in writing,
+software<br>
+&nbsp; distributed under the License is distributed on an "AS IS" BASIS,<br>
+&nbsp; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.<br>
+&nbsp; See the License for the specific language governing permissions
+and<br>
+&nbsp; limitations under the License.<br>
+--&gt;<br>
+      <br>
+&lt;body bgcolor="white"&gt;<br>
+      <br>
+&lt;font color="red"&gt;<br>
+      <br>
+&lt;%@ page buffer="5kb" autoFlush="false" %&gt;<br>
+      <br>
+&lt;p&gt;In place evaluation of another JSP which gives you the current
+time:<br>
+      <br>
+&lt;%@ include file="foo.jsp" %&gt;<br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&lt;%@
+include file="foo1.jsp" %&gt;</span><br>
+      <br>
+&lt;p&gt; &lt;jsp:include page="/include/foo.html" flush="true"/&gt; by
+including the output of another JSP:<br>
+      <br>
+&lt;jsp:include page="foo.jsp" flush="true"/&gt;<br>
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&lt;jsp:include
+page="foo1.jsp" flush="true"/&gt;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <br>
+:-) <br>
+      <br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.41: Modified include.jsp<br>
+<br>
+4. Run the application again.&nbsp; <br>
+<ul>
+  <li>Right click project node and select Run.</li>
+  <li>You should see the Figure-2.42
+below.</li>
+</ul>
+<br>
+<img alt="" src="index_files/2_include5.png" style="width: 739px; height: 578px;"><br>
+Figure-2.42: Result <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_2">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="2.7"></a>(2.7)
+Forward<br>
+</h3>
+<br>
+<div style="margin-left: 40px;">1. Run the "<span style="font-weight: bold;">Forward</span>" part of
+the sampe application.<br>
+<br>
+<img alt="" src="index_files/1_result6.png" style="width: 834px; height: 668px;"><br>
+<br>
+2. Create a new JSP file, called <span style="font-weight: bold; color: rgb(51, 51, 255);">three.jsp</span>
+under <span style="font-weight: bold;">JSPExamples-&gt;Web
+Pages-&gt;forward</span>.&nbsp; Replace the IDE generated JSP file with
+the one in Code-2.50 below.<br>
+<br>
+</div>
+<table style="width: 100%; text-align: left; margin-left: 40px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&lt;!--<br>
+&nbsp; Copyright (c) 1999 The Apache Software Foundation.&nbsp; All
+rights <br>
+&nbsp; reserved.<br>
+--&gt;<br>
+      <br>
+&lt;body bgcolor="white"&gt;<br>
+&lt;font color="red"&gt;<br>
+      <br>
+&lt;h3&gt; This is page number three &lt;/h3&gt;<br>
+      <br>
+VM Memory usage (from three.jsp)&nbsp; &lt; 80%.<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin-left: 40px;">Code-2.50: three.jsp<br>
+<br>
+3. Modify <span style="font-weight: bold; color: rgb(51, 51, 255);">forward.jsp</span>
+under <span style="font-weight: bold;">JSPExamples-&gt;Web
+Pages-&gt;forward</span>.&nbsp;
+The code fragments that need to be changed from the IDE generated JSP
+file are highlighted in <span style="font-weight: bold; color: rgb(51, 51, 255);">bold and blue
+colored</span> font.<br>
+<br>
+</div>
+<table style="width: 100%; text-align: left; margin-left: 40px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;!--<br>
+&nbsp;&nbsp;&nbsp; Copyright (c) 1999 The Apache Software
+Foundation.&nbsp; All rights <br>
+&nbsp;&nbsp;&nbsp; reserved.<br>
+&nbsp;&nbsp;&nbsp; --&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;% <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double freeMem =
+Runtime.getRuntime().freeMemory();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double totlMem =
+Runtime.getRuntime().totalMemory();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double percent =
+freeMem/totlMem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (percent &lt; 0.5) {<br>
+&nbsp;&nbsp;&nbsp; %&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;jsp:forward page="/forward/one.jsp"/&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold; color: rgb(51, 51, 255);">&lt;% } else { </span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (percent &lt; 0.8) { %&gt;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;jsp:forward
+ page="two.html"/&gt;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%&nbsp;&nbsp; } else { %&gt;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;jsp:forward
+ page="three.jsp"/&gt;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%&nbsp;&nbsp; } %&gt;</span><br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <br style="font-weight: bold; color: rgb(51, 51, 255);">
+      <span style="font-weight: bold; color: rgb(51, 51, 255);">&nbsp;&nbsp;&nbsp;
+&lt;% } %&gt;</span><br>
+      <br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin-left: 40px;">Code-2.51: Modified forward.jsp<br>
+<br>
+4. Run the application again.&nbsp; If the percent is above or equal to
+0.8, you should see the Figure-2.52 below. <br>
+<br>
+<img alt="" src="index_files/2_page3.png" style="width: 769px; height: 627px;"><br>
+Figure-2.52: three.jsp is displayed as a result of forwarding<br>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_2">return to top of the exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+<br>
+<h2><a name="Exercise_3"></a>Exercise 3: Error page<br>
+</h2>
+<p style="margin-left: 40px;">Learning points:<br>
+</p>
+<div style="margin-left: 40px;">
+<ul>
+  <li>In each JSP page, you can include the error page through &lt;%@
+page errorPage="&lt;name-of-errorpage&gt;.jsp" %&gt; directive</li>
+  <li>In the &lt;name-of-errorpage&gt;.jsp, you include &lt;%@ page
+isErrorPage="true" %&gt; directive<br>
+  </li>
+</ul>
+</div>
+<p style="margin-left: 40px;">Tasks to be performed:<br>
+</p>
+<ul>
+  <ul>
+  </ul>
+  <ol>
+    <li><a href="#3.1">Execute "Errorpage" example</a></li>
+    <li><a href="#3.2">Study the code</a><br>
+    </li>
+    <li><a href="#3.3">Modify "ErrorPage" part of the sample
+application</a></li>
+  </ol>
+</ul>
+<div style="margin-left: 40px;"><br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.1"></a>(3.1)
+Run Errorpage</h3>
+<div style="margin-left: 40px;"><br>
+<img alt="" src="index_files/1_result7.png" style="width: 834px; height: 668px;"><br>
+<br>
+<img alt="" src="index_files/1_result8.png" style="width: 834px; height: 668px;"><br>
+<br>
+<img alt="" src="index_files/1_result9.png" style="width: 834px; height: 668px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_3">return to top of the exercise</a><br>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.2"></a>(3.2)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Web Pages/error/error.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&lt;!--<br>
+&nbsp; Copyright 2004 The Apache Software Foundation<br>
+      <br>
+&nbsp; Licensed under the Apache License, Version 2.0 (the "License");<br>
+&nbsp; you may not use this file except in compliance with the License.<br>
+&nbsp; You may obtain a copy of the License at<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://www.apache.org/licenses/LICENSE-2.0<br>
+      <br>
+&nbsp; Unless required by applicable law or agreed to in writing,
+software<br>
+&nbsp; distributed under the License is distributed on an "AS IS" BASIS,<br>
+&nbsp; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.<br>
+&nbsp; See the License for the specific language governing permissions
+and<br>
+&nbsp; limitations under the License.<br>
+--&gt;<br>
+&lt;body bgcolor="lightblue"&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> <span style="color: rgb(255, 0, 0);">&lt;%@ page errorPage="errorpge.jsp"
+%&gt;</span></span><br>
+&nbsp;&nbsp;&nbsp; &lt;jsp:useBean id="foo" scope="request"
+class="error.Smart" /&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;% <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; String name = null;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (request.getParameter("name")
+== null) {<br>
+&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;%@ include file="/error/error.html" %&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+foo.setName(request.getParameter("name"));<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; if
+(foo.getName().equalsIgnoreCase("integra"))<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; name =
+"acura";<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; if
+(name.equalsIgnoreCase("acura")) {<br>
+&nbsp;&nbsp;&nbsp; %&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;H1&gt; Yes!!! &lt;a
+href="http://www.acura.com"&gt;Acura&lt;/a&gt; is my favorite
+car.&lt;/H1&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;% <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; }<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; %&gt;&nbsp;&nbsp;&nbsp; <br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. Web Pages/error/errorpge.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&lt;!--<br>
+&nbsp; Copyright 2004 The Apache Software Foundation<br>
+      <br>
+&nbsp; Licensed under the Apache License, Version 2.0 (the "License");<br>
+&nbsp; you may not use this file except in compliance with the License.<br>
+&nbsp; You may obtain a copy of the License at<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://www.apache.org/licenses/LICENSE-2.0<br>
+      <br>
+&nbsp; Unless required by applicable law or agreed to in writing,
+software<br>
+&nbsp; distributed under the License is distributed on an "AS IS" BASIS,<br>
+&nbsp; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.<br>
+&nbsp; See the License for the specific language governing permissions
+and<br>
+&nbsp; limitations under the License.<br>
+--&gt;<br>
+      <br>
+&lt;body bgcolor="red"&gt;<br>
+      <br>
+&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp; &lt;%@ page
+isErrorPage="true" %&gt;</span><br>
+&nbsp;&nbsp;&nbsp; &lt;h1&gt; The exception &lt;%=
+exception.getMessage() %&gt; tells me you<br>
+&nbsp;&nbsp;&nbsp; made a wrong choice.&nbsp; &lt;/h1&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_3">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="3.3"></a>(3.3)
+Modify "ErrorPage" example part of the application<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+In this step, you are going to display your own Error page when there
+occurs an error.&nbsp; If you are using IE7, please see the
+Trouble-shooting below.<br>
+<br>
+1.&nbsp; Create <span style="font-weight: bold; color: rgb(51, 51, 255);">myOwnErrorpage.jsp</span>
+under <span style="font-weight: bold;">JSPExamples-&gt;Web
+Pages-&gt;error</span>. <br>
+<ul>
+  <li>Right click <span style="font-weight: bold;">error </span>and
+select <span style="font-weight: bold;">New-&gt;JSP</span>.</li>
+</ul>
+<img alt="" src="index_files/1_result3.png" style="width: 809px; height: 671px;"><br>
+<ul>
+  <li>Under <span style="font-weight: bold;">New JSP File</span>
+dialog box, for <span style="font-weight: bold;"> JSP File Name:</span>
+field, type in <span style="font-weight: bold; color: rgb(255, 0, 0);">myOwnErrorpage</span>.</li>
+  <li>Click <span style="font-weight: bold;">Finish</span>.&nbsp;
+(Figure-2.30 below)<br>
+  </li>
+</ul>
+<img alt="" src="index_files/2_myownerror.png" style="width: 620px; height: 450px;"><br>
+Figure-2.30: Create myOwnErrorPage.jsp<br>
+<br>
+2. Replace the IDE generated <span style="font-weight: bold;">myOwnErrorpage.jsp</span>
+with the code in Code-2.31 below.&nbsp; This is a modified copy of the
+<span style="font-weight: bold;">errorpage.jsp</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&lt;!--<br>
+&nbsp; Copyright 2004 The Apache Software Foundation<br>
+      <br>
+&nbsp; Licensed under the Apache License, Version 2.0 (the "License");<br>
+&nbsp; you may not use this file except in compliance with the License.<br>
+&nbsp; You may obtain a copy of the License at<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://www.apache.org/licenses/LICENSE-2.0<br>
+      <br>
+&nbsp; Unless required by applicable law or agreed to in writing,
+software<br>
+&nbsp; distributed under the License is distributed on an "AS IS" BASIS,<br>
+&nbsp; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.<br>
+&nbsp; See the License for the specific language governing permissions
+and<br>
+&nbsp; limitations under the License.<br>
+--&gt;<br>
+      <br>
+&lt;body bgcolor="<span style="font-weight: bold;">blue</span>"&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;%@ page isErrorPage="true" %&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;h1&gt; <span style="font-weight: bold;">This is
+my own error page and the</span> exception &lt;%=
+exception.getMessage() %&gt; tells me you<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; made a wrong choice. <br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.31: myOwnErrorpage.jsp<br>
+<br>
+3. Modify <span style="font-weight: bold; color: rgb(51, 51, 255);">err.jsp</span>
+under under <span style="font-weight: bold;">JSPExamples-&gt;Web
+Pages-&gt;error</span>. The code fragments that need to be added are
+highlighted
+in <span style="font-weight: bold; color: rgb(51, 51, 255);">bold and
+blue colored</span> font.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;body bgcolor="lightblue"&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;%@ page errorPage="<span style="font-weight: bold; color: rgb(51, 51, 255);">myOwnErrorpage.jsp</span>"
+%&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;jsp:useBean id="foo" scope="request"
+class="error.Smart" /&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;% <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; String name = null;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (request.getParameter("name")
+== null) {<br>
+&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;%@ include file="/error/error.html" %&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+foo.setName(request.getParameter("name"));<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; if
+(foo.getName().equalsIgnoreCase("integra"))<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; name =
+"acura";<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; if
+(name.equalsIgnoreCase("acura")) {<br>
+&nbsp;&nbsp;&nbsp; %&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;H1&gt; Yes!!! &lt;a
+href="http://www.acura.com"&gt;Acura&lt;/a&gt; is my favorite car.<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;% <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; }<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; %&gt;&nbsp;&nbsp;&nbsp; <br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.32: Modified err.jsp<br>
+<br>
+3. Right click <span style="font-weight: bold;">JSPExamples </span>project
+node and select <span style="font-weight: bold;">Run</span>.<br>
+4. Observe that the browser gets displayed.&nbsp; Scroll down to the
+section with<span style="font-weight: bold;"> JSP 1.2 Examples</span>.<br>
+5. Click <span style="font-weight: bold;">Execute </span>to execute
+the "<span style="font-weight: bold;">ErrorPage</span>" example. <br>
+6. Select <span style="font-weight: bold;">BMW 328i</span> from the
+drop-down list.<br>
+7. Observe that myOwnErrorpage.jsp is displayed on the browser.
+(Figure-2.33 below)<br>
+<br>
+<img alt="" src="index_files/2_myownerror2.png" style="width: 737px; height: 595px;"><br>
+Figure-2.33: Result of running the application<br>
+<br>
+<span style="color: rgb(255, 0, 0);">Trouble-shooting</span>:&nbsp; If
+you are using IE6 and experience "Internal Server" error condition, do
+Tools-Internet Options-Advanced tab-uncheck "Show friendly HTTP error
+message"<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_3">return to top of the exercise</a><br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <br>
+</div>
+<br>
+<h2><a name="Exercise_4"></a>Exercise 4: Scope objects<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">Learning points:<br>
+<ul>
+  <li>There are 4 scope objects - page scope, request scope, session
+scope, application scope</li>
+  <li>The attributes in the page scope can be accessed only in that
+page or included page<br>
+  </li>
+</ul>
+<br>
+</div>
+<div style="margin-left: 40px;">Tasks to be performed:<br>
+<ol>
+  <li><a href="#4.1">Scope objects with an included page</a></li>
+  <li><a href="#4.2">Study the code</a></li>
+  <li><a href="#4.3">Scope objects with an forwarded page</a></li>
+  <li><a href="#4.4">Study the code</a><br>
+  </li>
+</ol>
+</div>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.1"></a>(4.1)
+Scope objects&nbsp; with an included page<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+1. Open <span style="font-weight: bold;">jsp_scope_objects_include</span> Maven project.&nbsp; <br>
+<ul></ul>
+<div style="margin-left: 40px;"></div>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span style="font-weight: bold;">jsp_scope_objects_include </span>project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul></ul>
+3. Observe that attributes of all scopes can be accessed in the current
+page.<br>
+<br>
+<img alt="" src="index_files/1_result10.png" style="width: 810px; height: 668px;"><br>
+<br>
+4. Check if the included page can access attrubues in all scopes.<br>
+<br>
+<img alt="" src="index_files/1_result11.png" style="width: 810px; height: 668px;"><br>
+<br>
+<img alt="" src="index_files/1_result12.png" style="width: 810px; height: 668px;"><br>
+<br>
+5. Verify that the attributes of page scope and request scope are not
+accessible in another page.<br>
+<br>
+<img alt="" src="index_files/1_result13.png" style="width: 810px; height: 668px;"><br>
+<br>
+<img alt="" src="index_files/1_result14.png" style="width: 810px; height: 668px;"><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_4">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.2"></a>(4.2)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. index.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body
+bgcolor="white"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h2&gt; Save attributes
+in page scope &lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Check if attribute has been set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Object o = pageContext.getAttribute("com.mycompany.name1",
+PageContext.PAGE_SCOPE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(o == null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// The attribute com.mycompany.name1 may not have a value or may have
+the value null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp; // Save data</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// pageContext.setAttribute("com.mycompany.name1", "value0");&nbsp; //
+PAGE_SCOPE is the default</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name1", "PageScopeAttribute",
+PageContext.PAGE_SCOPE);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name2",
+"RequestScopeAttribute", PageContext.REQUEST_SCOPE);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name3",
+"SessionScopeAttribute", PageContext.SESSION_SCOPE);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name4",
+"ApplicationScopeAttribute", PageContext.APPLICATION_SCOPE);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> &lt;%-- Show the values --%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name1",
+PageContext.PAGE_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name2",
+PageContext.REQUEST_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name3",
+PageContext.SESSION_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name4",
+PageContext.APPLICATION_SCOPE)%&gt;</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h3&gt;Hello, my name is
+Duke. What's yours?&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form method="get"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="text" name="username" size="25"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p&gt;&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="submit" value="Submit"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="reset" value="Reset"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String username = request.getParameter("username");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(username != null &amp;&amp; username.length() &gt; 0) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(255, 0, 0);"> &lt;%@include
+file="response.jsp" %&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a
+href="anotherpage.jsp"&gt; Display another page &lt;/a&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. response.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;h2&gt;&lt;font
+color="black"&gt;Hello, &lt;%= username%&gt;!&lt;/font&gt;&lt;/h2&gt;<br>
+      <br>
+      <span style="font-weight: bold;">&lt;%-- Show the values --%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&lt;%=
+pageContext.getAttribute("com.mycompany.name1",
+PageContext.PAGE_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&lt;%=
+pageContext.getAttribute("com.mycompany.name2",
+PageContext.REQUEST_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&lt;%=
+pageContext.getAttribute("com.mycompany.name3",
+PageContext.SESSION_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&lt;%=
+pageContext.getAttribute("com.mycompany.name4",
+PageContext.APPLICATION_SCOPE)%&gt;</span><br>
+      <br>
+&lt;br/&gt;<br>
+&lt;br/&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+3. anotherpage.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body
+bgcolor="white"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h2&gt; Get
+attributes&lt;/h2&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;
+&lt;%-- Show the values --%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name1",
+PageContext.PAGE_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name2",
+PageContext.REQUEST_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name3",
+PageContext.SESSION_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name4",
+PageContext.APPLICATION_SCOPE)%&gt;</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_4">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.3"></a>(4.3)
+Scope objects<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+1. Open <span style="font-weight: bold;">jsp_scope_objects_forward</span> Maven project.&nbsp; <br>
+<ul></ul>
+<div style="margin-left: 40px;">
+</div>
+</div>
+<p style="margin-left: 40px;">2 Build and run <span style="font-weight: bold;">jsp_scope_objects_forward </span>project. <br>
+</p>
+<div style="margin-left: 40px;">
+<ul></ul>
+3. Observe that attribues of all scopes can be accessed in the current
+page.<br>
+<br>
+<img alt="" src="index_files/1_result15.png" style="width: 810px; height: 668px;"><br>
+<br>
+4. Verify that the forward page cannot access attributes in the page
+scope while it can access attrubutes in other scopes.<br>
+<br>
+<img alt="" src="index_files/1_result16.png" style="width: 810px; height: 668px;"><br>
+<br>
+<img alt="" src="index_files/1_result17.png" style="width: 810px; height: 668px;"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_4">return to top of the exercise</a><br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="4.4"></a>(4.4)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. index.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&nbsp;&nbsp;&nbsp;
+&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;body
+bgcolor="white"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h2&gt; Save attributes
+in page scope &lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+Check if attribute has been set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Object o = pageContext.getAttribute("com.mycompany.name1",
+PageContext.PAGE_SCOPE);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(o == null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// The attribute com.mycompany.name1 may not have a value or may have
+the value null<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">&nbsp;&nbsp; // Save data</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// pageContext.setAttribute("com.mycompany.name1", "value0");&nbsp; //
+PAGE_SCOPE is the default</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name1", "PageScopeAttribute",
+PageContext.PAGE_SCOPE);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name2",
+"RequestScopeAttribute", PageContext.REQUEST_SCOPE);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name3",
+"SessionScopeAttribute", PageContext.SESSION_SCOPE);</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pageContext.setAttribute("com.mycompany.name4",
+"ApplicationScopeAttribute", PageContext.APPLICATION_SCOPE);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> &lt;%-- Show the values --%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name1",
+PageContext.PAGE_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name2",
+PageContext.REQUEST_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name3",
+PageContext.SESSION_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%= pageContext.getAttribute("com.mycompany.name4",
+PageContext.APPLICATION_SCOPE)%&gt;</span><br style="font-weight: bold;">
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;h3&gt;Hello, my name is
+Duke. What's yours?&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form method="get"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="text" name="username" size="25"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p&gt;&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="submit" value="Submit"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;input type="reset" value="Reset"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String username = request.getParameter("username");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(username != null &amp;&amp; username.length() &gt; 0) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(255, 0, 0);"> &lt;jsp:forward
+page="response.jsp"/&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;a
+href="anotherpage.jsp"&gt; Display another page &lt;/a&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+2. response.jsp<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;%-- Show the values --%&gt;<br>
+&lt;%= pageContext.getAttribute("com.mycompany.name1",
+PageContext.PAGE_SCOPE)%&gt;<br>
+&lt;%= pageContext.getAttribute("com.mycompany.name2",
+PageContext.REQUEST_SCOPE)%&gt;<br>
+&lt;%= pageContext.getAttribute("com.mycompany.name3",
+PageContext.SESSION_SCOPE)%&gt;<br>
+&lt;%= pageContext.getAttribute("com.mycompany.name4",
+PageContext.APPLICATION_SCOPE)%&gt;<br>
+      <br>
+&lt;br/&gt;<br>
+&lt;br/&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_4">return to top of the exercise</a><br>
+</div>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+<div style="margin-left: 40px;">
+<br>
+<br>
+<br>
+</div>
+<br>
+<h2><a name="Exercise_5"></a>Exercise 5: Forwarding between JSP and
+Servlet<br>
+</h2>
+<br>
+<div style="margin-left: 40px;">Learning points:<br>
+<ul>
+  <li>The servlet and JSP can be forwarded&nbsp; each other</li>
+</ul>
+Tasks to be performed:<br>
+<ol>
+  <li><a href="#5.1">Run "JSP Servlet JSP" part of the JSPExamples
+application</a></li>
+  <li><a href="#5.2">Study the code</a><br>
+  </li>
+</ol>
+</div>
+<br>
+<br>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.1"></a>(5.1)
+Run "JSP Servlet JSP" part of the application<br>
+</h3>
+<div style="margin-left: 40px;">
+<br>
+The "JSP Servlet JSP" part of the application shows how JSP and
+Servlets are being forwarded each other.&nbsp; When you clickthe <span style="font-weight: bold;">Execute</span>, it will invoke <span style="font-weight: bold;">jsptoservlet.jsp</span>, which in turn
+forward the control to <span style="font-weight: bold;">servletToJsp</span>
+servlet, which in turn forwards the control to <span style="font-weight: bold;">hello.jsp</span>.&nbsp; <br>
+<br>
+1. Run the "<span style="font-weight: bold;">JSP Servlet JSP</span>"
+part of
+the sampe application.<br>
+<br>
+<img alt="" src="index_files/1_result18.png" style="width: 810px; height: 668px;"><br>
+<br>
+2. Observe the result as shown in Figure-2.60 below.</div>
+<div style="margin-left: 40px;"><br>
+<img alt="" src="index_files/2_jspservlet.png" style="width: 810px; height: 668px;"><br>
+Figure-2.70: Result of running "JSP Servlet JSP" part of the
+application.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_5">return to top of the exercise</a><br>
+<br>
+<br>
+</div>
+<h3 style="margin-left: 40px;" class="tutorial"><a name="5.2"></a>(5.2)
+Study the code<br>
+</h3>
+<div style="margin-left: 40px;"><br>
+1. Open <span style="font-weight: bold;">jsptoServlet.jsp</span> under
+<span style="font-weight: bold;">JSPExamples-&gt;Web
+Pages-&gt;jsptoserv</span>. <br>
+2. Observe that the control is forwarded to <span style="font-weight: bold;">/servletToJsp </span>url-pattern.&nbsp;
+(Code-2.71 below)<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&lt;!--<br>
+&nbsp; Copyright 2004 The Apache Software Foundation<br>
+      <br>
+&nbsp; Licensed under the Apache License, Version 2.0 (the "License");<br>
+&nbsp; you may not use this file except in compliance with the License.<br>
+&nbsp; You may obtain a copy of the License at<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://www.apache.org/licenses/LICENSE-2.0<br>
+      <br>
+&nbsp; Unless required by applicable law or agreed to in writing,
+software<br>
+&nbsp; distributed under the License is distributed on an "AS IS" BASIS,<br>
+&nbsp; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.<br>
+&nbsp; See the License for the specific language governing permissions
+and<br>
+&nbsp; limitations under the License.<br>
+--&gt;<br>
+&lt;body bgcolor="white"&gt;<br>
+      <br>
+      <span style="font-weight: bold;">&lt;!-- Forward to a servlet
+--&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&lt;jsp:forward
+page="/servletToJsp" /&gt;</span><br>
+      <br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.71: Control is now forwarded to servletToJsp.<br>
+<br>
+3. Open <span style="font-weight: bold;">web.xml</span> under <span style="font-weight: bold;">JSPExamples-&gt;Web Pages-&gt;WEB-INF</span>.<br>
+4. Obseve that the <span style="font-weight: bold;">/servletToJsp</span>
+url-pattern is mapped to a Servlet class called <span style="font-weight: bold;">servletToJsp</span> (The code fragment in
+the Code-2.72 below starts from line number 106 of the web.xml file.) <br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp; &lt;!--
+Define servlets that are included in the example application --&gt;<br>
+      <br>
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&lt;servlet&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;servletToJsp&lt;/servlet-name&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;servletToJsp&lt;/servlet-class&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&lt;/servlet&gt;</span><br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;servlet&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;CompressionFilterTestServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-class&gt;compressionFilters.CompressionFilterTestServlet&lt;/servlet-class&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;CompressionFilterTestServlet&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/CompressionTest&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/servlet-mapping&gt;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">&lt;servlet-mapping&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;servlet-name&gt;servletToJsp&lt;/servlet-name&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;url-pattern&gt;/servletToJsp&lt;/url-pattern&gt;</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&lt;/servlet-mapping&gt;</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.72: Servlet mapping<br>
+<br>
+5. Open <span style="font-weight: bold;">servletToJsp.java</span>
+under <span style="font-weight: bold;">JSPExamples-&gt;Source
+Packages-&gt;&lt;default package&gt;</span>.<br>
+6. Observe that the a new attribute called "servletName" is added to
+the <span style="font-weight: bold;">HttpServletRequest </span>object
+and then control is forwarded to <span style="font-weight: bold;">/jsptoserv/hellp.jsp</span>.&nbsp;
+(Code-2.73 below)<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">import javax.servlet.*;<br>
+import javax.servlet.http.*;<br>
+      <br>
+public class servletToJsp extends HttpServlet {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public void doGet (HttpServletRequest request,<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HttpServletResponse response) {<br>
+      <br>
+&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Set the attribute and Forward
+to hello.jsp<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">request.setAttribute
+("servletName", "servletToJsp");</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+getServletConfig().getServletContext().getRequestDispatcher("/jsptoserv/hello.jsp").forward(request,
+response);</span><br>
+&nbsp;&nbsp;&nbsp; } catch (Exception ex) {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ex.printStackTrace ();<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.73: servetToJsp.java<br>
+<br>
+7. Open <span style="font-weight: bold;">hello.jsp</span> under <span style="font-weight: bold;">JSPExamples-&gt;Web Pages-&gt;jsptoserv</span>.<br>
+8. Observe that <span style="font-weight: bold;">hello.jsp</span>
+displays the value of the newly added attribute called <span style="font-weight: bold;">servletName </span>in the <span style="font-weight: bold;">servletToJsp.java</span>.<br>
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">&lt;html&gt;<br>
+&lt;!--<br>
+&nbsp; Copyright 2004 The Apache Software Foundation<br>
+      <br>
+&nbsp; Licensed under the Apache License, Version 2.0 (the "License");<br>
+&nbsp; you may not use this file except in compliance with the License.<br>
+&nbsp; You may obtain a copy of the License at<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://www.apache.org/licenses/LICENSE-2.0<br>
+      <br>
+&nbsp; Unless required by applicable law or agreed to in writing,
+software<br>
+&nbsp; distributed under the License is distributed on an "AS IS" BASIS,<br>
+&nbsp; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.<br>
+&nbsp; See the License for the specific language governing permissions
+and<br>
+&nbsp; limitations under the License.<br>
+--&gt;<br>
+&lt;body bgcolor="white"&gt;<br>
+      <br>
+&lt;h1&gt;<br>
+I have been invoked by<br>
+      <span style="font-weight: bold;">&lt;% out.print
+(request.getAttribute("servletName").toString()); %&gt;</span><br>
+Servlet.<br>
+&lt;/h1&gt;<br>
+      <br>
+&lt;/html&gt;<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Code-2.74: hello.jsp<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+ <a href="index.html#Exercise_5">return to top of the exercise</a><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <a href="index.html#Tutorial_Exercises">return
+to the top</a><br>
+</div>
+<br>
+<br>
+<br>
+<h2><a name="Homework_Exercise"></a>Homework Exercise<br>
+</h2>
+<br>
+<div style="margin-left: 40px;"><span style="color: rgb(0, 0, 0);">1.
+The homework is to modify the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">jsp_forward</span><span style="color: rgb(0, 0, 0);"> project as described below.&nbsp; (You
+might want to create a new project by copying
+the </span><span style="font-weight: bold; color: rgb(0, 0, 0);">jsp_forward
+</span><span style="color: rgb(0, 0, 0);">project.&nbsp; You can name
+the
+homework project in any way you want
+but here I am going to call it </span><span style="font-weight: bold; color: rgb(0, 0, 0);">Myjsp_forward</span><span style="color: rgb(0, 0, 0);">.)</span><br>
+<ul>
+  <li>Make the<span style="font-weight: bold;"> response.jsp</span>
+to&nbsp; forward the control to <span style="font-weight: bold;">response2.jsp</span></li>
+  <li>In the <span style="font-weight: bold;">response.jsp</span>,
+save the current time as<span style="font-weight: bold;"> current_time</span>
+attribute in the request scope</li>
+  <li>In the <span style="font-weight: bold;">response2.jsp</span>,
+access the <span style="font-weight: bold;">current_time</span>
+attribute and display it<br>
+  </li>
+</ul>
+2<span style="color: rgb(0, 0, 0);">. Send the following files to</span><span style="color: rgb(0, 0, 0);">
+<a href="mailto:j2eehomeworks@javapassion.com">j2eehomeworks@javapassion.com</a>
+with </span><span style="font-weight: bold; color: rgb(0, 0, 0);">Subject
+</span><span style="color: rgb(0, 0, 0);">as </span><span style="font-weight: bold; color: rgb(0, 0, 0);">jsp_basics2.</span><br style="color: rgb(0, 0, 0);">
+<span style="font-weight: bold; color: rgb(0, 0, 0);"></span>
+<ul style="color: rgb(0, 0, 0);">
+  <li>Zip file of the<span style="font-weight: bold;"> Myjsp_forward</span> Maven project.&nbsp; <br>
+</li><li>Captured output screen&nbsp;<span style="font-weight: bold;"> </span>-
+name it as <span style="font-weight: bold;">jsp_basics2.gif</span>
+or <span style="font-weight: bold;">jsp_basics2</span><span style="font-weight: bold;">.jpg</span> (or <span style="font-weight: bold;">jsp_basics2.&lt;whatever
+graphics format&gt;</span>)</li>
+  <ul>
+    <li>Any screen capture that shows that your program is working is
+good enough.&nbsp; <br>
+    </li>
+  </ul>
+  
+</ul>
+</div>
+<div style="margin-left: 40px;"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;<a href="#Tutorial_Exercises">
+return to the top</a></div>
+<div class="indent"><br>
+<br>
+<br>
+</div>
+<br>
+<p> </p>
+<!-- ======================================================================================== -->
+
+
+</body></html>
